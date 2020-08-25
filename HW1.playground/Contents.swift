@@ -29,6 +29,43 @@ enum DukeProgram : String {
 
 // You can add code here
 
+class DukePerson : Person, CustomStringConvertible {
+    var role : DukeRole = .Student
+    var program :DukeProgram = .NA
+    var description : String {
+        let basicInfo : String = firstName + " " + lastName + " : a " + role.rawValue + " from " + whereFrom
+        return basicInfo
+    }
+    
+    init(firstName: String, lastName: String, whereFrom: String, gender: Gender, role: DukeRole, program: DukeProgram)
+    {
+        super.init()
+        self.firstName = firstName
+        self.lastName = lastName
+        self.whereFrom = whereFrom
+        self.gender = gender
+        self.role = role
+        self.program = program
+    }
+}
+
+// create DukePerson Array for test
+var testPersons = [DukePerson]()
+let yueyang = DukePerson(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: .Female, role: .Student, program: .Grad)
+let ric = DukePerson(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County, NC", gender: .Male, role: .Professor, program: .NA)
+let haohong = DukePerson(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: .Male, role: .TA, program: .Grad)
+let yuchen = DukePerson(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: .Male, role: .TA, program: .Grad)
+
+testPersons.append(yueyang)
+testPersons.append(ric)
+testPersons.append(haohong)
+testPersons.append(yuchen)
+
+for person in testPersons {
+    print(person)
+}
+
+
 class HW1ViewController : UIViewController {
     override func loadView() {
 // You can change color scheme if you wish
