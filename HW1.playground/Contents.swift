@@ -27,23 +27,26 @@ enum DukeProgram : String {
     case NA = "Not Applicable"
 }
 
-// You can add code here
-
 // create DukePerson class
 class DukePerson : Person, CustomStringConvertible {
     var role : DukeRole = .Student
-    var program :DukeProgram = .NA
+    var program : DukeProgram = .NA
     var description : String {
-        let basicInfo : String = firstName + " " + lastName + " : a " + role.rawValue + " from " + whereFrom
-        return basicInfo
+        let lineOne: String = "\(self.firstName) \(self.lastName) is a \(getProgram(program: self.program))\(self.role.rawValue.lowercased()) at Duke University."
+        var lineTwo: String = ""
+        if(self.whereFrom != ""){
+            lineTwo = "\((transferGender(gender: self.gender)).capitalized) is from \(self.whereFrom)."
+        }
+        let info: String = "\(lineOne) \(lineTwo)"
+        
+        return info
     }
     
     override init(){
         super.init()
     }
     
-    init(firstName: String, lastName: String, whereFrom: String, gender: Gender, role: DukeRole, program: DukeProgram)
-    {
+    init(firstName: String, lastName: String, whereFrom: String, gender: Gender, role: DukeRole, program: DukeProgram){
         super.init()
         self.firstName = firstName
         self.lastName = lastName
@@ -52,6 +55,17 @@ class DukePerson : Person, CustomStringConvertible {
         self.role = role
         self.program = program
     }
+    
+    func transferGender(gender: Gender)->String{
+        if(gender == .Female){ return "she" }
+        else{ return "he" }
+    }
+    
+    func getProgram(program: DukeProgram)->String{
+        if(program == .NA){ return "" }
+        else{ return "\(program.rawValue.lowercased()) " }
+    }
+    
 }
 
 // use DukePerson Array as database for test
@@ -70,7 +84,7 @@ for person in testPersons {
     print(person)
 }
 
-// views
+// views setting
 class HW1ViewController : UIViewController {
     // self-defined variable
     var firstNameLabel = UILabel()
@@ -87,7 +101,6 @@ class HW1ViewController : UIViewController {
     var outputLabel = UILabel()
     
     override func loadView() {
-// You can change color scheme if you wish
         let view = UIView()
         view.backgroundColor = .black
         let label = UILabel()
@@ -97,11 +110,11 @@ class HW1ViewController : UIViewController {
         view.addSubview(label)
         self.view = view
         
-// You can add code here
-        // layout settings
+        // subview settings
         firstNameLabel.frame = CGRect(x: 50, y: 50, width: 100, height: 40)
         firstNameLabel.text = "First Name:"
         firstNameLabel.textColor = .white
+        firstNameLabel.font = UIFont(name: "Arial", size: 17.0)
         view.addSubview(firstNameLabel)
         
         firstNameInput.frame = CGRect(x: 170, y: 60, width: 150, height: 20)
@@ -113,6 +126,7 @@ class HW1ViewController : UIViewController {
         lastNameLabel.frame = CGRect(x: 50, y: 80, width: 100, height: 40)
         lastNameLabel.text = "Last Name:"
         lastNameLabel.textColor = .white
+        lastNameLabel.font = UIFont(name: "Arial", size: 17.0)
         view.addSubview(lastNameLabel)
         
         lastNameInput.frame = CGRect(x: 170, y: 90, width: 150, height: 20)
@@ -124,6 +138,7 @@ class HW1ViewController : UIViewController {
         fromWhereLabel.frame = CGRect(x: 50, y: 110, width: 100, height: 40)
         fromWhereLabel.text = "From:"
         fromWhereLabel.textColor = .white
+        fromWhereLabel.font = UIFont(name: "Arial", size: 17.0)
         view.addSubview(fromWhereLabel)
         
         fromWhereInput.frame = CGRect(x: 170, y: 120, width: 150, height: 20)
@@ -140,7 +155,6 @@ class HW1ViewController : UIViewController {
             genderSegment.selectedSegmentIndex = 0
         }
         view.addSubview(genderSegment)
-        
         
         roleSegment.frame = CGRect(x: 50, y: 210, width: 270, height: 30)
         roleSegment.insertSegment(withTitle: "Prof", at: 0, animated: true)
@@ -167,36 +181,43 @@ class HW1ViewController : UIViewController {
         addButton.setTitleColor(.black, for: .normal)
         addButton.backgroundColor = .systemYellow
         addButton.setTitle("Add/Update", for: .normal)
+        addButton.setTitleColor(.systemRed, for: .highlighted)
+        addButton.titleLabel?.font = UIFont(name: "AmericanTypewriter", size: 17.0)
         addButton.addTarget(self, action: #selector(addPerson), for: .touchUpInside)
         view.addSubview(addButton)
         
         findButton.frame = CGRect(x: 200, y: 310, width: 120, height: 50)
         findButton.layer.cornerRadius = 10
         findButton.setTitleColor(.black, for: .normal)
+        findButton.setTitleColor(.systemRed, for: .highlighted)
         findButton.backgroundColor = .systemYellow
         findButton.setTitle("Find", for: .normal)
+        findButton.titleLabel?.font = UIFont(name: "AmericanTypewriter", size: 17.0)
         findButton.addTarget(self, action: #selector(findPerson), for: .touchUpInside)
         view.addSubview(findButton)
         
-        outputLabel.frame = CGRect(x: 50, y: 340, width: 270, height: 40)
+        outputLabel.frame = CGRect(x: 50, y: 380, width: 270, height: 80)
+        outputLabel.text = "Output Text Goes Here."
         outputLabel.textColor = .white
+        outputLabel.lineBreakMode = .byWordWrapping
+        outputLabel.numberOfLines = 5
+        outputLabel.font = UIFont(name: "Arial", size: 16.0)
         view.addSubview(outputLabel)
     
-        
     }
     
-// You can add code here
-    // button handler functions
-    
+
+// button handler functions
+    // add or update a person
     @objc func addPerson() {
         resignResponse()
-        
+        // read input as new person's attribute
         let firstName: String  = firstNameInput.text
         let lastName: String = lastNameInput.text
         let fromWhere: String = fromWhereInput.text
         var gender : Gender
         switch genderSegment.selectedSegmentIndex {
-            case 0: gender = .Female
+            case 1: gender = .Female
             default: gender = .Male; break
         }
         var role : DukeRole
@@ -212,24 +233,44 @@ class HW1ViewController : UIViewController {
             default: program = .NA; break
         }
         
+        if(firstName == "" && lastName == ""){
+            outputLabel.text = "Error: FirstName and LastName cannot be null."
+            return
+        }
+
+        var personExist: Bool = false
         for i in 0...testPersons.count-1{
-            if(testPersons[i].firstName == firstNameInput.text && testPersons[i].lastName == lastNameInput.text){
+            if(testPersons[i].firstName.lowercased() == firstName.lowercased() && testPersons[i].lastName.lowercased() == lastName.lowercased()){
+                personExist = true
+                outputLabel.text = "The person has been updated."
                 testPersons.remove(at: i)
                 break
             }
         }
-        let newPerson = DukePerson(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, program: program)
+        let newPerson = DukePerson(firstName: firstName.capitalized, lastName: lastName.capitalized, whereFrom: fromWhere.capitalized, gender: gender, role: role, program: program)
         testPersons.append(newPerson)
+        if(!personExist){
+            outputLabel.text = "The person has been added."
+        }
     }
     
+    // find person
     @objc func findPerson() {
         resignResponse()
+        let firstName: String  = firstNameInput.text
+        let lastName: String = lastNameInput.text
+        if(firstName == "" && lastName == ""){
+            outputLabel.text = "Error: FirstName and LastName cannot be null."
+            return
+        }
+        
         for person in testPersons{
-            if(person.firstName == firstNameInput.text && person.lastName == lastNameInput.text){
-                print(person)
+            if(person.firstName.lowercased() == firstName.lowercased() && person.lastName.lowercased() == lastName.lowercased()){
+                outputLabel.text = person.description
                 return
             }
         }
+        outputLabel.text = "The person was not found."
     }
     
     func resignResponse(){
@@ -237,7 +278,6 @@ class HW1ViewController : UIViewController {
         lastNameInput.resignFirstResponder()
         fromWhereInput.resignFirstResponder()
     }
-
 
 }
 // Don't change the following line - it is what allowsthe view controller to show in the Live View window
