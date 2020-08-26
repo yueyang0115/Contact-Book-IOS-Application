@@ -79,8 +79,12 @@ class HW1ViewController : UIViewController {
     var lastNameInput = UITextView()
     var fromWhereLabel = UILabel()
     var fromWhereInput = UITextView()
+    var genderSegment = UISegmentedControl()
+    var roleSegment = UISegmentedControl()
+    var programSegment = UISegmentedControl()
     let addButton = UIButton()
     let findButton = UIButton()
+    var outputLabel = UILabel()
     
     override func loadView() {
 // You can change color scheme if you wish
@@ -110,7 +114,6 @@ class HW1ViewController : UIViewController {
         lastNameLabel.text = "Last Name:"
         lastNameLabel.textColor = .white
         view.addSubview(lastNameLabel)
-        view.addSubview(lastNameInput)
         
         lastNameInput.frame = CGRect(x: 170, y: 90, width: 150, height: 20)
         lastNameInput.textColor = .black
@@ -129,35 +132,93 @@ class HW1ViewController : UIViewController {
         fromWhereInput.layer.cornerRadius = 5
         view.addSubview(fromWhereInput)
         
-        addButton.setTitle("Add/Update", for: .normal)
+        genderSegment.frame = CGRect(x: 50, y: 170, width: 270, height: 30)
+        genderSegment.insertSegment(withTitle: "Male", at: 0, animated: true)
+        genderSegment.insertSegment(withTitle: "Female", at: 135, animated: true)
+        genderSegment.backgroundColor = .systemGray6
+        if (genderSegment.selectedSegmentIndex == UISegmentedControl.noSegment) {
+            genderSegment.selectedSegmentIndex = 0
+        }
+        view.addSubview(genderSegment)
+        
+        
+        roleSegment.frame = CGRect(x: 50, y: 210, width: 270, height: 30)
+        roleSegment.insertSegment(withTitle: "Prof", at: 0, animated: true)
+        roleSegment.insertSegment(withTitle: "TA", at: 60, animated: true)
+        roleSegment.insertSegment(withTitle: "Student", at: 120, animated: true)
+        roleSegment.backgroundColor = .systemGray6
+        if (roleSegment.selectedSegmentIndex == UISegmentedControl.noSegment) {
+            roleSegment.selectedSegmentIndex = 2
+        }
+        view.addSubview(roleSegment)
+        
+        programSegment.frame = CGRect(x: 50, y: 250, width: 270, height: 30)
+        programSegment.insertSegment(withTitle: "Undergrad", at: 0, animated: true)
+        programSegment.insertSegment(withTitle: "Grad", at: 60, animated: true)
+        programSegment.insertSegment(withTitle: "N/A", at: 120, animated: true)
+        programSegment.backgroundColor = .systemGray6
+        if (programSegment.selectedSegmentIndex == UISegmentedControl.noSegment) {
+            programSegment.selectedSegmentIndex = 2
+        }
+        view.addSubview(programSegment)
+        
+        addButton.frame = CGRect(x: 50, y: 310, width: 120, height: 50)
         addButton.layer.cornerRadius = 10
         addButton.setTitleColor(.black, for: .normal)
         addButton.backgroundColor = .systemYellow
-        addButton.frame = CGRect(x: 50, y: 300, width: 120, height: 50)
+        addButton.setTitle("Add/Update", for: .normal)
         addButton.addTarget(self, action: #selector(addPerson), for: .touchUpInside)
         view.addSubview(addButton)
         
-        findButton.setTitle("Find", for: .normal)
+        findButton.frame = CGRect(x: 200, y: 310, width: 120, height: 50)
         findButton.layer.cornerRadius = 10
         findButton.setTitleColor(.black, for: .normal)
         findButton.backgroundColor = .systemYellow
-        findButton.frame = CGRect(x: 200, y: 300, width: 120, height: 50)
+        findButton.setTitle("Find", for: .normal)
         findButton.addTarget(self, action: #selector(findPerson), for: .touchUpInside)
         view.addSubview(findButton)
+        
+        outputLabel.frame = CGRect(x: 50, y: 340, width: 270, height: 40)
+        outputLabel.textColor = .white
+        view.addSubview(outputLabel)
+    
         
     }
     
 // You can add code here
     // button handler functions
+    
     @objc func addPerson() {
         resignResponse()
+        
+        let firstName: String  = firstNameInput.text
+        let lastName: String = lastNameInput.text
+        let fromWhere: String = fromWhereInput.text
+        var gender : Gender
+        switch genderSegment.selectedSegmentIndex {
+            case 0: gender = .Female
+            default: gender = .Male; break
+        }
+        var role : DukeRole
+        switch roleSegment.selectedSegmentIndex {
+            case 0: role = .Professor
+            case 1: role = .TA
+            default: role = .Student; break
+        }
+        var program: DukeProgram
+        switch programSegment.selectedSegmentIndex {
+            case 0: program = .Undergrad
+            case 1: program = .Grad
+            default: program = .NA; break
+        }
+        
         for i in 0...testPersons.count-1{
             if(testPersons[i].firstName == firstNameInput.text && testPersons[i].lastName == lastNameInput.text){
                 testPersons.remove(at: i)
                 break
             }
         }
-        let newPerson = DukePerson(firstName: firstNameInput.text, lastName: lastNameInput.text, whereFrom: fromWhereInput.text, gender: .Female, role: .Student, program: .Grad)
+        let newPerson = DukePerson(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, program: program)
         testPersons.append(newPerson)
     }
     
@@ -170,14 +231,13 @@ class HW1ViewController : UIViewController {
             }
         }
     }
-
+    
     func resignResponse(){
         firstNameInput.resignFirstResponder()
         lastNameInput.resignFirstResponder()
         fromWhereInput.resignFirstResponder()
     }
-    
-    
+
 
 }
 // Don't change the following line - it is what allowsthe view controller to show in the Live View window
