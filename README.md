@@ -24,7 +24,7 @@ Use UITextField.layer.cornerRadius to change add cornerRadius.
 Use UITextField.font and UIButton.titleLabel?.font to change the font.  
 Use UISegmentedControl.backgroundColor and UITextField.textColor to change color.  
 
-Database:
+Database:  
 Add more test persons in the database. Information of all persons in database are printed in debug area.
 
 ## HW2
