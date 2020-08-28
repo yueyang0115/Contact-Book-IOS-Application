@@ -31,6 +31,7 @@ enum DukeProgram : String {
 class DukePerson : Person, CustomStringConvertible {
     var role : DukeRole = .Student
     var program : DukeProgram = .NA
+    
     var description : String {
         let lineOne: String = "\(self.firstName) \(self.lastName) is a \(getProgram(program: self.program))\(self.role.rawValue.lowercased()) at Duke University."
         var lineTwo: String = ""
@@ -71,14 +72,26 @@ class DukePerson : Person, CustomStringConvertible {
 // use DukePerson Array as database for test
 var testPersons = [DukePerson]()
 let yueyang = DukePerson(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: .Female, role: .Student, program: .Grad)
+let weihan = DukePerson(firstName: "Weihan", lastName: "Zhang", whereFrom: "China", gender: .Female, role: .Student, program: .NA)
+let zeyu = DukePerson(firstName: "Zeyu", lastName: "Li", whereFrom: "", gender: .Male, role: .Student, program: .Grad)
+let xiaoming = DukePerson(firstName: "Xiaoming", lastName: "Wang", whereFrom: "", gender: .Male, role: .Student, program: .Undergrad)
 let ric = DukePerson(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County, NC", gender: .Male, role: .Professor, program: .NA)
+let drew = DukePerson(firstName: "Andrew", lastName: "Hilton", whereFrom: "", gender: .Male, role: .Professor, program: .NA)
+let shaundra =  DukePerson(firstName: "Shaundra", lastName: "Daily", whereFrom: "Durham, NC", gender: .Female, role: .Professor, program: .NA)
 let haohong = DukePerson(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: .Male, role: .TA, program: .Grad)
-let yuchen = DukePerson(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: .Male, role: .TA, program: .Grad)
+let yuchen = DukePerson(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: .Female, role: .TA, program: .Grad)
+let lihua = DukePerson(firstName: "Hua", lastName: "Li", whereFrom: "China", gender: .Male, role: .TA, program: .Undergrad)
 
 testPersons.append(yueyang)
+testPersons.append(weihan)
+testPersons.append(zeyu)
+testPersons.append(xiaoming)
 testPersons.append(ric)
+testPersons.append(drew)
+testPersons.append(shaundra)
 testPersons.append(haohong)
 testPersons.append(yuchen)
+testPersons.append(lihua)
 
 for person in testPersons {
     print(person)
@@ -86,6 +99,7 @@ for person in testPersons {
 
 // views setting
 class HW1ViewController : UIViewController {
+    
     // self-defined variable
     var firstNameLabel = UILabel()
     var firstNameInput = UITextView()
@@ -208,6 +222,7 @@ class HW1ViewController : UIViewController {
     
 
 // button handler functions
+    
     // add or update a person
     @objc func addPerson() {
         resignResponse()
@@ -247,7 +262,7 @@ class HW1ViewController : UIViewController {
                 break
             }
         }
-        let newPerson = DukePerson(firstName: firstName.capitalized, lastName: lastName.capitalized, whereFrom: fromWhere.capitalized, gender: gender, role: role, program: program)
+        let newPerson = DukePerson(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, program: program)
         testPersons.append(newPerson)
         if(!personExist){
             outputLabel.text = "The person has been added."
