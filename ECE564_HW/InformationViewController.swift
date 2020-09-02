@@ -27,4 +27,11 @@ class InformationViewController: UIViewController {
     }
     */
 
+    @IBAction func addPerson(_ sender: Any) {
+        print("add person")
+    }
+    
+    @IBAction func findPerson(_ sender: Any) {
+        print("find person")
+    }
 }
