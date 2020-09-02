@@ -268,17 +268,15 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E28-hR-imV">
-                                <rect key="frame" x="37.5" y="534" width="300" height="80"/>
+                                <rect key="frame" x="103" y="534" width="169.5" height="20.5"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wsw-kj-gNJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="80"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="7jd-wK-Lcv"/>
-                                            <constraint firstAttribute="width" constant="300" id="EmW-wL-ofi"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The output goes here." lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lf1-fm-hH0">
+                                        <rect key="frame" x="0.0" y="0.0" width="169.5" height="20.5"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -293,6 +291,19 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="emailInput" destination="MJd-WQ-uP9" id="NCz-H1-sIj"/>
+                        <outlet property="firstNameInput" destination="hse-Wa-S9e" id="d27-z0-qwt"/>
+                        <outlet property="fromWhereInput" destination="Pok-Wz-jMm" id="jd7-Jo-gN6"/>
+                        <outlet property="genderInput" destination="Pok-Wz-jMm" id="eEB-Yy-9Kd"/>
+                        <outlet property="hobbyInput" destination="Xz1-7I-OxZ" id="E7c-JD-ajg"/>
+                        <outlet property="languageInput" destination="IJM-Sr-dCN" id="lxC-Pq-pLS"/>
+                        <outlet property="lastNameInput" destination="97w-TC-cX1" id="sfO-Rx-eYP"/>
+                        <outlet property="outputLabel" destination="Lf1-fm-hH0" id="gHg-P9-elm"/>
+                        <outlet property="programInput" destination="QwP-6c-dnU" id="J7u-xj-cQk"/>
+                        <outlet property="roleInput" destination="gLK-H1-AWr" id="nW4-1v-Iak"/>
+                        <outlet property="teamInput" destination="EMW-Fs-Lh4" id="hMP-nn-zKR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
