@@ -29,12 +29,12 @@ public class DukePerson: NSManagedObject {
     }
     
     public override var description: String {
-        let lineOne: String = "\(self.firstName!) \(self.lastName!) is a \(getProgram(program: self.degree!))\(self.role?.lowercased()) at Duke University."
+        let lineOne: String = "\(self.firstName!) \(self.lastName!) is a \(self.role!) at Duke University."
         var lineTwo: String = ""
         if(self.whereFrom != ""){
-            lineTwo = "\((transferGender(gender: self.gender!)).capitalized) is from \(self.whereFrom)."
+            lineTwo = "\((transferGender(gender: self.gender!)).capitalized) is from \(self.whereFrom!)."
         }
-        let info: String = "\(lineOne) \(lineTwo)"
+        let info: String = "\(lineOne) \(lineTwo) "
         
         return info
     }

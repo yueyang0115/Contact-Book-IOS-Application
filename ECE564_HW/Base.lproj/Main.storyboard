@@ -292,10 +292,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="sX0-tb-P52" id="2Ze-hz-cvU"/>
                         <outlet property="degreeInput" destination="QwP-6c-dnU" id="awu-bd-HF6"/>
                         <outlet property="emailInput" destination="MJd-WQ-uP9" id="NCz-H1-sIj"/>
+                        <outlet property="findButton" destination="19e-FV-jCn" id="64G-FW-HKj"/>
                         <outlet property="firstNameInput" destination="hse-Wa-S9e" id="d27-z0-qwt"/>
-                        <outlet property="fromWhereInput" destination="Pok-Wz-jMm" id="jd7-Jo-gN6"/>
+                        <outlet property="fromWhereInput" destination="cgB-po-aeP" id="r1D-pS-etb"/>
                         <outlet property="genderInput" destination="Pok-Wz-jMm" id="eEB-Yy-9Kd"/>
                         <outlet property="hobbyInput" destination="Xz1-7I-OxZ" id="E7c-JD-ajg"/>
                         <outlet property="languageInput" destination="IJM-Sr-dCN" id="lxC-Pq-pLS"/>
