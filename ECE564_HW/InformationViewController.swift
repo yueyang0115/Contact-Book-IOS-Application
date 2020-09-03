@@ -56,7 +56,7 @@ class InformationViewController: UIViewController {
         findButton.layer.cornerRadius = 10
         addButton.layer.cornerRadius = 10
         outputLabel.lineBreakMode = .byWordWrapping
-        outputLabel.numberOfLines = 5
+        outputLabel.numberOfLines = 0
         
         genderPickerView.delegate = self
         genderPickerView.dataSource = self

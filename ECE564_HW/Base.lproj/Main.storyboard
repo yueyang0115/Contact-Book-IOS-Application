@@ -263,22 +263,29 @@
                                     <constraint firstAttribute="trailing" secondItem="sX0-tb-P52" secondAttribute="trailing" constant="110" id="w9o-Hn-ezd"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E28-hR-imV">
-                                <rect key="frame" x="103" y="524" width="169.5" height="20.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="E28-hR-imV">
+                                <rect key="frame" x="43" y="524" width="289" height="20.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The output goes here." lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lf1-fm-hH0">
-                                        <rect key="frame" x="0.0" y="0.0" width="169.5" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The output goes here." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lf1-fm-hH0">
+                                        <rect key="frame" x="0.0" y="0.0" width="289" height="20.5"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="Lf1-fm-hH0" firstAttribute="top" secondItem="E28-hR-imV" secondAttribute="top" id="AcM-bz-ubv"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lf1-fm-hH0" secondAttribute="trailing" id="PU3-AL-3sL"/>
+                                    <constraint firstItem="Lf1-fm-hH0" firstAttribute="leading" secondItem="E28-hR-imV" secondAttribute="leading" id="Xo5-Ig-KTy"/>
+                                    <constraint firstAttribute="bottom" secondItem="Lf1-fm-hH0" secondAttribute="bottom" id="ekD-RH-mRE"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="E28-hR-imV" firstAttribute="top" secondItem="VFW-Cc-L0k" secondAttribute="bottom" constant="20" id="1WM-d3-4sk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="E28-hR-imV" secondAttribute="trailing" constant="43" id="9hu-ss-bgE"/>
                             <constraint firstItem="VFW-Cc-L0k" firstAttribute="top" secondItem="jVX-gb-rAL" secondAttribute="bottom" constant="20" id="BNd-co-Agz"/>
                             <constraint firstItem="jVX-gb-rAL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="Ctk-2N-phm"/>
                             <constraint firstItem="VFW-Cc-L0k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lpU-dm-Cho"/>
