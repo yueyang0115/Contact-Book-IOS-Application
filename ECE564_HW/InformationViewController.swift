@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class InformationViewController: UIViewController {
 
@@ -16,7 +17,7 @@ class InformationViewController: UIViewController {
     @IBOutlet weak var roleInput: UITextField!
     @IBOutlet weak var fromWhereInput: UITextField!
     @IBOutlet weak var degreeInput: UITextField!
-    
+
     @IBOutlet weak var hobbyInput: UITextField!
     @IBOutlet weak var languageInput: UITextField!
     @IBOutlet weak var teamInput: UITextField!
@@ -28,7 +29,7 @@ class InformationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         configureTextField()
         // Do any additional setup after loading the view.
     }
@@ -81,7 +82,7 @@ class InformationViewController: UIViewController {
 
         var personExist: Bool = false
         for i in 0...testPersons.count-1{
-            if(testPersons[i].firstName.lowercased() == firstName.lowercased() && testPersons[i].lastName.lowercased() == lastName.lowercased()){
+            if(testPersons[i].firstName!.lowercased() == firstName.lowercased() && testPersons[i].lastName!.lowercased() == lastName.lowercased()){
                 personExist = true
                 outputLabel.text = "The person has been updated."
                 testPersons.remove(at: i)
@@ -105,7 +106,7 @@ class InformationViewController: UIViewController {
         }
         
         for person in testPersons{
-            if(person.firstName.lowercased() == firstName.lowercased() && person.lastName.lowercased() == lastName.lowercased()){
+            if(person.firstName!.lowercased() == firstName.lowercased() && person.lastName!.lowercased() == lastName.lowercased()){
                 outputLabel.text = person.description
                 return
             }

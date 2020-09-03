@@ -292,6 +292,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="degreeInput" destination="QwP-6c-dnU" id="awu-bd-HF6"/>
                         <outlet property="emailInput" destination="MJd-WQ-uP9" id="NCz-H1-sIj"/>
                         <outlet property="firstNameInput" destination="hse-Wa-S9e" id="d27-z0-qwt"/>
                         <outlet property="fromWhereInput" destination="Pok-Wz-jMm" id="jd7-Jo-gN6"/>
@@ -300,7 +301,6 @@
                         <outlet property="languageInput" destination="IJM-Sr-dCN" id="lxC-Pq-pLS"/>
                         <outlet property="lastNameInput" destination="97w-TC-cX1" id="sfO-Rx-eYP"/>
                         <outlet property="outputLabel" destination="Lf1-fm-hH0" id="gHg-P9-elm"/>
-                        <outlet property="programInput" destination="QwP-6c-dnU" id="J7u-xj-cQk"/>
                         <outlet property="roleInput" destination="gLK-H1-AWr" id="nW4-1v-Iak"/>
                         <outlet property="teamInput" destination="EMW-Fs-Lh4" id="hMP-nn-zKR"/>
                     </connections>

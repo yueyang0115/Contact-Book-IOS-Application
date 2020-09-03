@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1D66E80024FF38B400419311 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D66E7FF24FF38B400419311 /* InformationViewController.swift */; };
-		1D66E802250002AA00419311 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D66E801250002AA00419311 /* DataModel.swift */; };
+		1D66E827250069B500419311 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D66E825250069B500419311 /* CoreDataModel.xcdatamodeld */; };
+		1D66E82E25006AD100419311 /* DukePerson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D66E82C25006AD100419311 /* DukePerson+CoreDataClass.swift */; };
 		873481602469DEE8000B9A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8734815F2469DEE8000B9A79 /* AppDelegate.swift */; };
 		873481622469DEE8000B9A79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873481612469DEE8000B9A79 /* SceneDelegate.swift */; };
 		873481642469DEE8000B9A79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873481632469DEE8000B9A79 /* ViewController.swift */; };
@@ -19,7 +20,8 @@
 
 /* Begin PBXFileReference section */
 		1D66E7FF24FF38B400419311 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
-		1D66E801250002AA00419311 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		1D66E826250069B500419311 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		1D66E82C25006AD100419311 /* DukePerson+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DukePerson+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8734815C2469DEE8000B9A79 /* ECE564_HW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECE564_HW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8734815F2469DEE8000B9A79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		873481612469DEE8000B9A79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +46,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D66E83025006AF200419311 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				1D66E82C25006AD100419311 /* DukePerson+CoreDataClass.swift */,
+				1D66E825250069B500419311 /* CoreDataModel.xcdatamodeld */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		873481532469DEE8000B9A79 = {
 			isa = PBXGroup;
 			children = (
@@ -66,11 +77,11 @@
 		8734815E2469DEE8000B9A79 /* ECE564_HW */ = {
 			isa = PBXGroup;
 			children = (
+				1D66E83025006AF200419311 /* Database */,
 				8734815F2469DEE8000B9A79 /* AppDelegate.swift */,
 				873481612469DEE8000B9A79 /* SceneDelegate.swift */,
 				873481632469DEE8000B9A79 /* ViewController.swift */,
 				873481652469DEE8000B9A79 /* Main.storyboard */,
-				1D66E801250002AA00419311 /* DataModel.swift */,
 				1D66E7FF24FF38B400419311 /* InformationViewController.swift */,
 				873481682469DEE9000B9A79 /* Assets.xcassets */,
 				8734816A2469DEE9000B9A79 /* LaunchScreen.storyboard */,
@@ -150,8 +161,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D66E802250002AA00419311 /* DataModel.swift in Sources */,
+				1D66E82E25006AD100419311 /* DukePerson+CoreDataClass.swift in Sources */,
 				873481642469DEE8000B9A79 /* ViewController.swift in Sources */,
+				1D66E827250069B500419311 /* CoreDataModel.xcdatamodeld in Sources */,
 				873481602469DEE8000B9A79 /* AppDelegate.swift in Sources */,
 				873481622469DEE8000B9A79 /* SceneDelegate.swift in Sources */,
 				1D66E80024FF38B400419311 /* InformationViewController.swift in Sources */,
@@ -352,6 +364,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1D66E825250069B500419311 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1D66E826250069B500419311 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 1D66E826250069B500419311 /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 873481542469DEE8000B9A79 /* Project object */;
 }
