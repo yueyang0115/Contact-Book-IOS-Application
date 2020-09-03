@@ -25,13 +25,28 @@ class InformationViewController: UIViewController {
     
     @IBOutlet weak var outputLabel: UILabel!
     
-    var testPersons = [DukePerson]()
+    // reference to managed object context
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    // get persons form core data
+    var allPersons = [DukePerson]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        configureTextField()
+        
         // Do any additional setup after loading the view.
+        configureTextField()
+        fetchPerson()
+    }
+    
+    // get persons from core data
+    func fetchPerson(){
+        do{
+            self.allPersons = try context.fetch(DukePerson.fetchRequest())
+        } catch{
+            print("Failed to get all persons from database")
+        }
+        
     }
     
     private func configureTextField(){
@@ -81,16 +96,32 @@ class InformationViewController: UIViewController {
         }
 
         var personExist: Bool = false
-        for i in 0...testPersons.count-1{
-            if(testPersons[i].firstName!.lowercased() == firstName.lowercased() && testPersons[i].lastName!.lowercased() == lastName.lowercased()){
+        for person in allPersons{
+            if(person.firstName!.lowercased() == firstName.lowercased() && person.lastName!.lowercased() == lastName.lowercased()){
                 personExist = true
                 outputLabel.text = "The person has been updated."
-                testPersons.remove(at: i)
+                
+                self.context.delete(person)
+                do {
+                    try self.context.save()
+                } catch  {
+                    print("Failed to save data after deletion")
+                }
+                self.fetchPerson()
+                
                 break
             }
         }
-        let newPerson = DukePerson(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, degree: degree, hobby: hobby, language: language, team: team, email: email)
-        testPersons.append(newPerson)
+        
+        let newPerson = DukePerson(context: self.context)
+        newPerson.firstName = firstName; newPerson.lastName = lastName; newPerson.whereFrom = fromWhere; newPerson.gender = gender; newPerson.role = role; newPerson.degree = degree; newPerson.hobby = hobby; newPerson.language = language; newPerson.team = team; newPerson.email = email
+        do {
+            try self.context.save()
+        } catch  {
+            print("Failed to save new person into database")
+        }
+        self.fetchPerson()
+        
         if(!personExist){
             outputLabel.text = "The person has been added."
         }
@@ -105,7 +136,7 @@ class InformationViewController: UIViewController {
             return
         }
         
-        for person in testPersons{
+        for person in allPersons{
             if(person.firstName!.lowercased() == firstName.lowercased() && person.lastName!.lowercased() == lastName.lowercased()){
                 outputLabel.text = person.description
                 return

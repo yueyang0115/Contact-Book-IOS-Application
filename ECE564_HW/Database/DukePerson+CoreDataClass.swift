@@ -28,7 +28,7 @@ public class DukePerson: NSManagedObject {
         self.email = email
     }
     
-   func  getDescription() -> String {
+    public override var description: String {
         let lineOne: String = "\(self.firstName!) \(self.lastName!) is a \(getProgram(program: self.degree!))\(self.role?.lowercased()) at Duke University."
         var lineTwo: String = ""
         if(self.whereFrom != ""){
