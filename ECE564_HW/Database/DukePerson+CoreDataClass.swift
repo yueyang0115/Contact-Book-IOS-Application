@@ -38,8 +38,16 @@ public class DukePerson: NSManagedObject {
         if(self.degree != "N/A"){
             lineThree = "\((transferGender(gender: self.gender!)).capitalized) is in \(self.degree!) program."
         }
-        let info: String = "\(lineOne) \(lineTwo) \(lineThree)"
+        var lineFour = ""
+        if(self.hobby != ""){
+            lineFour = "\((getPrep(gender: self.gender!)).capitalized) hobby includes \(getHobby(hobby: self.hobby!))."
+        }
+        var lineFive = ""
+        if(self.language != ""){
+            lineFive = "\((getPrep(gender: self.gender!)).capitalized) language includes \(getLanguage(language: self.language!))."
+        }
         
+        let info: String = "\(lineOne) \(lineTwo) \(lineThree) \(lineFour) \(lineFive)"
         return info
     }
     
@@ -47,8 +55,18 @@ public class DukePerson: NSManagedObject {
         if(gender == "Female"){ return "she" }
         else{ return "he" }
     }
+    func getPrep(gender: String)->String{
+        if(gender == "Female"){ return "her" }
+        else{ return "his" }
+    }
     
     func getProgram(program: String)->String{
         return program
+    }
+    func getHobby(hobby: String)->String{
+        return hobby
+    }
+    func getLanguage(language: String)->String{
+        return language
     }
 }
