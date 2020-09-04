@@ -52,6 +52,8 @@
 			isa = PBXGroup;
 			children = (
 				1D66E825250069B500419311 /* CoreDataModel.xcdatamodeld */,
+				1DC8C2C82502125700E2ABCA /* DukePerson+CoreDataClass.swift */,
+				1DC8C2C92502125700E2ABCA /* DukePerson+CoreDataProperties.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -59,8 +61,6 @@
 		873481532469DEE8000B9A79 = {
 			isa = PBXGroup;
 			children = (
-				1DC8C2C82502125700E2ABCA /* DukePerson+CoreDataClass.swift */,
-				1DC8C2C92502125700E2ABCA /* DukePerson+CoreDataProperties.swift */,
 				873481732469DFE1000B9A79 /* README.md */,
 				873481742469E31C000B9A79 /* Practice.playground */,
 				873481752469E43A000B9A79 /* HW1.playground */,

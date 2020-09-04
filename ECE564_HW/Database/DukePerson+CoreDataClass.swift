@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-
+@objc(DukePerson)
 public class DukePerson: NSManagedObject {
     public override var description: String {
         let lineOne: String = "\(self.firstName!) \(self.lastName!) is a \((self.role!).lowercased()) at Duke University."

@@ -84,7 +84,7 @@ class InformationViewController: UIViewController {
         addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["reading"], language: ["swift"], team: "ece564", email: "yy258@duke.edu")
         addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "ece564", email: "rt113@duke.edu")
         addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "teaching assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "ece564", email: "hz147@duke.edu")
-        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "teaching assistant", degree: "Grad", hobby: ["Dancing"], language: ["Java", "cpp"], team: "ece564", email: "yy227@duke.edu")
+        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "teaching assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "ece564", email: "yy227@duke.edu")
 
 
     }
@@ -138,7 +138,6 @@ class InformationViewController: UIViewController {
     // MARK: - Button Handler
     // addButton handler
     @IBAction func addPerson(_ sender: Any) {
-        print("add person")
         // read input as new person's attribute
         let firstName: String  = firstNameInput.text ?? ""
         let lastName: String = lastNameInput.text ?? ""
@@ -196,7 +195,6 @@ class InformationViewController: UIViewController {
     
     // findButton handler
     @IBAction func findPerson(_ sender: Any) {
-        print("find person")
         let firstName: String  = firstNameInput.text ?? ""
         let lastName: String = lastNameInput.text ?? ""
         if(firstName == "" && lastName == ""){
