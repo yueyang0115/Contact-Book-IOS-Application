@@ -33,7 +33,7 @@ Database:
 Use Core Data as database, write database-related functions: clearDB(), addDefaultPersonInDB(), fetchAllPersonFromDB(), addPersonToDB(), deletePersonFromDB(). Use try catch blcok for database-related functions.  
 
 Data Model Field:  
-"Team" field and "Email" field are added to the DukePerson class.  
+"Team" field and "Email" field are added to the DukePerson class. "Hobby" field and "Language" field now hold array of string.  
 
 Multiple Type Controls:  
 Use PickerView for gender and role.    
