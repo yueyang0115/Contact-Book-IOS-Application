@@ -81,10 +81,12 @@ class InformationViewController: UIViewController {
     
     // add some default data in database
     func addDefaultPersonInDB(){
-        addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: "reading", language: "swift", team: "ece564", email: "yy258@duke.edu")
-        addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "professor", degree: "N/A", hobby: "teaching", language: "swift", team: "ece564", email: "rt113@duke.edu")
-        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "teaching assistant", degree: "Grad", hobby: "reading books, jogging", language: "swift, java", team: "ece564", email: "hz147@duke.edu")
-        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "teaching assistant", degree: "Grad", hobby: "Dancing", language: "Java, cpp", team: "ece564", email: "yy227@duke.edu")
+        addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["reading"], language: ["swift"], team: "ece564", email: "yy258@duke.edu")
+        addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "ece564", email: "rt113@duke.edu")
+        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "teaching assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "ece564", email: "hz147@duke.edu")
+        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "teaching assistant", degree: "Grad", hobby: ["Dancing"], language: ["Java", "cpp"], team: "ece564", email: "yy227@duke.edu")
+
+
     }
     
     // get all persons from database
@@ -98,7 +100,7 @@ class InformationViewController: UIViewController {
     }
     
     // add one person to database
-    func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: String, language: String, team: String, email: String){
+    func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String){
         let newPerson = DukePerson(context: self.context)
         newPerson.firstName = firstName; newPerson.lastName = lastName; newPerson.whereFrom = whereFrom; newPerson.gender = gender; newPerson.role = role; newPerson.degree = degree; newPerson.hobby = hobby; newPerson.language = language; newPerson.team = team; newPerson.email = email
         do {
@@ -108,6 +110,7 @@ class InformationViewController: UIViewController {
             print(error)
         }
         self.fetchAllPersonFromDB()
+
     }
     
     // delete one person from database
@@ -168,6 +171,11 @@ class InformationViewController: UIViewController {
             outputLabel.text = "Error: Illegal role."
             return
         }
+        
+        //split hobbies and languages to [String]
+        let hobbies: [String] = hobby.components(separatedBy: ",")
+        let languages: [String] = language.components(separatedBy: ",")
+
 
         var personExist: Bool = false
         for person in allPersons{
@@ -179,7 +187,7 @@ class InformationViewController: UIViewController {
             }
         }
         
-        addPersonToDB(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, degree: degree, hobby: hobby, language: language, team: team, email: email)
+        addPersonToDB(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, degree: degree, hobby: hobbies, language: languages, team: team, email: email)
 
         if(!personExist){
             outputLabel.text = "The person has been added."
@@ -199,7 +207,13 @@ class InformationViewController: UIViewController {
         for person in allPersons{
             if(person.firstName!.lowercased() == firstName.lowercased() && person.lastName!.lowercased() == lastName.lowercased()){
                 outputLabel.text = person.description
-                genderInput.text = person.gender; roleInput.text = person.role; degreeInput.text = person.degree; fromWhereInput.text  = person.whereFrom; hobbyInput.text = person.hobby; languageInput.text = person.language; teamInput.text = person.team; emailInput.text = person.email;
+                genderInput.text = person.gender; roleInput.text = person.role; degreeInput.text = person.degree; fromWhereInput.text = person.whereFrom; teamInput.text = person.team; emailInput.text = person.email;
+                if(person.hobby?.count != 0){
+                    hobbyInput.text = person.getHobby(hobby: person.hobby!);
+                }
+                if(person.language?.count != 0){
+                    languageInput.text = person.getLanguage(language: person.language!);
+                }
                 
                 displayUserImage(firstName: firstName, lastName: lastName)
                 return
