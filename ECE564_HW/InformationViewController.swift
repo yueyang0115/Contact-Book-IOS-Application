@@ -145,17 +145,26 @@ class InformationViewController: UIViewController {
         let team: String = teamInput.text ?? ""
         let email: String = emailInput.text ?? ""
         
-        var gender: String = genderInput.text ?? ""
-        var role: String = roleInput.text ?? ""
-        if(gender == ""){
-            gender = "Male"
-        }
-        if(role == ""){
-            role = "Student"
-        }
-        
+        let gender: String = genderInput.text ?? ""
+        let role: String = roleInput.text ?? ""
         if(firstName == "" && lastName == ""){
             outputLabel.text = "Error: FirstName and LastName cannot be null."
+            return
+        }
+        if(gender == ""){
+            outputLabel.text = "Error: Please choose your gender."
+            return
+        }
+        if(role == ""){
+            outputLabel.text = "Error: Please choose your role."
+            return
+        }
+        if(gender != "Female" && gender != "Male"){
+            outputLabel.text = "Error: Illegal gender."
+            return
+        }
+        if(role != "Student" && role != "Professor" && role != "Teaching Assistant"){
+            outputLabel.text = "Error: Illegal role."
             return
         }
 
