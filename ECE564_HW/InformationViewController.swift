@@ -200,6 +200,7 @@ class InformationViewController: UIViewController {
             if(person.firstName!.lowercased() == firstName.lowercased() && person.lastName!.lowercased() == lastName.lowercased()){
                 outputLabel.text = person.description
                 genderInput.text = person.gender; roleInput.text = person.role; degreeInput.text = person.degree; fromWhereInput.text  = person.whereFrom; hobbyInput.text = person.hobby; languageInput.text = person.language; teamInput.text = person.team; emailInput.text = person.email;
+                
                 displayUserImage(firstName: firstName, lastName: lastName)
                 return
             }

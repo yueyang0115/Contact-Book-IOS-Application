@@ -28,7 +28,22 @@ Database:
 Add more test persons in the database. Information of all persons in database are printed in debug area.
 
 ## HW2
-add text here
+Extra Features includes:  
+Database:  
+Use Core Data as database, write database-related functions: clearDB(), addDefaultPersonInDB(), fetchAllPersonFromDB(), addPersonToDB(), deletePersonFromDB(). Use try catch blcok for database-related functions.  
+
+Data Model Field:  
+"Team" field and "Email" field are added to the DukePerson class.  
+
+Multiple Type Controls:  
+Use PickerView for gender and role.    
+
+Picture support:  
+Added pictures for person "Yue Yang" and "Ric Telford". Default pictures for other persons.  
+
+Error Checking:  
+If no first name and last name is provided, if no gender and role information is selected in the pickerview, if the user type string into the gender and role field, the app will print error message.  
+
 
 ## HW3
 add text here
