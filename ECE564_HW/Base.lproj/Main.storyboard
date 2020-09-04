@@ -308,6 +308,7 @@
                         <outlet property="outputLabel" destination="Lf1-fm-hH0" id="gHg-P9-elm"/>
                         <outlet property="roleInput" destination="gLK-H1-AWr" id="nW4-1v-Iak"/>
                         <outlet property="teamInput" destination="EMW-Fs-Lh4" id="hMP-nn-zKR"/>
+                        <outlet property="userImage" destination="Nit-0I-efI" id="T5z-9y-GgU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -34,7 +34,11 @@ public class DukePerson: NSManagedObject {
         if(self.whereFrom != ""){
             lineTwo = "\((transferGender(gender: self.gender!)).capitalized) is from \(self.whereFrom!)."
         }
-        let info: String = "\(lineOne) \(lineTwo) "
+        var lineThree = ""
+        if(self.degree != "N/A"){
+            lineThree = "\((transferGender(gender: self.gender!)).capitalized) is in \(self.degree!) program."
+        }
+        let info: String = "\(lineOne) \(lineTwo) \(lineThree)"
         
         return info
     }

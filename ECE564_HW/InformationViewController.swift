@@ -26,7 +26,7 @@ class InformationViewController: UIViewController {
     @IBOutlet weak var outputLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var findButton: UIButton!
-    
+    @IBOutlet weak var userImage: UIImageView!
     // pickerView-related
     let genders = ["Female", "Male"]
     var genderPickerView = UIPickerView()
@@ -81,10 +81,10 @@ class InformationViewController: UIViewController {
     
     // add some default data in database
     func addDefaultPersonInDB(){
-        addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: "reading", language: "swift", team: "ece564", email: "")
-        addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County, NC", gender: "Male", role: "professor", degree: "N/A", hobby: "teaching", language: "swift", team: "ece564", email: "")
-        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "teaching assistant", degree: "Grad", hobby: "learning", language: "swift", team: "ece564", email: "")
-        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "teaching assistant", degree: "Grad", hobby: "learning", language: "swift", team: "ece564", email: "")
+        addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: "reading", language: "swift", team: "ece564", email: "yy258@duke.edu")
+        addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "professor", degree: "N/A", hobby: "teaching", language: "swift", team: "ece564", email: "rt113@duke.edu")
+        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "teaching assistant", degree: "Grad", hobby: "reading books, jogging", language: "swift, java", team: "ece564", email: "hz147@duke.edu")
+        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "teaching assistant", degree: "Grad", hobby: "Dancing", language: "Java, cpp", team: "ece564", email: "yy227@duke.edu")
     }
     
     // get all persons from database
@@ -133,6 +133,7 @@ class InformationViewController: UIViewController {
     */
     
     // MARK: - Button Handler
+    // addButton handler
     @IBAction func addPerson(_ sender: Any) {
         print("add person")
         // read input as new person's attribute
@@ -185,6 +186,7 @@ class InformationViewController: UIViewController {
         }
     }
     
+    // findButton handler
     @IBAction func findPerson(_ sender: Any) {
         print("find person")
         let firstName: String  = firstNameInput.text ?? ""
@@ -198,10 +200,24 @@ class InformationViewController: UIViewController {
             if(person.firstName!.lowercased() == firstName.lowercased() && person.lastName!.lowercased() == lastName.lowercased()){
                 outputLabel.text = person.description
                 genderInput.text = person.gender; roleInput.text = person.role; degreeInput.text = person.degree; fromWhereInput.text  = person.whereFrom; hobbyInput.text = person.hobby; languageInput.text = person.language; teamInput.text = person.team; emailInput.text = person.email;
+                displayUserImage(firstName: firstName, lastName: lastName)
                 return
             }
         }
         outputLabel.text = "The person was not found."
+    }
+    
+    // display userImage
+    func displayUserImage(firstName: String, lastName: String){
+        if(firstName.lowercased() == "yue" && lastName.lowercased() == "yang"){
+            userImage.image = UIImage(named: "yue")!
+        }
+        else if(firstName.lowercased() == "ric" && lastName.lowercased() == "telford"){
+            userImage.image = UIImage(named: "ric")!
+        }
+        else{
+            userImage.image = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
+        }
     }
 }
 
