@@ -14,6 +14,7 @@ class DukePersonTableTableViewController: UITableViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     // get all persons form database
     var allPersons = [DukePerson]()
+    var sortedDB = [[DukePerson]]() //0:Professor, 1:TA, 2:Student
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,18 +45,39 @@ class DukePersonTableTableViewController: UITableViewController {
     // add some default data in database
     func addDefaultPersonInDB(){
         addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["reading"], language: ["swift"], team: "ece564", email: "yy258@duke.edu")
-        addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "ece564", email: "rt113@duke.edu")
-        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "teaching assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "ece564", email: "hz147@duke.edu")
-        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "teaching assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "ece564", email: "yy227@duke.edu")
+        addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "Professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "ece564", email: "rt113@duke.edu")
+        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "Teaching Assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "ece564", email: "hz147@duke.edu")
+        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Teaching Assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "ece564", email: "yy227@duke.edu")
     }
     
     // get all persons from database
     func fetchAllPersonFromDB(){
         do{
             self.allPersons = try context.fetch(DukePerson.fetchRequest())
+            classifyPerson()
         } catch let error as NSError {
             print("Failed to get all persons from database")
             print(error)
+        }
+    }
+    
+    // classify persons by their roles, store result in 2D array as sorted database
+    func classifyPerson(){
+        sortedDB = [[DukePerson]]()
+        sortedDB.append([DukePerson]())
+        sortedDB.append([DukePerson]())
+        sortedDB.append([DukePerson]())
+        
+        for person in allPersons{
+            switch person.role{
+            case "Professor":
+                sortedDB[0].append(person)
+            case "Teaching Assistant":
+                sortedDB[1].append(person)
+            case "Student":
+                sortedDB[2].append(person)
+            default: continue
+            }
         }
     }
     
@@ -96,13 +118,13 @@ class DukePersonTableTableViewController: UITableViewController {
 //        return self.allPersons.count
         switch section{
             case 0:
-                return allPersons.count
+                return sortedDB[0].count
             case 1:
-                return allPersons.count
+                return sortedDB[1].count
             case 2:
-                return allPersons.count
+                return sortedDB[2].count
             default:
-                return allPersons.count
+                return 1
         }
     }
     
@@ -127,11 +149,8 @@ class DukePersonTableTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DukePersonProtoCell", for: indexPath) as! DukePersonProtoCell
-        
-        let person: DukePerson = self.allPersons[indexPath.row]
-        
+        let person: DukePerson = self.sortedDB[indexPath.section][indexPath.row]
         cell.setCell(person: person)
-        //cell.textLabel?.text = tmpDukePerson.firstName
         return cell
     }
     
