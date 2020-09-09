@@ -31,7 +31,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGA-G8-qOU">
-                                            <rect key="frame" x="123" y="13" width="46" height="20"/>
+                                            <rect key="frame" x="123" y="13" width="233" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="eCm-k1-USo"/>
                                             </constraints>
@@ -39,7 +39,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J65-jM-uhI">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J65-jM-uhI">
                                             <rect key="frame" x="125" y="35" width="232" height="16.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
@@ -54,6 +54,7 @@
                                         <constraint firstItem="J65-jM-uhI" firstAttribute="leading" secondItem="ueT-i3-0c6" secondAttribute="trailing" constant="5" id="EEs-cJ-9wE"/>
                                         <constraint firstItem="J65-jM-uhI" firstAttribute="top" secondItem="cGA-G8-qOU" secondAttribute="bottom" constant="2" id="LUe-4n-Drw"/>
                                         <constraint firstItem="ueT-i3-0c6" firstAttribute="leading" secondItem="EMR-EV-hjr" secondAttribute="leading" id="Ltr-Bj-ybv"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="cGA-G8-qOU" secondAttribute="trailing" constant="3" id="dQb-L2-IaE"/>
                                         <constraint firstItem="ueT-i3-0c6" firstAttribute="centerY" secondItem="EMR-EV-hjr" secondAttribute="centerY" id="xAF-fu-zI1"/>
                                     </constraints>
                                 </tableViewCellContentView>
