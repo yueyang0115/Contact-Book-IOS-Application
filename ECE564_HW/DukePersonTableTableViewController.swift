@@ -88,12 +88,41 @@ class DukePersonTableTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.allPersons.count
+//        return self.allPersons.count
+        switch section{
+            case 0:
+                return allPersons.count
+            case 1:
+                return allPersons.count
+            case 2:
+                return allPersons.count
+            default:
+                return allPersons.count
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        let label = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.bounds.width, height: 20))
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = UIColor.black
+        switch section {
+            case 0:
+              label.text = "Professors"
+            case 1:
+              label.text = "TAs"
+            case 2:
+              label.text = "Students"
+            default:
+              label.text = ""
+        }
+        view.addSubview(label)
+        return view
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
