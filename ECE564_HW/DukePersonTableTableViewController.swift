@@ -97,11 +97,12 @@ class DukePersonTableTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DukePersonProtoCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DukePersonProtoCell", for: indexPath) as! DukePersonProtoCell
         
-        let tmpDukePerson: DukePerson = self.allPersons[indexPath.row]
-        cell.textLabel?.text = tmpDukePerson.firstName
-
+        let person: DukePerson = self.allPersons[indexPath.row]
+        
+        cell.setCell(person: person)
+        //cell.textLabel?.text = tmpDukePerson.firstName
         return cell
     }
     
