@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		1D66E80024FF38B400419311 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D66E7FF24FF38B400419311 /* InformationViewController.swift */; };
 		1D66E827250069B500419311 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D66E825250069B500419311 /* CoreDataModel.xcdatamodeld */; };
+		1D9FC76125089AF5002E9FF6 /* DukePersonTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9FC76025089AF5002E9FF6 /* DukePersonTableTableViewController.swift */; };
 		1DC8C2CA2502125700E2ABCA /* DukePerson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC8C2C82502125700E2ABCA /* DukePerson+CoreDataClass.swift */; };
 		1DC8C2CB2502125700E2ABCA /* DukePerson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC8C2C92502125700E2ABCA /* DukePerson+CoreDataProperties.swift */; };
 		873481602469DEE8000B9A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8734815F2469DEE8000B9A79 /* AppDelegate.swift */; };
 		873481622469DEE8000B9A79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873481612469DEE8000B9A79 /* SceneDelegate.swift */; };
-		873481642469DEE8000B9A79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873481632469DEE8000B9A79 /* ViewController.swift */; };
 		873481672469DEE8000B9A79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873481652469DEE8000B9A79 /* Main.storyboard */; };
 		873481692469DEE9000B9A79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 873481682469DEE9000B9A79 /* Assets.xcassets */; };
 		8734816C2469DEE9000B9A79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8734816A2469DEE9000B9A79 /* LaunchScreen.storyboard */; };
@@ -22,12 +22,12 @@
 /* Begin PBXFileReference section */
 		1D66E7FF24FF38B400419311 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		1D66E826250069B500419311 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		1D9FC76025089AF5002E9FF6 /* DukePersonTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukePersonTableTableViewController.swift; sourceTree = "<group>"; };
 		1DC8C2C82502125700E2ABCA /* DukePerson+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DukePerson+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1DC8C2C92502125700E2ABCA /* DukePerson+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DukePerson+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8734815C2469DEE8000B9A79 /* ECE564_HW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECE564_HW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8734815F2469DEE8000B9A79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		873481612469DEE8000B9A79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		873481632469DEE8000B9A79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		873481662469DEE8000B9A79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		873481682469DEE9000B9A79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8734816B2469DEE9000B9A79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -83,8 +83,8 @@
 				1D66E83025006AF200419311 /* Database */,
 				8734815F2469DEE8000B9A79 /* AppDelegate.swift */,
 				873481612469DEE8000B9A79 /* SceneDelegate.swift */,
-				873481632469DEE8000B9A79 /* ViewController.swift */,
 				873481652469DEE8000B9A79 /* Main.storyboard */,
+				1D9FC76025089AF5002E9FF6 /* DukePersonTableTableViewController.swift */,
 				1D66E7FF24FF38B400419311 /* InformationViewController.swift */,
 				873481682469DEE9000B9A79 /* Assets.xcassets */,
 				8734816A2469DEE9000B9A79 /* LaunchScreen.storyboard */,
@@ -164,13 +164,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				873481642469DEE8000B9A79 /* ViewController.swift in Sources */,
 				1DC8C2CB2502125700E2ABCA /* DukePerson+CoreDataProperties.swift in Sources */,
 				1D66E827250069B500419311 /* CoreDataModel.xcdatamodeld in Sources */,
 				873481602469DEE8000B9A79 /* AppDelegate.swift in Sources */,
 				1DC8C2CA2502125700E2ABCA /* DukePerson+CoreDataClass.swift in Sources */,
 				873481622469DEE8000B9A79 /* SceneDelegate.swift in Sources */,
 				1D66E80024FF38B400419311 /* InformationViewController.swift in Sources */,
+				1D9FC76125089AF5002E9FF6 /* DukePersonTableTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

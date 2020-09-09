@@ -10,7 +10,10 @@ import UIKit
 import CoreData
 
 class InformationViewController: UIViewController {
-
+    
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     @IBOutlet weak var firstNameInput: UITextField!
     @IBOutlet weak var lastNameInput: UITextField!
     @IBOutlet weak var genderInput: UITextField!
@@ -232,6 +235,13 @@ class InformationViewController: UIViewController {
             userImage.image = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if((sender as! UIBarButtonItem) != self.saveButton){
+//            return
+//        }
+    }
+    
 }
 
 // MARK: - extension
