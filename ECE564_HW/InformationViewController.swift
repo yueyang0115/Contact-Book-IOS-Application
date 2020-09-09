@@ -27,8 +27,6 @@ class InformationViewController: UIViewController {
     @IBOutlet weak var emailInput: UITextField!
     
     @IBOutlet weak var outputLabel: UILabel!
-    @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var findButton: UIButton!
     @IBOutlet weak var userImage: UIImageView!
     // pickerView-related
     let genders = ["Female", "Male"]
@@ -39,16 +37,10 @@ class InformationViewController: UIViewController {
     // database-related
     // reference to managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    // get all persons form database
-    var allPersons = [DukePerson]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         configureField()
-        clearDB()
-        addDefaultPersonInDB()
-        fetchAllPersonFromDB()
     }
     
     func configureField(){
@@ -56,8 +48,6 @@ class InformationViewController: UIViewController {
         genderInput.delegate = self; roleInput.delegate = self;
         teamInput.delegate = self; emailInput.delegate = self
         
-        findButton.layer.cornerRadius = 10
-        addButton.layer.cornerRadius = 10
         outputLabel.lineBreakMode = .byWordWrapping
         outputLabel.numberOfLines = 0
         
@@ -70,38 +60,6 @@ class InformationViewController: UIViewController {
     }
     
     // MARK: - database-related operations
-    
-    // clear database
-    func clearDB(){
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = DukePerson.fetchRequest()
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        do {
-            try context.execute(deleteRequest)
-        } catch let error as NSError {
-            print(error)
-        }
-    }
-    
-    // add some default data in database
-    func addDefaultPersonInDB(){
-        addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["reading"], language: ["swift"], team: "ece564", email: "yy258@duke.edu")
-        addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "ece564", email: "rt113@duke.edu")
-        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "teaching assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "ece564", email: "hz147@duke.edu")
-        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "teaching assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "ece564", email: "yy227@duke.edu")
-
-
-    }
-    
-    // get all persons from database
-    func fetchAllPersonFromDB(){
-        do{
-            self.allPersons = try context.fetch(DukePerson.fetchRequest())
-        } catch let error as NSError {
-            print("Failed to get all persons from database")
-            print(error)
-        }
-    }
-    
     // add one person to database
     func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String){
         let newPerson = DukePerson(context: self.context)
@@ -112,20 +70,7 @@ class InformationViewController: UIViewController {
             print("Failed to save new person into database")
             print(error)
         }
-        self.fetchAllPersonFromDB()
-
-    }
-    
-    // delete one person from database
-    func deletePersonFromDB(person: DukePerson){
-        self.context.delete(person)
-        do {
-            try self.context.save()
-        } catch let error as NSError {
-            print("Failed to save data after deletion")
-            print(error)
-        }
-        self.fetchAllPersonFromDB()
+        //self.fetchAllPersonFromDB()
     }
     
     /*
@@ -138,10 +83,21 @@ class InformationViewController: UIViewController {
     }
     */
     
-    // MARK: - Button Handler
-    // addButton handler
-    @IBAction func addPerson(_ sender: Any) {
-        // read input as new person's attribute
+    // display userImage
+    func displayUserImage(firstName: String, lastName: String){
+        if(firstName.lowercased() == "yue" && lastName.lowercased() == "yang"){
+            userImage.image = UIImage(named: "yue")!
+        }
+        else if(firstName.lowercased() == "ric" && lastName.lowercased() == "telford"){
+            userImage.image = UIImage(named: "ric")!
+        }
+        else{
+            userImage.image = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
+        }
+    }
+    
+    // MARK: - BarButtonHandler
+    func savePerson(){
         let firstName: String  = firstNameInput.text ?? ""
         let lastName: String = lastNameInput.text ?? ""
         let fromWhere: String = fromWhereInput.text ?? ""
@@ -178,68 +134,15 @@ class InformationViewController: UIViewController {
         let hobbies: [String] = hobby.components(separatedBy: ",")
         let languages: [String] = language.components(separatedBy: ",")
 
-
-        var personExist: Bool = false
-        for person in allPersons{
-            if(person.firstName!.lowercased() == firstName.lowercased() && person.lastName!.lowercased() == lastName.lowercased()){
-                personExist = true
-                outputLabel.text = "The person has been updated."
-                deletePersonFromDB(person: person)
-                break
-            }
-        }
-        
         addPersonToDB(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, degree: degree, hobby: hobbies, language: languages, team: team, email: email)
 
-        if(!personExist){
-            outputLabel.text = "The person has been added."
-        }
     }
     
-    // findButton handler
-    @IBAction func findPerson(_ sender: Any) {
-        let firstName: String  = firstNameInput.text ?? ""
-        let lastName: String = lastNameInput.text ?? ""
-        if(firstName == "" && lastName == ""){
-            outputLabel.text = "Error: FirstName and LastName cannot be null."
+    override func prepare(for segue: UIStoryboardSegue,sender: Any?) {
+        if((sender as! UIBarButtonItem) != self.saveButton){
             return
         }
-        
-        for person in allPersons{
-            if(person.firstName!.lowercased() == firstName.lowercased() && person.lastName!.lowercased() == lastName.lowercased()){
-                outputLabel.text = person.description
-                genderInput.text = person.gender; roleInput.text = person.role; degreeInput.text = person.degree; fromWhereInput.text = person.whereFrom; teamInput.text = person.team; emailInput.text = person.email;
-                if(person.hobby?.count != 0){
-                    hobbyInput.text = person.getHobby(hobby: person.hobby!);
-                }
-                if(person.language?.count != 0){
-                    languageInput.text = person.getLanguage(language: person.language!);
-                }
-                
-                displayUserImage(firstName: firstName, lastName: lastName)
-                return
-            }
-        }
-        outputLabel.text = "The person was not found."
-    }
-    
-    // display userImage
-    func displayUserImage(firstName: String, lastName: String){
-        if(firstName.lowercased() == "yue" && lastName.lowercased() == "yang"){
-            userImage.image = UIImage(named: "yue")!
-        }
-        else if(firstName.lowercased() == "ric" && lastName.lowercased() == "telford"){
-            userImage.image = UIImage(named: "ric")!
-        }
-        else{
-            userImage.image = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if((sender as! UIBarButtonItem) != self.saveButton){
-//            return
-//        }
+        savePerson()
     }
     
 }

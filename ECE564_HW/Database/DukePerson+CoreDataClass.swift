@@ -12,6 +12,21 @@ import CoreData
 
 @objc(DukePerson)
 public class DukePerson: NSManagedObject {
+    
+    convenience init(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String){
+        self.init()
+        self.firstName = firstName
+        self.lastName = lastName
+        self.whereFrom = whereFrom
+        self.gender = gender
+        self.role = role
+        self.degree = degree
+        self.hobby = hobby
+        self.language = language
+        self.team = team
+        self.email = email
+    }
+
     public override var description: String {
         let lineOne: String = "\(self.firstName!) \(self.lastName!) is a \((self.role!).lowercased()) at Duke University."
         var lineTwo: String = ""
