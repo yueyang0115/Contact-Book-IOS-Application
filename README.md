@@ -46,7 +46,28 @@ If no first name and last name is provided, if no gender and role information is
 
 
 ## HW3
-add text here
+Extra Features includes:  
+Database:  
+Use Core Data as database, write database-related functions: clearDB(), addDefaultPersonInDB(), fetchAllPersonFromDB(), addPersonToDB(), deletePersonFromDB(). Use try catch blcok for database-related functions.  
+
+Data Model Field:  
+"Team" field and "Email" field are added to the DukePerson class. "Hobby" field and "Language" field now hold array of string.  
+
+Multiple Type Controls:  
+Use PickerView for gender and role.  
+
+Design of TableView:  
+Add different pictures for different section headers.  
+
+Error Checking:  
+When save button is pressed, if no first name and last name is provided, if no gender and role information is selected in the pickerview and if the user type string into the gender and role field, the app will print error message at the bottom of the page and the save button will not lead to exit.  
+
+Change Mode:  
+The title of the informationView will change according to different modes, including "Add New Person", "View Person Only" and "Edit Person".  
+
+Code:  
+Use segue intentifier to check the source of segue and figure out whether it is in add mode or edit mode. Use segue.destination and segue.source to pass values between different views.  
+
 
 ## HW4
 add text here
