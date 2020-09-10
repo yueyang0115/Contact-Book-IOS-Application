@@ -303,24 +303,42 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="VFW-Cc-L0k">
-                                <rect key="frame" x="137.5" y="463" width="100" height="100"/>
+                                <rect key="frame" x="127.5" y="463" width="120" height="120"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill.badge.exclam" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Nit-0I-efI">
-                                        <rect key="frame" x="0.0" y="0.5" width="100" height="99"/>
+                                        <rect key="frame" x="0.0" y="0.5" width="120" height="119"/>
                                         <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="g4y-5o-mXK"/>
-                                            <constraint firstAttribute="height" constant="100" id="qEb-OD-iMF"/>
-                                        </constraints>
                                     </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="VFW-Cc-L0k" secondAttribute="height" multiplier="1:1" id="dZd-d5-sPu"/>
+                                    <constraint firstAttribute="height" constant="120" id="sZR-om-7o6"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Fa1-db-CeR">
+                                <rect key="frame" x="137.5" y="588" width="100" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huQ-3k-5sj">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="owR-Lz-Jzh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Pick a Picture"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="huQ-3k-5sj" firstAttribute="centerX" secondItem="Fa1-db-CeR" secondAttribute="centerX" id="fsR-Pd-G4G"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="VFW-Cc-L0k" firstAttribute="top" secondItem="jVX-gb-rAL" secondAttribute="bottom" constant="25" id="BNd-co-Agz"/>
+                            <constraint firstItem="Fa1-db-CeR" firstAttribute="top" secondItem="VFW-Cc-L0k" secondAttribute="bottom" constant="5" id="CSS-tQ-nNL"/>
                             <constraint firstItem="jVX-gb-rAL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="Ctk-2N-phm"/>
                             <constraint firstItem="VFW-Cc-L0k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lpU-dm-Cho"/>
+                            <constraint firstItem="Fa1-db-CeR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m6T-cN-wn8"/>
                             <constraint firstItem="jVX-gb-rAL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qRK-a0-kKa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -348,6 +366,7 @@
                         <outlet property="languageInput" destination="IJM-Sr-dCN" id="lxC-Pq-pLS"/>
                         <outlet property="lastNameInput" destination="97w-TC-cX1" id="sfO-Rx-eYP"/>
                         <outlet property="naviBar" destination="6un-IE-0bv" id="V6l-hb-23E"/>
+                        <outlet property="pickButton" destination="huQ-3k-5sj" id="AA3-KH-qOj"/>
                         <outlet property="roleInput" destination="gLK-H1-AWr" id="nW4-1v-Iak"/>
                         <outlet property="saveButton" destination="nFv-MG-rIr" id="dkI-wX-sXC"/>
                         <outlet property="teamInput" destination="EMW-Fs-Lh4" id="hMP-nn-zKR"/>
@@ -381,7 +400,6 @@
         <!--Navigation View Controller-->
         <scene sceneID="0nv-gy-Inh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2zh-IA-SOz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TBm-Ii-SGX" customClass="NavigationViewController" customModule="ECE564_HW" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E6d-S6-mhE">
@@ -393,12 +411,13 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="TEj-Rn-j9K"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2zh-IA-SOz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1071.2" y="84.107946026986511"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="nST-3K-MGW"/>
+        <segue reference="TEj-Rn-j9K"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="person.crop.circle.fill.badge.exclam" catalog="system" width="128" height="101"/>

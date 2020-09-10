@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreData
+import MobileCoreServices
 
-class InformationViewController: UIViewController {
+class InformationViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var firstNameInput: UITextField!
     @IBOutlet weak var lastNameInput: UITextField!
@@ -24,7 +25,9 @@ class InformationViewController: UIViewController {
     @IBOutlet weak var emailInput: UITextField!
     
 //    @IBOutlet weak var outputLabel: UILabel!
+    // picture-related
     @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var pickButton: UIButton!
     
     // pickerView-related
     let genders = ["Female", "Male"]
@@ -53,18 +56,21 @@ class InformationViewController: UIViewController {
         else if(segueType == "editSegue"){
             saveButton.title = "Edit"
             naviBar.title = "View Person Only"
-            //fill textField
+            //fill textField with provided person info
             fillExistedPerson()
+            // disable textField input
             setTextFieldInput(bool: false)
         }
     }
     
+    // fill textField with provided person info
     func fillExistedPerson(){
         if(edittedPerson != nil){
             firstNameInput.text = edittedPerson!.firstName; lastNameInput.text = edittedPerson!.lastName; fromWhereInput.text = edittedPerson!.whereFrom; degreeInput.text = edittedPerson!.degree; hobbyInput.text = edittedPerson!.getHobby(hobby: edittedPerson!.hobby!); languageInput.text = edittedPerson!.getLanguage(language: edittedPerson!.language!); genderInput.text = edittedPerson!.gender; roleInput.text = edittedPerson!.role; teamInput.text = edittedPerson!.team; emailInput.text = edittedPerson!.email
         }
     }
     
+    // enable or disable textField input
     func setTextFieldInput(bool: Bool){
         firstNameInput.isUserInteractionEnabled = bool; lastNameInput.isUserInteractionEnabled = bool; fromWhereInput.isUserInteractionEnabled = bool; genderInput.isUserInteractionEnabled = bool; roleInput.isUserInteractionEnabled = bool; degreeInput.isUserInteractionEnabled = bool; hobbyInput.isUserInteractionEnabled = bool; languageInput.isUserInteractionEnabled = bool; emailInput.isUserInteractionEnabled = bool; teamInput.isUserInteractionEnabled = bool
     }
@@ -80,8 +86,12 @@ class InformationViewController: UIViewController {
         rolePickerView.delegate = self
         rolePickerView.dataSource = self
         roleInput.inputView = rolePickerView
+        
+        pickButton.layer.cornerRadius = 5
+        pickButton.layer.borderWidth = 2
+        pickButton.layer.borderColor = UIColor.systemBlue.cgColor
+        pickButton.addTarget(self, action: #selector(InformationViewController.choosePic(_:)), for: .touchUpInside)
     }
-    
     
     
     // MARK: - database-related operations
@@ -192,6 +202,53 @@ class InformationViewController: UIViewController {
 
     }
     
+    
+    // MARK: imagePicker delegate calls
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        let im = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage
+
+        self.dismiss(animated: true) {
+            let type = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaType)] as? String
+            if type != nil {
+                switch type! {
+                case kUTTypeImage as NSString as String:
+                    if im != nil {
+                        self.userImage.image = im
+                        self.userImage.contentMode = .scaleAspectFit
+                    }
+                default:break
+                }
+            }
+        }
+    }
+    
+    @objc func choosePic(_ sender: AnyObject) {
+        let lib = UIImagePickerController.SourceType.photoLibrary
+        let ok = UIImagePickerController.isSourceTypeAvailable(lib)
+        if (!ok) {
+            print("error")
+            return
+        }
+        let desiredType = kUTTypeImage as NSString as String
+        let arr = UIImagePickerController.availableMediaTypes(for: lib)
+        print(arr!)
+        if arr?.firstIndex(of: desiredType) == nil {
+            print("error")
+            return
+        }
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.mediaTypes = [desiredType]
+        picker.delegate = self
+        
+        self.present(picker, animated: true, completion: nil)
+    }
+    
+    
     /*
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -206,7 +263,7 @@ class InformationViewController: UIViewController {
     
 }
 
-// MARK: - extension
+// MARK: - extension and image helper
 extension InformationViewController : UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -248,4 +305,14 @@ extension InformationViewController : UIPickerViewDelegate, UIPickerViewDataSour
         }
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+    return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+    return input.rawValue
 }
