@@ -23,7 +23,7 @@ class InformationViewController: UIViewController {
     @IBOutlet weak var teamInput: UITextField!
     @IBOutlet weak var emailInput: UITextField!
     
-    @IBOutlet weak var outputLabel: UILabel!
+//    @IBOutlet weak var outputLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView!
     
     // pickerView-related
@@ -38,19 +38,24 @@ class InformationViewController: UIViewController {
     // segue-related
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var naviBar: UINavigationItem!
     var segueType: String = ""
     var edittedPerson: DukePerson?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureField()
         if(segueType == "addSegue"){
             saveButton.title = "Save"
+            naviBar.title = "Add New Person"
         }
         else if(segueType == "editSegue"){
             saveButton.title = "Edit"
+            naviBar.title = "View Person Only"
             //fill textField
             fillExistedPerson()
+            setTextFieldInput(bool: false)
         }
     }
     
@@ -60,13 +65,14 @@ class InformationViewController: UIViewController {
         }
     }
     
+    func setTextFieldInput(bool: Bool){
+        firstNameInput.isUserInteractionEnabled = bool; lastNameInput.isUserInteractionEnabled = bool; fromWhereInput.isUserInteractionEnabled = bool; genderInput.isUserInteractionEnabled = bool; roleInput.isUserInteractionEnabled = bool; degreeInput.isUserInteractionEnabled = bool; hobbyInput.isUserInteractionEnabled = bool; languageInput.isUserInteractionEnabled = bool; emailInput.isUserInteractionEnabled = bool; teamInput.isUserInteractionEnabled = bool
+    }
+    
     func configureField(){
         firstNameInput.delegate = self; lastNameInput.delegate = self; fromWhereInput.delegate = self; degreeInput.delegate = self; hobbyInput.delegate = self; languageInput.delegate = self
         genderInput.delegate = self; roleInput.delegate = self;
         teamInput.delegate = self; emailInput.delegate = self
-        
-        outputLabel.lineBreakMode = .byWordWrapping
-        outputLabel.numberOfLines = 0
         
         genderPickerView.delegate = self
         genderPickerView.dataSource = self
@@ -122,13 +128,12 @@ class InformationViewController: UIViewController {
         // press edit
         if(saveButton.title == "Edit"){
             saveButton.title = "Save"
-            // enable textField
+            naviBar.title = "Edit Person"
+            setTextFieldInput(bool: true)
         }
-        
         else if(saveButton.title == "Save"){
             // pure add person
             if(edittedPerson == nil) {
-                print("get into add pure save")
                 savePerson()
             }
             // replace old person
@@ -145,8 +150,8 @@ class InformationViewController: UIViewController {
         }
     }
     
-    
     func savePerson(){
+        var warning: String = ""
         let firstName: String  = firstNameInput.text ?? ""
         let lastName: String = lastNameInput.text ?? ""
         let fromWhere: String = fromWhereInput.text ?? ""
@@ -159,23 +164,23 @@ class InformationViewController: UIViewController {
         let gender: String = genderInput.text ?? ""
         let role: String = roleInput.text ?? ""
         if(firstName == "" && lastName == ""){
-            outputLabel.text = "Error: FirstName and LastName cannot be null."
+            warning = "Error: FirstName and LastName cannot be null."
             return
         }
         if(gender == ""){
-            outputLabel.text = "Error: Please choose your gender."
+            warning = "Error: Please choose your gender."
             return
         }
         if(role == ""){
-            outputLabel.text = "Error: Please choose your role."
+            warning = "Error: Please choose your role."
             return
         }
         if(gender != "Female" && gender != "Male"){
-            outputLabel.text = "Error: Illegal gender."
+            warning = "Error: Illegal gender."
             return
         }
         if(role != "Student" && role != "Professor" && role != "Teaching Assistant"){
-            outputLabel.text = "Error: Illegal role."
+            warning = "Error: Illegal role."
             return
         }
         
