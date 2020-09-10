@@ -25,6 +25,7 @@ class InformationViewController: UIViewController {
     
     @IBOutlet weak var outputLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView!
+    
     // pickerView-related
     let genders = ["Female", "Male"]
     var genderPickerView = UIPickerView()
@@ -38,15 +39,24 @@ class InformationViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var segueType: String = ""
+    var edittedPerson: DukePerson?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureField()
         if(segueType == "addSegue"){
-            saveButton.title = "save"
+            saveButton.title = "Save"
         }
         else if(segueType == "editSegue"){
-            saveButton.title = "edit"
+            saveButton.title = "Edit"
+            //fill textField
+            fillExistedPerson()
+        }
+    }
+    
+    func fillExistedPerson(){
+        if(edittedPerson != nil){
+            firstNameInput.text = edittedPerson!.firstName; lastNameInput.text = edittedPerson!.lastName; fromWhereInput.text = edittedPerson!.whereFrom; degreeInput.text = edittedPerson!.degree; hobbyInput.text = edittedPerson!.getHobby(hobby: edittedPerson!.hobby!); languageInput.text = edittedPerson!.getLanguage(language: edittedPerson!.language!); genderInput.text = edittedPerson!.gender; roleInput.text = edittedPerson!.role; teamInput.text = edittedPerson!.team; emailInput.text = edittedPerson!.email
         }
     }
     
@@ -66,6 +76,8 @@ class InformationViewController: UIViewController {
         roleInput.inputView = rolePickerView
     }
     
+    
+    
     // MARK: - database-related operations
     // add one person to database
     func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String){
@@ -75,6 +87,18 @@ class InformationViewController: UIViewController {
             try self.context.save()
         } catch let error as NSError {
             print("Failed to save new person into database")
+            print(error)
+        }
+        //self.fetchAllPersonFromDB()
+    }
+    
+    // delete one person from database
+    func deletePersonFromDB(person: DukePerson){
+        self.context.delete(person)
+        do {
+            try self.context.save()
+        } catch let error as NSError {
+            print("Failed to save data after deletion")
             print(error)
         }
         //self.fetchAllPersonFromDB()
@@ -94,6 +118,34 @@ class InformationViewController: UIViewController {
     }
     
     // MARK: - ButtonHandler
+    @IBAction func isPressed(_ sender: Any) {
+        // press edit
+        if(saveButton.title == "Edit"){
+            saveButton.title = "Save"
+            // enable textField
+        }
+        
+        else if(saveButton.title == "Save"){
+            // pure add person
+            if(edittedPerson == nil) {
+                print("get into add pure save")
+                savePerson()
+            }
+            // replace old person
+            else{
+                let firstName: String  = firstNameInput.text ?? ""
+                let lastName: String = lastNameInput.text ?? ""
+                if(firstName == edittedPerson!.firstName && lastName == edittedPerson!.lastName){
+                    deletePersonFromDB(person: edittedPerson!)
+                }
+                savePerson()
+            }
+            //exit
+            performSegue(withIdentifier: "returnSegue", sender: self)
+        }
+    }
+    
+    
     func savePerson(){
         let firstName: String  = firstNameInput.text ?? ""
         let lastName: String = lastNameInput.text ?? ""
@@ -140,12 +192,12 @@ class InformationViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     */
     
-    override func prepare(for segue: UIStoryboardSegue,sender: Any?) {
-        if((sender as! UIBarButtonItem) != self.saveButton){
-            return
-        }
-        savePerson()
-    }
+//    override func prepare(for segue: UIStoryboardSegue,sender: Any?) {
+//        if((sender as! UIBarButtonItem) != self.saveButton){
+//            return
+//        }
+//        //savePerson()
+//    }
     
 }
 

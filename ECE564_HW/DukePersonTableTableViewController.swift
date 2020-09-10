@@ -13,10 +13,11 @@ class DukePersonTableTableViewController: UITableViewController {
     //database-related variable
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var allPersons = [DukePerson]()
-    var sortedDB = [[DukePerson]]() //0:Professor, 1:TA, 2:Student
+    var sortedDB :[[DukePerson]] = [[],[],[]] //0:Professor, 1:TA, 2:Student
     
     //segue-related variable
     @IBOutlet weak var addButton: UIBarButtonItem!
+    var edittedPerson: DukePerson?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,10 +66,7 @@ class DukePersonTableTableViewController: UITableViewController {
     
     // classify persons by their roles, store result in 2D array as sorted database
     func classifyPerson(){
-        sortedDB = [[DukePerson]]()
-        sortedDB.append([DukePerson]())
-        sortedDB.append([DukePerson]())
-        sortedDB.append([DukePerson]())
+        sortedDB = [[],[],[]]
         
         for person in allPersons{
             switch person.role{
@@ -156,12 +154,12 @@ class DukePersonTableTableViewController: UITableViewController {
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        //tableView.deselectRow(at: indexPath, animated: false)
-//        //let tappedDukePerson: DukePerson = self.allPersons[indexPath.row]
-//        //tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
-//        performSegue(withIdentifier: "editSegue", sender: self)
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        self.edittedPerson = self.sortedDB[indexPath.section][indexPath.row]
+        print("in table, get into didselectRow func")
+        performSegue(withIdentifier: "editSegue", sender: self)
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -208,6 +206,8 @@ class DukePersonTableTableViewController: UITableViewController {
             dst.segueType = "addSegue"
         }
         else if(segue.identifier == "editSegue"){
+            print("in table, get into prepare function")
+            dst.edittedPerson = self.edittedPerson
             dst.segueType = "editSegue"
         }
     }
