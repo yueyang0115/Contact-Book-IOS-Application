@@ -157,7 +157,8 @@ class DukePersonTableTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         //let tappedDukePerson: DukePerson = self.allPersons[indexPath.row]
-        tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
+        //tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
+        performSegue(withIdentifier: "editSegue", sender: self)
     }
 
     /*

@@ -62,6 +62,7 @@
                                     <outlet property="pDescriptionLabel" destination="J65-jM-uhI" id="0sT-G8-z4d"/>
                                     <outlet property="pImageView" destination="ueT-i3-0c6" id="1GP-G1-Y1b"/>
                                     <outlet property="pNameLabel" destination="cGA-G8-qOU" id="AvX-de-CPf"/>
+                                    <segue destination="TBm-Ii-SGX" kind="presentation" identifier="editSegue" id="mZr-0i-Fm9"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -73,7 +74,7 @@
                     <navigationItem key="navigationItem" title="ECE 564" id="raL-td-Gep">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="kUs-8j-LRn">
                             <connections>
-                                <segue destination="TBm-Ii-SGX" kind="presentation" id="1cd-6u-5Nx"/>
+                                <segue destination="TBm-Ii-SGX" kind="presentation" identifier="addSegue" id="1cd-6u-5Nx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -413,6 +414,9 @@
             <point key="canvasLocation" x="1071.2" y="84.107946026986511"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="mZr-0i-Fm9"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="person.crop.circle.fill.badge.exclam" catalog="system" width="128" height="101"/>
     </resources>
