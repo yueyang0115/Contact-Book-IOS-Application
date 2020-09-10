@@ -28,6 +28,7 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
     // picture-related
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var pickButton: UIButton!
+    @IBOutlet weak var outputLabel: UILabel!
     
     // pickerView-related
     let genders = ["Female", "Male"]
@@ -75,6 +76,9 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
         rolePickerView.delegate = self
         rolePickerView.dataSource = self
         roleInput.inputView = rolePickerView
+        
+        outputLabel.lineBreakMode = .byWordWrapping
+        outputLabel.numberOfLines = 0
         
         pickButton.layer.cornerRadius = 5
         pickButton.layer.borderWidth = 2
@@ -150,8 +154,9 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
         }
         else if(saveButton.title == "Save"){
             // pure add person
+            var canExit: Bool = false;
             if(edittedPerson == nil) {
-                savePerson()
+                canExit = savePerson()
             }
             // replace old person
             else{
@@ -160,15 +165,16 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
                 if(firstName == edittedPerson!.firstName && lastName == edittedPerson!.lastName){
                     deletePersonFromDB(person: edittedPerson!)
                 }
-                savePerson()
+                canExit = savePerson()
             }
             //exit
-            performSegue(withIdentifier: "returnSegue", sender: self)
+            if(canExit){
+                performSegue(withIdentifier: "returnSegue", sender: self)
+            }
         }
     }
     
-    func savePerson(){
-        var warning: String = ""
+    func savePerson() -> Bool{
         let firstName: String  = firstNameInput.text ?? ""
         let lastName: String = lastNameInput.text ?? ""
         let fromWhere: String = fromWhereInput.text ?? ""
@@ -181,24 +187,24 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
         let gender: String = genderInput.text ?? ""
         let role: String = roleInput.text ?? ""
         if(firstName == "" && lastName == ""){
-            warning = "Error: FirstName and LastName cannot be null."
-            return
+            outputLabel.text = "Error: FirstName and LastName cannot be null."
+            return false
         }
         if(gender == ""){
-            warning = "Error: Please choose your gender."
-            return
+            outputLabel.text = "Error: Please choose your gender."
+            return false
         }
         if(role == ""){
-            warning = "Error: Please choose your role."
-            return
+            outputLabel.text = "Error: Please choose your role."
+            return false
         }
         if(gender != "Female" && gender != "Male"){
-            warning = "Error: Illegal gender."
-            return
+            outputLabel.text = "Error: Illegal gender."
+            return false
         }
         if(role != "Student" && role != "Professor" && role != "Teaching Assistant"){
-            warning = "Error: Illegal role."
-            return
+            outputLabel.text = "Error: Illegal role."
+            return false
         }
         
         //split hobbies and languages to [String]
@@ -206,7 +212,7 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
         let languages: [String] = language.components(separatedBy: ",")
         let imageData: Data = userImage.image!.pngData()!
         addPersonToDB(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, degree: degree, hobby: hobbies, language: languages, team: team, email: email, image: imageData)
-
+        return true;
     }
     
     

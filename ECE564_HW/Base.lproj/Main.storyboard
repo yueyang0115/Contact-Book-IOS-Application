@@ -95,7 +95,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="jVX-gb-rAL">
-                                <rect key="frame" x="62.5" y="74" width="250" height="364"/>
+                                <rect key="frame" x="62.5" y="64" width="250" height="364"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kUA-Nr-hU9">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="26.5"/>
@@ -303,7 +303,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="VFW-Cc-L0k">
-                                <rect key="frame" x="127.5" y="463" width="120" height="120"/>
+                                <rect key="frame" x="127.5" y="448" width="120" height="120"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill.badge.exclam" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Nit-0I-efI">
                                         <rect key="frame" x="0.0" y="0.5" width="120" height="119"/>
@@ -316,7 +316,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Fa1-db-CeR">
-                                <rect key="frame" x="137.5" y="588" width="100" height="30"/>
+                                <rect key="frame" x="137.5" y="578" width="100" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huQ-3k-5sj">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
@@ -331,12 +331,20 @@
                                     <constraint firstItem="huQ-3k-5sj" firstAttribute="centerX" secondItem="Fa1-db-CeR" secondAttribute="centerX" id="fsR-Pd-G4G"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3r-dk-sfp">
+                                <rect key="frame" x="184" y="618" width="7.5" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="VFW-Cc-L0k" firstAttribute="top" secondItem="jVX-gb-rAL" secondAttribute="bottom" constant="25" id="BNd-co-Agz"/>
-                            <constraint firstItem="Fa1-db-CeR" firstAttribute="top" secondItem="VFW-Cc-L0k" secondAttribute="bottom" constant="5" id="CSS-tQ-nNL"/>
-                            <constraint firstItem="jVX-gb-rAL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="Ctk-2N-phm"/>
+                            <constraint firstItem="U3r-dk-sfp" firstAttribute="top" secondItem="Fa1-db-CeR" secondAttribute="bottom" constant="10" id="7yU-Gd-0tZ"/>
+                            <constraint firstItem="VFW-Cc-L0k" firstAttribute="top" secondItem="jVX-gb-rAL" secondAttribute="bottom" constant="20" id="BNd-co-Agz"/>
+                            <constraint firstItem="Fa1-db-CeR" firstAttribute="top" secondItem="VFW-Cc-L0k" secondAttribute="bottom" constant="10" id="CSS-tQ-nNL"/>
+                            <constraint firstItem="jVX-gb-rAL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Ctk-2N-phm"/>
+                            <constraint firstItem="U3r-dk-sfp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Eec-kQ-wht"/>
                             <constraint firstItem="VFW-Cc-L0k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lpU-dm-Cho"/>
                             <constraint firstItem="Fa1-db-CeR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m6T-cN-wn8"/>
                             <constraint firstItem="jVX-gb-rAL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qRK-a0-kKa"/>
@@ -366,6 +374,7 @@
                         <outlet property="languageInput" destination="IJM-Sr-dCN" id="lxC-Pq-pLS"/>
                         <outlet property="lastNameInput" destination="97w-TC-cX1" id="sfO-Rx-eYP"/>
                         <outlet property="naviBar" destination="6un-IE-0bv" id="V6l-hb-23E"/>
+                        <outlet property="outputLabel" destination="U3r-dk-sfp" id="U1Y-VP-k6h"/>
                         <outlet property="pickButton" destination="huQ-3k-5sj" id="AA3-KH-qOj"/>
                         <outlet property="roleInput" destination="gLK-H1-AWr" id="nW4-1v-Iak"/>
                         <outlet property="saveButton" destination="nFv-MG-rIr" id="dkI-wX-sXC"/>
