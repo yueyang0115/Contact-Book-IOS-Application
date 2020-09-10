@@ -10,8 +10,12 @@
 import Foundation
 import CoreData
 
+protocol ECE564 {
+     var hobby : [String]?   {get}
+     var language : [String]?    {get}
+}
 
-extension DukePerson {
+extension DukePerson : ECE564{
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<DukePerson> {
         return NSFetchRequest<DukePerson>(entityName: "DukePerson")
