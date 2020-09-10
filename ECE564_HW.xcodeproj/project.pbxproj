@@ -11,8 +11,8 @@
 		1D66E827250069B500419311 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D66E825250069B500419311 /* CoreDataModel.xcdatamodeld */; };
 		1D9FC76125089AF5002E9FF6 /* DukePersonTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9FC76025089AF5002E9FF6 /* DukePersonTableTableViewController.swift */; };
 		1D9FC769250978D7002E9FF6 /* DukePersonProtoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9FC768250978D7002E9FF6 /* DukePersonProtoCell.swift */; };
-		1DC8C2CA2502125700E2ABCA /* DukePerson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC8C2C82502125700E2ABCA /* DukePerson+CoreDataClass.swift */; };
-		1DC8C2CB2502125700E2ABCA /* DukePerson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC8C2C92502125700E2ABCA /* DukePerson+CoreDataProperties.swift */; };
+		1D9FC770250A847B002E9FF6 /* DukePerson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9FC76E250A847B002E9FF6 /* DukePerson+CoreDataClass.swift */; };
+		1D9FC771250A847B002E9FF6 /* DukePerson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9FC76F250A847B002E9FF6 /* DukePerson+CoreDataProperties.swift */; };
 		873481602469DEE8000B9A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8734815F2469DEE8000B9A79 /* AppDelegate.swift */; };
 		873481622469DEE8000B9A79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873481612469DEE8000B9A79 /* SceneDelegate.swift */; };
 		873481672469DEE8000B9A79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873481652469DEE8000B9A79 /* Main.storyboard */; };
@@ -25,8 +25,8 @@
 		1D66E826250069B500419311 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		1D9FC76025089AF5002E9FF6 /* DukePersonTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukePersonTableTableViewController.swift; sourceTree = "<group>"; };
 		1D9FC768250978D7002E9FF6 /* DukePersonProtoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukePersonProtoCell.swift; sourceTree = "<group>"; };
-		1DC8C2C82502125700E2ABCA /* DukePerson+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DukePerson+CoreDataClass.swift"; sourceTree = "<group>"; };
-		1DC8C2C92502125700E2ABCA /* DukePerson+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DukePerson+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1D9FC76E250A847B002E9FF6 /* DukePerson+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DukePerson+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1D9FC76F250A847B002E9FF6 /* DukePerson+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DukePerson+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8734815C2469DEE8000B9A79 /* ECE564_HW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECE564_HW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8734815F2469DEE8000B9A79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		873481612469DEE8000B9A79 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,8 +54,8 @@
 			isa = PBXGroup;
 			children = (
 				1D66E825250069B500419311 /* CoreDataModel.xcdatamodeld */,
-				1DC8C2C82502125700E2ABCA /* DukePerson+CoreDataClass.swift */,
-				1DC8C2C92502125700E2ABCA /* DukePerson+CoreDataProperties.swift */,
+				1D9FC76E250A847B002E9FF6 /* DukePerson+CoreDataClass.swift */,
+				1D9FC76F250A847B002E9FF6 /* DukePerson+CoreDataProperties.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -168,10 +168,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D9FC769250978D7002E9FF6 /* DukePersonProtoCell.swift in Sources */,
-				1DC8C2CB2502125700E2ABCA /* DukePerson+CoreDataProperties.swift in Sources */,
 				1D66E827250069B500419311 /* CoreDataModel.xcdatamodeld in Sources */,
 				873481602469DEE8000B9A79 /* AppDelegate.swift in Sources */,
-				1DC8C2CA2502125700E2ABCA /* DukePerson+CoreDataClass.swift in Sources */,
+				1D9FC771250A847B002E9FF6 /* DukePerson+CoreDataProperties.swift in Sources */,
+				1D9FC770250A847B002E9FF6 /* DukePerson+CoreDataClass.swift in Sources */,
 				873481622469DEE8000B9A79 /* SceneDelegate.swift in Sources */,
 				1D66E80024FF38B400419311 /* InformationViewController.swift in Sources */,
 				1D9FC76125089AF5002E9FF6 /* DukePersonTableTableViewController.swift in Sources */,

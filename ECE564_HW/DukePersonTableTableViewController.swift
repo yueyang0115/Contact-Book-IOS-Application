@@ -16,6 +16,7 @@ class DukePersonTableTableViewController: UITableViewController {
     var sortedDB :[[DukePerson]] = [[],[],[]] //0:Professor, 1:TA, 2:Student
     
     //segue-related variable
+    let defaultImage = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
     @IBOutlet weak var addButton: UIBarButtonItem!
     var edittedPerson: DukePerson?
     
@@ -47,10 +48,12 @@ class DukePersonTableTableViewController: UITableViewController {
     
     // add some default data in database
     func addDefaultPersonInDB(){
-        addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["reading"], language: ["swift"], team: "ece564", email: "yy258@duke.edu")
-        addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "Professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "ece564", email: "rt113@duke.edu")
-        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "Teaching Assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "ece564", email: "hz147@duke.edu")
-        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Teaching Assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "ece564", email: "yy227@duke.edu")
+        let imageRic = UIImage(named: "ric")
+        let imageYue = UIImage(named: "yue")
+        addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["reading"], language: ["swift"], team: "ece564", email: "yy258@duke.edu", image: imageYue!.pngData()!)
+        addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "Professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "ece564", email: "rt113@duke.edu", image: imageRic!.pngData()!)
+        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "Teaching Assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "ece564", email: "hz147@duke.edu", image: defaultImage!.pngData()!)
+        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Teaching Assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "ece564", email: "yy227@duke.edu", image: defaultImage!.pngData()!)
     }
     
     // get all persons from database
@@ -82,9 +85,9 @@ class DukePersonTableTableViewController: UITableViewController {
     }
     
     // add one person to database
-    func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String){
+    func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String, image: Data){
         let newPerson = DukePerson(context: self.context)
-        newPerson.firstName = firstName; newPerson.lastName = lastName; newPerson.whereFrom = whereFrom; newPerson.gender = gender; newPerson.role = role; newPerson.degree = degree; newPerson.hobby = hobby; newPerson.language = language; newPerson.team = team; newPerson.email = email
+        newPerson.firstName = firstName; newPerson.lastName = lastName; newPerson.whereFrom = whereFrom; newPerson.gender = gender; newPerson.role = role; newPerson.degree = degree; newPerson.hobby = hobby; newPerson.language = language; newPerson.team = team; newPerson.email = email; newPerson.image = image
         do {
             try self.context.save()
         } catch let error as NSError {
@@ -151,13 +154,16 @@ class DukePersonTableTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DukePersonProtoCell", for: indexPath) as! DukePersonProtoCell
         let person: DukePerson = self.sortedDB[indexPath.section][indexPath.row]
         cell.setCell(person: person)
+        if(person.image == defaultImage!.pngData()){
+            cell.pImageView.image = defaultImage
+        }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         self.edittedPerson = self.sortedDB[indexPath.section][indexPath.row]
-        print("in table, get into didselectRow func")
+        //print("in table, get into didselectRow func")
         performSegue(withIdentifier: "editSegue", sender: self)
     }
 
@@ -206,7 +212,7 @@ class DukePersonTableTableViewController: UITableViewController {
             dst.segueType = "addSegue"
         }
         else if(segue.identifier == "editSegue"){
-            print("in table, get into prepare function")
+            //print("in table, get into prepare function")
             dst.edittedPerson = self.edittedPerson
             dst.segueType = "editSegue"
         }

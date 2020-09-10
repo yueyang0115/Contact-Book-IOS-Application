@@ -2,7 +2,7 @@
 //  DukePerson+CoreDataProperties.swift
 //  ECE564_HW
 //
-//  Created by 杨越 on 9/4/20.
+//  Created by 杨越 on 9/10/20.
 //  Copyright © 2020 ECE564. All rights reserved.
 //
 //
@@ -27,5 +27,6 @@ extension DukePerson {
     @NSManaged public var role: String?
     @NSManaged public var team: String?
     @NSManaged public var whereFrom: String?
+    @NSManaged public var image: Data?
 
 }

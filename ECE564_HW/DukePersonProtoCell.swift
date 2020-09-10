@@ -17,7 +17,7 @@ class DukePersonProtoCell: UITableViewCell {
     @IBOutlet weak var pDescriptionLabel: UILabel!
     
     func setCell(person: DukePerson){
-        self.pImageView.image = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
+        self.pImageView.image = UIImage(data: person.image!)
         self.pNameLabel.text = "\(person.firstName!) \(person.lastName!)"
         self.pDescriptionLabel.text = person.description
     }

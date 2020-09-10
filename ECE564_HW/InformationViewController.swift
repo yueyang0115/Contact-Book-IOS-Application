@@ -39,13 +39,14 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     // segue-related
+    let defaultImage = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var naviBar: UINavigationItem!
     var segueType: String = ""
     var edittedPerson: DukePerson?
     
-    
+    // MARK: - load view and settings
     override func viewDidLoad() {
         super.viewDidLoad()
         configureField()
@@ -61,18 +62,6 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
             // disable textField input
             setTextFieldInput(bool: false)
         }
-    }
-    
-    // fill textField with provided person info
-    func fillExistedPerson(){
-        if(edittedPerson != nil){
-            firstNameInput.text = edittedPerson!.firstName; lastNameInput.text = edittedPerson!.lastName; fromWhereInput.text = edittedPerson!.whereFrom; degreeInput.text = edittedPerson!.degree; hobbyInput.text = edittedPerson!.getHobby(hobby: edittedPerson!.hobby!); languageInput.text = edittedPerson!.getLanguage(language: edittedPerson!.language!); genderInput.text = edittedPerson!.gender; roleInput.text = edittedPerson!.role; teamInput.text = edittedPerson!.team; emailInput.text = edittedPerson!.email
-        }
-    }
-    
-    // enable or disable textField input
-    func setTextFieldInput(bool: Bool){
-        firstNameInput.isUserInteractionEnabled = bool; lastNameInput.isUserInteractionEnabled = bool; fromWhereInput.isUserInteractionEnabled = bool; genderInput.isUserInteractionEnabled = bool; roleInput.isUserInteractionEnabled = bool; degreeInput.isUserInteractionEnabled = bool; hobbyInput.isUserInteractionEnabled = bool; languageInput.isUserInteractionEnabled = bool; emailInput.isUserInteractionEnabled = bool; teamInput.isUserInteractionEnabled = bool
     }
     
     func configureField(){
@@ -91,14 +80,32 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
         pickButton.layer.borderWidth = 2
         pickButton.layer.borderColor = UIColor.systemBlue.cgColor
         pickButton.addTarget(self, action: #selector(InformationViewController.choosePic(_:)), for: .touchUpInside)
+        
+        userImage.image = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
+    }
+    
+    // fill textField with provided person info
+    func fillExistedPerson(){
+        if(edittedPerson != nil){
+            firstNameInput.text = edittedPerson!.firstName; lastNameInput.text = edittedPerson!.lastName; fromWhereInput.text = edittedPerson!.whereFrom; degreeInput.text = edittedPerson!.degree; hobbyInput.text = edittedPerson!.getHobby(hobby: edittedPerson!.hobby!); languageInput.text = edittedPerson!.getLanguage(language: edittedPerson!.language!); genderInput.text = edittedPerson!.gender; roleInput.text = edittedPerson!.role; teamInput.text = edittedPerson!.team; emailInput.text = edittedPerson!.email; userImage.image = UIImage(data: edittedPerson!.image!)
+            if(edittedPerson!.image! == defaultImage!.pngData()){
+                userImage.image = defaultImage
+            }
+        }
+    }
+    
+    // enable or disable textField input
+    func setTextFieldInput(bool: Bool){
+        firstNameInput.isUserInteractionEnabled = bool; lastNameInput.isUserInteractionEnabled = bool; fromWhereInput.isUserInteractionEnabled = bool; genderInput.isUserInteractionEnabled = bool; roleInput.isUserInteractionEnabled = bool; degreeInput.isUserInteractionEnabled = bool; hobbyInput.isUserInteractionEnabled = bool; languageInput.isUserInteractionEnabled = bool; emailInput.isUserInteractionEnabled = bool; teamInput.isUserInteractionEnabled = bool;
+        pickButton.isHidden = !bool
     }
     
     
     // MARK: - database-related operations
     // add one person to database
-    func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String){
+    func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String, image: Data){
         let newPerson = DukePerson(context: self.context)
-        newPerson.firstName = firstName; newPerson.lastName = lastName; newPerson.whereFrom = whereFrom; newPerson.gender = gender; newPerson.role = role; newPerson.degree = degree; newPerson.hobby = hobby; newPerson.language = language; newPerson.team = team; newPerson.email = email
+        newPerson.firstName = firstName; newPerson.lastName = lastName; newPerson.whereFrom = whereFrom; newPerson.gender = gender; newPerson.role = role; newPerson.degree = degree; newPerson.hobby = hobby; newPerson.language = language; newPerson.team = team; newPerson.email = email; newPerson.image = image
         do {
             try self.context.save()
         } catch let error as NSError {
@@ -121,19 +128,19 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
     }
     
     // display userImage
-    func displayUserImage(firstName: String, lastName: String){
-        if(firstName.lowercased() == "yue" && lastName.lowercased() == "yang"){
-            userImage.image = UIImage(named: "yue")!
-        }
-        else if(firstName.lowercased() == "ric" && lastName.lowercased() == "telford"){
-            userImage.image = UIImage(named: "ric")!
-        }
-        else{
-            userImage.image = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
-        }
-    }
+//    func displayUserImage(firstName: String, lastName: String){
+//        if(firstName.lowercased() == "yue" && lastName.lowercased() == "yang"){
+//            userImage.image = UIImage(named: "yue")!
+//        }
+//        else if(firstName.lowercased() == "ric" && lastName.lowercased() == "telford"){
+//            userImage.image = UIImage(named: "ric")!
+//        }
+//        else{
+//            userImage.image = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
+//        }
+//    }
     
-    // MARK: - ButtonHandler
+    // MARK: - function handler
     @IBAction func isPressed(_ sender: Any) {
         // press edit
         if(saveButton.title == "Edit"){
@@ -197,8 +204,8 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
         //split hobbies and languages to [String]
         let hobbies: [String] = hobby.components(separatedBy: ",")
         let languages: [String] = language.components(separatedBy: ",")
-
-        addPersonToDB(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, degree: degree, hobby: hobbies, language: languages, team: team, email: email)
+        let imageData: Data = userImage.image!.pngData()!
+        addPersonToDB(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, degree: degree, hobby: hobbies, language: languages, team: team, email: email, image: imageData)
 
     }
     

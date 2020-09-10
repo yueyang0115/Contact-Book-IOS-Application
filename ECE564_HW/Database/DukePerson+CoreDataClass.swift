@@ -2,7 +2,7 @@
 //  DukePerson+CoreDataClass.swift
 //  ECE564_HW
 //
-//  Created by 杨越 on 9/4/20.
+//  Created by 杨越 on 9/10/20.
 //  Copyright © 2020 ECE564. All rights reserved.
 //
 //
@@ -12,8 +12,7 @@ import CoreData
 
 @objc(DukePerson)
 public class DukePerson: NSManagedObject {
-    
-    convenience init(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String){
+    convenience init(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String, image: Data){
         self.init()
         self.firstName = firstName
         self.lastName = lastName
@@ -25,6 +24,7 @@ public class DukePerson: NSManagedObject {
         self.language = language
         self.team = team
         self.email = email
+        self.image = image
     }
 
     public override var description: String {
