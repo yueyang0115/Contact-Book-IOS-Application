@@ -50,10 +50,11 @@ class DukePersonTableTableViewController: UITableViewController {
     func addDefaultPersonInDB(){
         let imageRic = UIImage(named: "ric")
         let imageYue = UIImage(named: "yue")
+        let imageTA0 = UIImage(named: "TA2")
         addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["reading"], language: ["swift"], team: "ece564", email: "yy258@duke.edu", image: imageYue!.pngData()!)
         addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "Professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "ece564", email: "rt113@duke.edu", image: imageRic!.pngData()!)
-        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "Teaching Assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "ece564", email: "hz147@duke.edu", image: defaultImage!.pngData()!)
-        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Teaching Assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "ece564", email: "yy227@duke.edu", image: defaultImage!.pngData()!)
+        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "Teaching Assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "ece564", email: "hz147@duke.edu", image: imageTA0!.pngData()!)
+        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Teaching Assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "ece564", email: "yy227@duke.edu", image: imageTA0!.pngData()!)
     }
     
     // get all persons from database
@@ -133,20 +134,26 @@ class DukePersonTableTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
-        let label = UILabel(frame: CGRect(x: 15, y: 5, width: tableView.bounds.width, height: 20))
+        let sectionImgView = UIImageView(frame: CGRect(x: 15, y: 5, width: 25, height: 25))
+        
+        let label = UILabel(frame: CGRect(x: 45, y: 5, width: tableView.bounds.width-25, height: 25))
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = UIColor.black
         switch section {
             case 0:
               label.text = "Professors"
+              sectionImgView.image = UIImage(named: "professor")
             case 1:
               label.text = "TAs"
+              sectionImgView.image = UIImage(named: "TA")
             case 2:
               label.text = "Students"
+              sectionImgView.image = UIImage(named: "student")
             default:
               label.text = ""
         }
         view.addSubview(label)
+        view.addSubview(sectionImgView)
         return view
     }
     
