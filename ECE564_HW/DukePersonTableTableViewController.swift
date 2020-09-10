@@ -10,12 +10,14 @@ import UIKit
 import CoreData
 
 class DukePersonTableTableViewController: UITableViewController {
-    
+    //database-related variable
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    // get all persons form database
     var allPersons = [DukePerson]()
     var sortedDB = [[DukePerson]]() //0:Professor, 1:TA, 2:Student
-
+    
+    //segue-related variable
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -154,12 +156,12 @@ class DukePersonTableTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        //let tappedDukePerson: DukePerson = self.allPersons[indexPath.row]
-        //tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
-        performSegue(withIdentifier: "editSegue", sender: self)
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        //tableView.deselectRow(at: indexPath, animated: false)
+//        //let tappedDukePerson: DukePerson = self.allPersons[indexPath.row]
+//        //tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
+//        performSegue(withIdentifier: "editSegue", sender: self)
+//    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -198,14 +200,18 @@ class DukePersonTableTableViewController: UITableViewController {
 
     /*
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
     */
-    // MARK: - ReturnHandler
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dst: InformationViewController = segue.destination as! InformationViewController
+        if (segue.identifier == "addSegue")  {
+            dst.segueType = "addSegue"
+        }
+        else if(segue.identifier == "editSegue"){
+            dst.segueType = "editSegue"
+        }
+    }
+    
     @IBAction func returnFromNewPerson(segue: UIStoryboardSegue){
 //        let source: InformationViewController = segue.source as! InformationViewController
         self.fetchAllPersonFromDB()

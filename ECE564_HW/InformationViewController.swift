@@ -11,9 +11,6 @@ import CoreData
 
 class InformationViewController: UIViewController {
     
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
-    
     @IBOutlet weak var firstNameInput: UITextField!
     @IBOutlet weak var lastNameInput: UITextField!
     @IBOutlet weak var genderInput: UITextField!
@@ -35,12 +32,22 @@ class InformationViewController: UIViewController {
     var rolePickerView = UIPickerView()
     
     // database-related
-    // reference to managed object context
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    // segue-related
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    var segueType: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureField()
+        if(segueType == "addSegue"){
+            saveButton.title = "save"
+        }
+        else if(segueType == "editSegue"){
+            saveButton.title = "edit"
+        }
     }
     
     func configureField(){
@@ -73,16 +80,6 @@ class InformationViewController: UIViewController {
         //self.fetchAllPersonFromDB()
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     // display userImage
     func displayUserImage(firstName: String, lastName: String){
         if(firstName.lowercased() == "yue" && lastName.lowercased() == "yang"){
@@ -96,7 +93,7 @@ class InformationViewController: UIViewController {
         }
     }
     
-    // MARK: - BarButtonHandler
+    // MARK: - ButtonHandler
     func savePerson(){
         let firstName: String  = firstNameInput.text ?? ""
         let lastName: String = lastNameInput.text ?? ""
@@ -137,6 +134,11 @@ class InformationViewController: UIViewController {
         addPersonToDB(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, degree: degree, hobby: hobbies, language: languages, team: team, email: email)
 
     }
+    
+    /*
+    // MARK: - Navigation
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    */
     
     override func prepare(for segue: UIStoryboardSegue,sender: Any?) {
         if((sender as! UIBarButtonItem) != self.saveButton){

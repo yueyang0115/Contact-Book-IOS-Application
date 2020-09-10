@@ -62,7 +62,7 @@
                                     <outlet property="pDescriptionLabel" destination="J65-jM-uhI" id="0sT-G8-z4d"/>
                                     <outlet property="pImageView" destination="ueT-i3-0c6" id="1GP-G1-Y1b"/>
                                     <outlet property="pNameLabel" destination="cGA-G8-qOU" id="AvX-de-CPf"/>
-                                    <segue destination="TBm-Ii-SGX" kind="presentation" identifier="editSegue" id="mZr-0i-Fm9"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="editSegue" id="w3s-cE-VZP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -74,10 +74,13 @@
                     <navigationItem key="navigationItem" title="ECE 564" id="raL-td-Gep">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="kUs-8j-LRn">
                             <connections>
-                                <segue destination="TBm-Ii-SGX" kind="presentation" identifier="addSegue" id="1cd-6u-5Nx"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="addSegue" id="nST-3K-MGW"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addButton" destination="kUs-8j-LRn" id="TNu-88-TLg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X0Y-Pm-pEN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -88,11 +91,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="InformationViewController" customModule="ECE564_HW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="jVX-gb-rAL">
-                                <rect key="frame" x="62.5" y="86" width="250" height="364"/>
+                                <rect key="frame" x="62.5" y="74" width="250" height="364"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kUA-Nr-hU9">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="26.5"/>
@@ -300,7 +303,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="VFW-Cc-L0k">
-                                <rect key="frame" x="151.5" y="470" width="72" height="60"/>
+                                <rect key="frame" x="151.5" y="458" width="72" height="60"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill.badge.exclam" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Nit-0I-efI">
                                         <rect key="frame" x="0.0" y="0.5" width="72" height="59"/>
@@ -313,7 +316,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="E28-hR-imV">
-                                <rect key="frame" x="43" y="550" width="289" height="20.5"/>
+                                <rect key="frame" x="43" y="538" width="289" height="20.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The output goes here." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lf1-fm-hH0">
                                         <rect key="frame" x="0.0" y="0.0" width="289" height="20.5"/>
@@ -349,7 +352,7 @@
                                 <segue destination="6I2-2c-wgp" kind="unwind" unwindAction="returnFromNewPersonWithSegue:" id="6ek-QU-Htm"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="nFv-MG-rIr">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="nFv-MG-rIr">
                             <connections>
                                 <segue destination="6I2-2c-wgp" kind="unwind" unwindAction="returnFromNewPersonWithSegue:" id="AwN-bz-gIe"/>
                             </connections>
@@ -395,13 +398,14 @@
             </objects>
             <point key="canvasLocation" x="-639.20000000000005" y="83.208395802098963"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation View Controller-->
         <scene sceneID="0nv-gy-Inh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TBm-Ii-SGX" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2zh-IA-SOz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TBm-Ii-SGX" customClass="NavigationViewController" customModule="ECE564_HW" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E6d-S6-mhE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -409,13 +413,12 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="TEj-Rn-j9K"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2zh-IA-SOz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1071.2" y="84.107946026986511"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mZr-0i-Fm9"/>
+        <segue reference="w3s-cE-VZP"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="person.crop.circle.fill.badge.exclam" catalog="system" width="128" height="101"/>
