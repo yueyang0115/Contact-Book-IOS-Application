@@ -182,7 +182,6 @@ class DukePersonTableTableViewController: UITableViewController {
     }
     */
 
-    
     // Delete Cell
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let person: DukePerson = self.sortedDB[indexPath.section][indexPath.row]

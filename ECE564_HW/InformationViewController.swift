@@ -28,7 +28,6 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
     // picture-related
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var pickButton: UIButton!
-    @IBOutlet weak var outputLabel: UILabel!
     
     // pickerView-related
     let genders = ["Female", "Male"]
@@ -76,9 +75,6 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
         rolePickerView.delegate = self
         rolePickerView.dataSource = self
         roleInput.inputView = rolePickerView
-        
-        outputLabel.lineBreakMode = .byWordWrapping
-        outputLabel.numberOfLines = 0
         
         pickButton.layer.cornerRadius = 5
         pickButton.layer.borderWidth = 2
@@ -175,23 +171,23 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
         let gender: String = genderInput.text ?? ""
         let role: String = roleInput.text ?? ""
         if(firstName == "" && lastName == ""){
-            outputLabel.text = "Error: FirstName and LastName cannot be null."
+            displayErrorAlert(error: "FirstName and LastName cannot be null.")
             return false
         }
         if(gender == ""){
-            outputLabel.text = "Error: Please choose your gender."
+            displayErrorAlert(error: "Please choose your gender.")
             return false
         }
         if(role == ""){
-            outputLabel.text = "Error: Please choose your role."
+            displayErrorAlert(error: "Please choose your role.")
             return false
         }
         if(gender != "Female" && gender != "Male"){
-            outputLabel.text = "Error: Illegal gender."
+            displayErrorAlert(error: "Illegal gender.")
             return false
         }
         if(role != "Student" && role != "Professor" && role != "Teaching Assistant"){
-            outputLabel.text = "Error: Illegal role."
+            displayErrorAlert(error: "Illegal role.")
             return false
         }
         
@@ -203,6 +199,11 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
         return true;
     }
     
+    func displayErrorAlert(error: String){
+        let alert = UIAlertController(title: "Cannot Save Person", message: "\(error)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     // MARK: imagePicker delegate calls
     func imagePickerController(_ picker: UIImagePickerController,

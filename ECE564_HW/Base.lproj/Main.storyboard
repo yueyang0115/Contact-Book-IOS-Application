@@ -325,21 +325,13 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3r-dk-sfp">
-                                <rect key="frame" x="184" y="618" width="7.5" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Fa1-db-CeR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="135" id="7bZ-wT-WtP"/>
-                            <constraint firstItem="U3r-dk-sfp" firstAttribute="top" secondItem="Fa1-db-CeR" secondAttribute="bottom" constant="10" id="7yU-Gd-0tZ"/>
                             <constraint firstItem="VFW-Cc-L0k" firstAttribute="top" secondItem="jVX-gb-rAL" secondAttribute="bottom" constant="20" id="BNd-co-Agz"/>
                             <constraint firstItem="Fa1-db-CeR" firstAttribute="top" secondItem="VFW-Cc-L0k" secondAttribute="bottom" constant="10" id="CSS-tQ-nNL"/>
                             <constraint firstItem="jVX-gb-rAL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Ctk-2N-phm"/>
-                            <constraint firstItem="U3r-dk-sfp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Eec-kQ-wht"/>
                             <constraint firstItem="VFW-Cc-L0k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lpU-dm-Cho"/>
                             <constraint firstItem="Fa1-db-CeR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m6T-cN-wn8"/>
                             <constraint firstItem="jVX-gb-rAL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qRK-a0-kKa"/>
@@ -370,7 +362,6 @@
                         <outlet property="languageInput" destination="IJM-Sr-dCN" id="lxC-Pq-pLS"/>
                         <outlet property="lastNameInput" destination="97w-TC-cX1" id="sfO-Rx-eYP"/>
                         <outlet property="naviBar" destination="6un-IE-0bv" id="V6l-hb-23E"/>
-                        <outlet property="outputLabel" destination="U3r-dk-sfp" id="U1Y-VP-k6h"/>
                         <outlet property="pickButton" destination="huQ-3k-5sj" id="AA3-KH-qOj"/>
                         <outlet property="roleInput" destination="gLK-H1-AWr" id="nW4-1v-Iak"/>
                         <outlet property="saveButton" destination="nFv-MG-rIr" id="dkI-wX-sXC"/>
