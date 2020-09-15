@@ -214,7 +214,9 @@ class DukePersonTableTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let dst: InformationViewController = segue.destination as! InformationViewController
+        let navController = segue.destination as! UINavigationController
+//        let dst: InformationViewController = segue.destination as! InformationViewController
+        let dst = navController.topViewController as! InformationViewController
         if (segue.identifier == "addSegue")  {
             dst.segueType = "addSegue"
         }

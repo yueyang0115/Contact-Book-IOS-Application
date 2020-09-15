@@ -73,13 +73,13 @@
                     <navigationItem key="navigationItem" title="ECE 564" id="raL-td-Gep">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="kUs-8j-LRn">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" identifier="addSegue" id="nST-3K-MGW"/>
+                                <segue destination="TBm-Ii-SGX" kind="presentation" identifier="addSegue" modalPresentationStyle="fullScreen" id="7YO-Eb-RXR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="kUs-8j-LRn" id="TNu-88-TLg"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="editSegue" id="Yab-Ug-X7D"/>
+                        <segue destination="TBm-Ii-SGX" kind="presentation" identifier="editSegue" modalPresentationStyle="fullScreen" id="WO4-em-bPv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X0Y-Pm-pEN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -316,20 +316,14 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Fa1-db-CeR">
-                                <rect key="frame" x="137.5" y="578" width="100" height="30"/>
+                                <rect key="frame" x="135" y="578" width="105" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huQ-3k-5sj">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="owR-Lz-Jzh"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="0.0" width="105" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Pick a Picture"/>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="huQ-3k-5sj" firstAttribute="centerX" secondItem="Fa1-db-CeR" secondAttribute="centerX" id="fsR-Pd-G4G"/>
-                                </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3r-dk-sfp">
                                 <rect key="frame" x="184" y="618" width="7.5" height="16"/>
@@ -340,6 +334,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Fa1-db-CeR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="135" id="7bZ-wT-WtP"/>
                             <constraint firstItem="U3r-dk-sfp" firstAttribute="top" secondItem="Fa1-db-CeR" secondAttribute="bottom" constant="10" id="7yU-Gd-0tZ"/>
                             <constraint firstItem="VFW-Cc-L0k" firstAttribute="top" secondItem="jVX-gb-rAL" secondAttribute="bottom" constant="20" id="BNd-co-Agz"/>
                             <constraint firstItem="Fa1-db-CeR" firstAttribute="top" secondItem="VFW-Cc-L0k" secondAttribute="bottom" constant="10" id="CSS-tQ-nNL"/>
@@ -348,6 +343,7 @@
                             <constraint firstItem="VFW-Cc-L0k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lpU-dm-Cho"/>
                             <constraint firstItem="Fa1-db-CeR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m6T-cN-wn8"/>
                             <constraint firstItem="jVX-gb-rAL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qRK-a0-kKa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Fa1-db-CeR" secondAttribute="trailing" constant="135" id="qeR-gx-Rhf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -411,6 +407,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TBm-Ii-SGX" customClass="NavigationViewController" customModule="ECE564_HW" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="3E3-rA-wvx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E6d-S6-mhE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -426,7 +423,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="nST-3K-MGW"/>
+        <segue reference="WO4-em-bPv"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="person.crop.circle.fill.badge.exclam" catalog="system" width="128" height="101"/>
