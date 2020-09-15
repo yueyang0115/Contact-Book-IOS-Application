@@ -183,15 +183,19 @@ class DukePersonTableTableViewController: UITableViewController {
     */
 
     
-    // Override to support editing the table view.
+    // Delete Cell
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let person: DukePerson = self.sortedDB[indexPath.section][indexPath.row]
         if editingStyle == .delete {
-            deletePersonFromDB(person: person)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            let alert = UIAlertController(title: "Delete Person", message: "Are you sure you want to delete person \(person.firstName!) \(person.lastName!) ?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {action in
+                    self.deletePersonFromDB(person: person)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    }))
+            self.present(alert, animated: true, completion: nil)
+        }
+        //else if editingStyle == .insert {}
     }
     
 
