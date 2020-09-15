@@ -131,18 +131,6 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
         //self.fetchAllPersonFromDB()
     }
     
-    // display userImage
-//    func displayUserImage(firstName: String, lastName: String){
-//        if(firstName.lowercased() == "yue" && lastName.lowercased() == "yang"){
-//            userImage.image = UIImage(named: "yue")!
-//        }
-//        else if(firstName.lowercased() == "ric" && lastName.lowercased() == "telford"){
-//            userImage.image = UIImage(named: "ric")!
-//        }
-//        else{
-//            userImage.image = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
-//        }
-//    }
     
     // MARK: - function handler
     @IBAction func isPressed(_ sender: Any) {

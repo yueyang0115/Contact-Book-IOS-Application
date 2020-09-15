@@ -384,6 +384,25 @@
             </objects>
             <point key="canvasLocation" x="2010.4000000000001" y="84.107946026986511"/>
         </scene>
+        <!--Back View Controller-->
+        <scene sceneID="msO-h7-hwf">
+            <objects>
+                <viewController id="FDd-bF-VWi" customClass="BackViewController" customModule="ECE564_HW" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lEc-B0-Yxc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="XlT-Hv-UCY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="m7L-ZP-AZV"/>
+                    <connections>
+                        <segue destination="TBm-Ii-SGX" kind="presentation" identifier="flipToFront" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="EvM-7u-eq7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zcp-Tp-0lm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2834" y="84"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="pPw-Qo-omb">
             <objects>
@@ -402,10 +421,10 @@
             </objects>
             <point key="canvasLocation" x="-639.20000000000005" y="83.208395802098963"/>
         </scene>
-        <!--Navigation View Controller-->
+        <!--Navigation Bar View Controller-->
         <scene sceneID="0nv-gy-Inh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TBm-Ii-SGX" customClass="NavigationViewController" customModule="ECE564_HW" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TBm-Ii-SGX" customClass="NavigationBarViewController" customModule="ECE564_HW" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="3E3-rA-wvx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E6d-S6-mhE">
@@ -415,11 +434,12 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="TEj-Rn-j9K"/>
+                        <segue destination="FDd-bF-VWi" kind="presentation" identifier="flipToBack" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="dBc-Gr-8ea"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2zh-IA-SOz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1071.2" y="84.107946026986511"/>
+            <point key="canvasLocation" x="1177" y="84"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
