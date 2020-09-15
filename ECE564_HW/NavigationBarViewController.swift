@@ -12,9 +12,18 @@ class NavigationBarViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       let flipToBack = UISwipeGestureRecognizer(target: self, action: #selector(flipAction(flip:)))
-       flipToBack.direction = UISwipeGestureRecognizer.Direction.left
-       self.view.addGestureRecognizer(flipToBack)
+    }
+    
+    override func viewDidAppear(_ animated: Bool){
+        super.viewDidAppear(animated);
+        let flipToBack = UISwipeGestureRecognizer(target: self, action: #selector(flipAction))
+        self.view.addGestureRecognizer(flipToBack)
+    }
+    
+    @objc func flipAction(){
+        if(self.topViewController?.navigationItem.rightBarButtonItem?.title == "Edit"){
+            performSegue(withIdentifier: "flipToBack", sender: self)
+        }
     }
     
 
@@ -27,19 +36,8 @@ class NavigationBarViewController: UINavigationController {
         // Pass the selected object to the new view controller.
     }
     */
-
-}
-
-extension UIViewController{
-    @objc func flipAction(flip : UISwipeGestureRecognizer){
-        switch flip.direction.rawValue {
-        case 1:
-            performSegue(withIdentifier: "flipToFront", sender: self)
-        case 2:
-            performSegue(withIdentifier: "flipToBack", sender: self)
-        default:
-            break
-        }
+    
+    @IBAction func returnFromBackView(segue: UIStoryboardSegue){
     }
 }
 

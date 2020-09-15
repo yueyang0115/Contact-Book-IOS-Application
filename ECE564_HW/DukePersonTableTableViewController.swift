@@ -182,17 +182,18 @@ class DukePersonTableTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let person: DukePerson = self.sortedDB[indexPath.section][indexPath.row]
         if editingStyle == .delete {
-            // Delete the row from the data source
+            deletePersonFromDB(person: person)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -218,10 +219,12 @@ class DukePersonTableTableViewController: UITableViewController {
 //        let dst: InformationViewController = segue.destination as! InformationViewController
         let dst = navController.topViewController as! InformationViewController
         if (segue.identifier == "addSegue")  {
+            navController.topViewController?.navigationItem.rightBarButtonItem?.title = "Save"
             dst.segueType = "addSegue"
         }
         else if(segue.identifier == "editSegue"){
             //print("in table, get into prepare function")
+            navController.topViewController?.navigationItem.rightBarButtonItem?.title = "Edit"
             dst.edittedPerson = self.edittedPerson
             dst.segueType = "editSegue"
         }

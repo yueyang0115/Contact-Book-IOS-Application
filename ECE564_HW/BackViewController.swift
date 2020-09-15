@@ -12,10 +12,12 @@ class BackViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let flipToFront = UISwipeGestureRecognizer(target: self, action: #selector(flipAction(flip:)))
-        flipToFront.direction = UISwipeGestureRecognizer.Direction.right
-        self.view.addGestureRecognizer(flipToFront)
+        let returnFromBack = UISwipeGestureRecognizer(target: self, action: #selector(flipAction))
+        self.view.addGestureRecognizer(returnFromBack)
+    }
+    
+    @objc func flipAction(){
+        performSegue(withIdentifier: "returnFromBack", sender: self)
     }
     
 
@@ -28,5 +30,6 @@ class BackViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
 
 }
