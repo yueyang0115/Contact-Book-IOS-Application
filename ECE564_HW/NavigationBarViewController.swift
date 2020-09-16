@@ -1,5 +1,5 @@
 //
-//  BackViewController.swift
+//  NavigationBarViewController.swift
 //  ECE564_HW
 //
 //  Created by 杨越 on 9/15/20.
@@ -8,16 +8,22 @@
 
 import UIKit
 
-class BackVC: UIViewController {
+class NavigationBarViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let returnFromBack = UISwipeGestureRecognizer(target: self, action: #selector(flipAction))
-        self.view.addGestureRecognizer(returnFromBack)
+    }
+    
+    override func viewDidAppear(_ animated: Bool){
+        super.viewDidAppear(animated);
+        let flipToBack = UISwipeGestureRecognizer(target: self, action: #selector(flipAction))
+        self.view.addGestureRecognizer(flipToBack)
     }
     
     @objc func flipAction(){
-        performSegue(withIdentifier: "returnFromBack", sender: self)
+        if(self.topViewController?.navigationItem.rightBarButtonItem?.title == "Edit"){
+            performSegue(withIdentifier: "flipToBack", sender: self)
+        }
     }
     
 
@@ -31,5 +37,7 @@ class BackVC: UIViewController {
     }
     */
     
-
+    @IBAction func returnFromBackView(segue: UIStoryboardSegue){
+    }
 }
+

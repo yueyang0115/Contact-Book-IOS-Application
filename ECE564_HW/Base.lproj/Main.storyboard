@@ -10,7 +10,7 @@
         <!--ECE 564-->
         <scene sceneID="nua-hB-o9U">
             <objects>
-                <tableViewController id="UjX-7l-KQS" customClass="DukePersonTableVC" customModule="ECE564_HW" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="UjX-7l-KQS" customClass="DukePersonTableTableViewController" customModule="ECE564_HW" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="gcJ-eY-46E">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -86,10 +86,10 @@
             </objects>
             <point key="canvasLocation" x="301.60000000000002" y="84.107946026986511"/>
         </scene>
-        <!--InformationVC-->
+        <!--Information View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="InformationVC" customModule="ECE564_HW" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="InformationViewController" customModule="ECE564_HW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -375,10 +375,10 @@
             </objects>
             <point key="canvasLocation" x="2033" y="571"/>
         </scene>
-        <!--BackVC-->
+        <!--Back View Controller-->
         <scene sceneID="msO-h7-hwf">
             <objects>
-                <viewController id="FDd-bF-VWi" customClass="BackVC" customModule="ECE564_HW" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FDd-bF-VWi" customClass="BackViewController" customModule="ECE564_HW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lEc-B0-Yxc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -424,10 +424,10 @@
             </objects>
             <point key="canvasLocation" x="-639.20000000000005" y="83.208395802098963"/>
         </scene>
-        <!--NavigationVC-->
+        <!--Navigation Bar View Controller-->
         <scene sceneID="0nv-gy-Inh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TBm-Ii-SGX" customClass="NavigationVC" customModule="ECE564_HW" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TBm-Ii-SGX" customClass="NavigationBarViewController" customModule="ECE564_HW" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="3E3-rA-wvx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E6d-S6-mhE">

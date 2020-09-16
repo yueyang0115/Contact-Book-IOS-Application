@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class DukePersonTableVC: UITableViewController {
+class DukePersonTableTableViewController: UITableViewController {
     //database-related variable
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var allPersons = [DukePerson]()
@@ -220,7 +220,7 @@ class DukePersonTableVC: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navController = segue.destination as! UINavigationController
 //        let dst: InformationViewController = segue.destination as! InformationViewController
-        let dst = navController.topViewController as! InformationVC
+        let dst = navController.topViewController as! InformationViewController
         if (segue.identifier == "addSegue")  {
             navController.topViewController?.navigationItem.rightBarButtonItem?.title = "Save"
             dst.segueType = "addSegue"
