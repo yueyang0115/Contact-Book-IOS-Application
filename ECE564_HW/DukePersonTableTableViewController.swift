@@ -20,24 +20,20 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     let defaultImage = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
     var edittedPerson: DukePerson?
     @IBOutlet weak var addButton: UIBarButtonItem!
+    
+    //search-related variable
     @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        databaseConfiguration()
+        setUpSearchBar()
+    }
+    
+    func databaseConfiguration() {
         clearDB()
         addDefaultPersonInDB()
         fetchAllPersonFromDB()
-        configureField()
-    }
-    
-    func configureField(){
-        searchBar.delegate = self
         filteredPersons = sortedDB
     }
     
@@ -91,6 +87,7 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
             default: continue
             }
         }
+        filteredPersons = sortedDB
     }
     
     // add one person to database
@@ -118,16 +115,15 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         self.fetchAllPersonFromDB()
     }
     
-    // MARK: - Table view data source
+    // MARK: - TableView related
 
+    // return num of sections
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 3
     }
 
+    // return num of rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-//        return self.allPersons.count
         switch section{
             case 0:
                 return filteredPersons[0].count
@@ -140,6 +136,7 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         }
     }
     
+    // view setting for one cell
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         let sectionImgView = UIImageView(frame: CGRect(x: 15, y: 5, width: 25, height: 25))
@@ -165,6 +162,7 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         return view
     }
     
+    // return one cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DukePersonProtoCell", for: indexPath) as! DukePersonProtoCell
         let person: DukePerson = self.filteredPersons[indexPath.section][indexPath.row]
@@ -175,22 +173,7 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        self.edittedPerson = self.filteredPersons[indexPath.section][indexPath.row]
-        //print("in table, get into didselectRow func")
-        performSegue(withIdentifier: "editSegue", sender: self)
-    }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    // Delete Cell
+    // delete cell
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let person: DukePerson = self.filteredPersons[indexPath.section][indexPath.row]
         if editingStyle == .delete {
@@ -202,63 +185,91 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
                     }))
             self.present(alert, animated: true, completion: nil)
         }
-        //else if editingStyle == .insert {}
+    }
+
+    // MARK: - SearchBar Related
+    
+    // search bar settings
+    func setUpSearchBar(){
+        searchBar.showsScopeBar = true
+        searchBar.scopeButtonTitles = ["All", "Professor", "TA", "Student"]
+        searchBar.selectedScopeButtonIndex = 0
+        searchBar.delegate = self
     }
     
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    // do search when selected scope changes
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        doFilterSearch(index :selectedScope, searchText: searchBar.text!)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    // MARK: - Navigation
+    
+    // do search when search text changes
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        doFilterSearch(index: searchBar.selectedScopeButtonIndex, searchText: searchText)
+    }
+    
+    // search function
+    func doFilterSearch(index :Int, searchText: String){
         filteredPersons = [[], [], []]
         if(searchText == ""){
-            filteredPersons = sortedDB
+            if(index == 0){ filteredPersons = sortedDB }
+            else{
+                // only display person in that correspoding catogory
+                for person in allPersons{
+                    filterRole(index: index, person: person, filteredPersons: filteredPersons)
+                }
+            }
         }
         else{
             for person in allPersons{
                 if(person.description.lowercased().contains(searchText.lowercased())){
-                    switch person.role{
-                    case "Professor":
-                        self.filteredPersons[0].append(person)
-                    case "Teaching Assistant":
-                        self.filteredPersons[1].append(person)
-                    case "Student":
-                        self.filteredPersons[2].append(person)
-                    default: continue
-                    }
+                    filterRole(index: index, person: person, filteredPersons: filteredPersons)
                 }
             }
         }
         self.tableView.reloadData()
     }
     
-    /*
+    // filter all persons by their roles, put in filteredPerson array
+    func filterRole(index: Int, person: DukePerson, filteredPersons: [[DukePerson]]){
+        switch person.role{
+        case "Professor":
+            if(index == 0 || index == 1){
+                self.filteredPersons[0].append(person)
+            }
+        case "Teaching Assistant":
+            if(index == 0 || index == 2){
+                self.filteredPersons[1].append(person)
+            }
+        case "Student":
+            if(index == 0 || index == 3){
+                self.filteredPersons[2].append(person)
+            }
+        default: break
+        }
+    }
+    
+    
     // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    */
+
+    // go to edit scene when one cell is selected
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        self.edittedPerson = self.filteredPersons[indexPath.section][indexPath.row]
+        performSegue(withIdentifier: "editSegue", sender: self)
+    }
+    
+    // preparation before leaving this scene
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navController = segue.destination as! UINavigationController
-//        let dst: InformationViewController = segue.destination as! InformationViewController
         let dst = navController.topViewController as! InformationViewController
+        
+        // if leave this scene by addSegue
         if (segue.identifier == "addSegue")  {
             navController.topViewController?.navigationItem.rightBarButtonItem?.title = "Save"
             dst.segueType = "addSegue"
         }
+        // if leave this scene by editSegue
         else if(segue.identifier == "editSegue"){
-            //print("in table, get into prepare function")
             navController.topViewController?.navigationItem.rightBarButtonItem?.title = "Edit"
             dst.edittedPerson = self.edittedPerson
             dst.segueType = "editSegue"
@@ -266,7 +277,6 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     }
     
     @IBAction func returnFromNewPerson(segue: UIStoryboardSegue){
-//        let source: InformationViewController = segue.source as! InformationViewController
         self.fetchAllPersonFromDB()
         self.tableView.reloadData()
     }
