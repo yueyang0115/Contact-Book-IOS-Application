@@ -15,9 +15,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="9Tv-00-oyh">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DukePersonProtoCell" id="pUP-cK-iAz" customClass="DukePersonProtoCell" customModule="ECE564_HW" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="64.5"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="64.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pUP-cK-iAz" id="EMR-EV-hjr">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
@@ -79,6 +84,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="kUs-8j-LRn" id="TNu-88-TLg"/>
+                        <outlet property="searchBar" destination="9Tv-00-oyh" id="M9t-Lk-5VB"/>
                         <segue destination="TBm-Ii-SGX" kind="presentation" identifier="editSegue" modalPresentationStyle="fullScreen" id="WO4-em-bPv"/>
                     </connections>
                 </tableViewController>

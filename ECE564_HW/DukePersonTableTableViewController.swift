@@ -9,16 +9,18 @@
 import UIKit
 import CoreData
 
-class DukePersonTableTableViewController: UITableViewController {
+class DukePersonTableTableViewController: UITableViewController, UISearchBarDelegate {
     //database-related variable
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var allPersons = [DukePerson]()
     var sortedDB :[[DukePerson]] = [[],[],[]] //0:Professor, 1:TA, 2:Student
+    var filteredPersons :[[DukePerson]]!
     
     //segue-related variable
     let defaultImage = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
-    @IBOutlet weak var addButton: UIBarButtonItem!
     var edittedPerson: DukePerson?
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,12 @@ class DukePersonTableTableViewController: UITableViewController {
         clearDB()
         addDefaultPersonInDB()
         fetchAllPersonFromDB()
+        configureField()
+    }
+    
+    func configureField(){
+        searchBar.delegate = self
+        filteredPersons = sortedDB
     }
     
     // MARK: - database-related operations
@@ -122,11 +130,11 @@ class DukePersonTableTableViewController: UITableViewController {
 //        return self.allPersons.count
         switch section{
             case 0:
-                return sortedDB[0].count
+                return filteredPersons[0].count
             case 1:
-                return sortedDB[1].count
+                return filteredPersons[1].count
             case 2:
-                return sortedDB[2].count
+                return filteredPersons[2].count
             default:
                 return 1
         }
@@ -159,7 +167,7 @@ class DukePersonTableTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DukePersonProtoCell", for: indexPath) as! DukePersonProtoCell
-        let person: DukePerson = self.sortedDB[indexPath.section][indexPath.row]
+        let person: DukePerson = self.filteredPersons[indexPath.section][indexPath.row]
         cell.setCell(person: person)
         if(person.image == defaultImage!.pngData()){
             cell.pImageView.image = defaultImage
@@ -169,7 +177,7 @@ class DukePersonTableTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        self.edittedPerson = self.sortedDB[indexPath.section][indexPath.row]
+        self.edittedPerson = self.filteredPersons[indexPath.section][indexPath.row]
         //print("in table, get into didselectRow func")
         performSegue(withIdentifier: "editSegue", sender: self)
     }
@@ -184,7 +192,7 @@ class DukePersonTableTableViewController: UITableViewController {
 
     // Delete Cell
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let person: DukePerson = self.sortedDB[indexPath.section][indexPath.row]
+        let person: DukePerson = self.filteredPersons[indexPath.section][indexPath.row]
         if editingStyle == .delete {
             let alert = UIAlertController(title: "Delete Person", message: "Are you sure you want to delete person \(person.firstName!) \(person.lastName!) ?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -213,6 +221,30 @@ class DukePersonTableTableViewController: UITableViewController {
     }
     */
 
+    // MARK: - Navigation
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredPersons = [[], [], []]
+        if(searchText == ""){
+            filteredPersons = sortedDB
+        }
+        else{
+            for person in allPersons{
+                if(person.description.lowercased().contains(searchText.lowercased())){
+                    switch person.role{
+                    case "Professor":
+                        self.filteredPersons[0].append(person)
+                    case "Teaching Assistant":
+                        self.filteredPersons[1].append(person)
+                    case "Student":
+                        self.filteredPersons[2].append(person)
+                    default: continue
+                    }
+                }
+            }
+        }
+        self.tableView.reloadData()
+    }
+    
     /*
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
