@@ -136,7 +136,7 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         }
     }
     
-    // view setting for one cell
+    // set view for one cell
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         let sectionImgView = UIImageView(frame: CGRect(x: 15, y: 5, width: 25, height: 25))
@@ -173,19 +173,47 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         return cell
     }
     
-    // delete cell
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let person: DukePerson = self.filteredPersons[indexPath.section][indexPath.row]
-        if editingStyle == .delete {
-            let alert = UIAlertController(title: "Delete Person", message: "Are you sure you want to delete person \(person.firstName!) \(person.lastName!) ?", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {action in
-                    self.deletePersonFromDB(person: person)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                    }))
-            self.present(alert, animated: true, completion: nil)
-        }
+    // swipe and choose to edit/delete a cell
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = deleteCell(at: indexPath)
+        let editAction = editCell(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
+    
+    // swipe and delete a cell
+    func deleteCell(at indexPath: IndexPath) -> UIContextualAction{
+        let person: DukePerson = self.filteredPersons[indexPath.section][indexPath.row]
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete"){ (contextualAction, view, actionPerformed: @escaping (Bool) -> ()) in
+            self.displayDeleteAlert(at: indexPath, person: person)
+            actionPerformed(true)
+        }
+        deleteAction.image = UIImage(systemName: "trash")
+        return deleteAction
+    }
+    
+    // display alert for deletion action
+    func displayDeleteAlert(at indexPath: IndexPath, person: DukePerson){
+        let alert = UIAlertController(title: "Delete Person", message: "Are you sure you want to delete person \(person.firstName!) \(person.lastName!) ?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {action in
+                self.deletePersonFromDB(person: person)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+                }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // swipe and edit a cell
+    func editCell(at indexPath: IndexPath) -> UIContextualAction{
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, actionPerformed: (Bool) -> ()) in
+            self.edittedPerson = self.filteredPersons[indexPath.section][indexPath.row]
+            self.performSegue(withIdentifier: "editSegue", sender: self)
+            actionPerformed(true)
+        }
+        editAction.image = UIImage(systemName: "pencil")
+        editAction.backgroundColor = #colorLiteral(red: 0, green: 0.7292503119, blue: 0, alpha: 1)
+        return editAction
+    }
+
 
     // MARK: - SearchBar Related
     
@@ -279,5 +307,6 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     @IBAction func returnFromNewPerson(segue: UIStoryboardSegue){
         self.fetchAllPersonFromDB()
         self.tableView.reloadData()
+        searchBar.selectedScopeButtonIndex = 0
     }
 }

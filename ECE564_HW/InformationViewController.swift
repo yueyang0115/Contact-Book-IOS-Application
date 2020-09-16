@@ -24,7 +24,6 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
     @IBOutlet weak var teamInput: UITextField!
     @IBOutlet weak var emailInput: UITextField!
     
-//    @IBOutlet weak var outputLabel: UILabel!
     // picture-related
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var pickButton: UIButton!
