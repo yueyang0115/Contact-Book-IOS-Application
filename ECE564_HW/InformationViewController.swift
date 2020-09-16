@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import MobileCoreServices
 
-class InformationVC: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class InformationViewController: UIViewController,UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var firstNameInput: UITextField!
     @IBOutlet weak var lastNameInput: UITextField!
@@ -79,7 +79,7 @@ class InformationVC: UIViewController,UINavigationControllerDelegate, UIImagePic
         pickButton.layer.cornerRadius = 5
         pickButton.layer.borderWidth = 2
         pickButton.layer.borderColor = UIColor.systemBlue.cgColor
-        pickButton.addTarget(self, action: #selector(InformationVC.choosePic(_:)), for: .touchUpInside)
+        pickButton.addTarget(self, action: #selector(InformationViewController.choosePic(_:)), for: .touchUpInside)
         
         userImage.image = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
     }
@@ -266,14 +266,14 @@ class InformationVC: UIViewController,UINavigationControllerDelegate, UIImagePic
 }
 
 // MARK: - extension and image helper
-extension InformationVC : UITextFieldDelegate{
+extension InformationViewController : UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 }
 
-extension InformationVC : UIPickerViewDelegate, UIPickerViewDataSource{
+extension InformationViewController : UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
