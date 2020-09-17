@@ -70,6 +70,23 @@ Use segue intentifier to check the source of segue and figure out whether it is 
 
 
 ## HW4
-add text here
+Extra Features includes:  
 
+Multiple Type Controls:  Use PickerView for gender and role.  
+Change Mode: The title of the informationView will change according to different modes, including "Add New Person", "View Person Only" and "Edit Person".  
+Back: Add attributedText on the back of the "card".  
+Photo:  Can pick a picture form album and add it to the person.  
+Database: Use Core Data as database, write database-related functions.  
+Data Model Field: "Hobby" field and "Language" field now hold array of string.  
 
+Error Alert:  
+When save button is pressed, if the person's infprmation is invalid, an alert will be popep up and the save button will not lead to exit.   
+
+Search:  
+Users can search by different roles in this app. This app has four search scopes: all, professor, student and TA. If a search scope is chose, the results will only include those under this current scope.  
+
+Swipe:  
+By swiping the table cell to left, the user can choose to edit or delete a person. If the user choose to delete a person, an alert will pop up and asks whether to delete or not.  
+
+Design: 
+Add different pictures and Fonts. 
