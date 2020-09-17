@@ -56,10 +56,12 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         let imageRic = UIImage(named: "ric")
         let imageYue = UIImage(named: "yue")
         let imageTA0 = UIImage(named: "TA2")
+        let imageHaohang = UIImage(named: "haohong")
+        let imageYuchen = UIImage(named: "yuchen")
         addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["reading"], language: ["swift"], team: "ece564", email: "yy258@duke.edu", image: imageYue!.pngData()!)
         addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "Professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "ece564", email: "rt113@duke.edu", image: imageRic!.pngData()!)
-        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "Teaching Assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "ece564", email: "hz147@duke.edu", image: imageTA0!.pngData()!)
-        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Teaching Assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "ece564", email: "yy227@duke.edu", image: imageTA0!.pngData()!)
+        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "Teaching Assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "ece564", email: "hz147@duke.edu", image: imageHaohang!.pngData()!)
+        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Teaching Assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "ece564", email: "yy227@duke.edu", image: imageYuchen!.pngData()!)
     }
     
     // get all persons from database
