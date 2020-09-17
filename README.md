@@ -80,7 +80,7 @@ Database: Use Core Data as database, write database-related functions.
 Data Model Field: "Hobby" field and "Language" field now hold array of string.  
 
 Error Alert:  
-When save button is pressed, if the person's infprmation is invalid, an alert will be popep up and the save button will not lead to exit.   
+When the save button is pressed, if the person's information is invalid, an alert will be popep up and the save button will not lead to exit. Invalid informations include: no first name and last name is provided, no gender and role information is selected in the pickerview and  self-defined gender and role input.  
 
 Search:  
 Users can search by different roles in this app. This app has four search scopes: all, professor, student and TA. If a search scope is chose, the results will only include those under this current scope.  
