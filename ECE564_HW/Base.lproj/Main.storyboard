@@ -117,11 +117,61 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NKd-GJ-5wc">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="tintColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </view>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="U7R-GK-9TY">
+                                <rect key="frame" x="40" y="74" width="30" height="370"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun.min" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fsv-SP-Wsc">
+                                        <rect key="frame" x="0.0" y="0.5" width="30" height="36"/>
+                                        <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moon" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="3pA-6Y-6rk">
+                                        <rect key="frame" x="0.0" y="37.5" width="30" height="36"/>
+                                        <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="yyC-yY-g2Q">
+                                        <rect key="frame" x="0.0" y="74.5" width="30" height="36"/>
+                                        <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rosette" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IcS-l7-0eQ">
+                                        <rect key="frame" x="0.0" y="110" width="30" height="38"/>
+                                        <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="house" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="0sd-IH-CuA">
+                                        <rect key="frame" x="0.0" y="147.5" width="30" height="36.5"/>
+                                        <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uYd-Q3-xaL">
+                                        <rect key="frame" x="0.0" y="186.5" width="30" height="34"/>
+                                        <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gamecontroller" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sV3-bY-aun">
+                                        <rect key="frame" x="0.0" y="223" width="30" height="34.5"/>
+                                        <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ellipses.bubble" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Jdf-0i-AFX">
+                                        <rect key="frame" x="0.0" y="259.5" width="30" height="36.5"/>
+                                        <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ZHN-h6-gEa">
+                                        <rect key="frame" x="0.0" y="297.5" width="30" height="34"/>
+                                        <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="envelope" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="P0p-S0-yHn">
+                                        <rect key="frame" x="0.0" y="334.5" width="30" height="33.5"/>
+                                        <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="hrz-qg-I0x"/>
+                                    <constraint firstAttribute="height" constant="370" id="rTA-kq-cS9"/>
+                                </constraints>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="jVX-gb-rAL">
-                                <rect key="frame" x="62.5" y="74" width="250" height="364"/>
+                                <rect key="frame" x="90" y="74" width="250" height="364"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kUA-Nr-hU9">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="26.5"/>
@@ -354,14 +404,16 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="jVX-gb-rAL" firstAttribute="leading" secondItem="U7R-GK-9TY" secondAttribute="trailing" constant="20" id="1SP-Ic-5oL"/>
                             <constraint firstItem="Fa1-db-CeR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="135" id="7bZ-wT-WtP"/>
                             <constraint firstItem="VFW-Cc-L0k" firstAttribute="top" secondItem="jVX-gb-rAL" secondAttribute="bottom" constant="20" id="BNd-co-Agz"/>
                             <constraint firstItem="Fa1-db-CeR" firstAttribute="top" secondItem="VFW-Cc-L0k" secondAttribute="bottom" constant="10" id="CSS-tQ-nNL"/>
                             <constraint firstItem="jVX-gb-rAL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="Ctk-2N-phm"/>
+                            <constraint firstItem="U7R-GK-9TY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Wta-52-nse"/>
                             <constraint firstItem="VFW-Cc-L0k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lpU-dm-Cho"/>
                             <constraint firstItem="Fa1-db-CeR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m6T-cN-wn8"/>
-                            <constraint firstItem="jVX-gb-rAL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qRK-a0-kKa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Fa1-db-CeR" secondAttribute="trailing" constant="135" id="qeR-gx-Rhf"/>
+                            <constraint firstItem="U7R-GK-9TY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="r7u-PY-tIH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -489,7 +541,17 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="bg9" width="375" height="667"/>
+        <image name="book" catalog="system" width="128" height="101"/>
         <image name="duke" width="375" height="667"/>
+        <image name="ellipses.bubble" catalog="system" width="128" height="110"/>
+        <image name="envelope" catalog="system" width="128" height="93"/>
+        <image name="gamecontroller" catalog="system" width="128" height="82"/>
+        <image name="house" catalog="system" width="128" height="110"/>
+        <image name="moon" catalog="system" width="128" height="121"/>
+        <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle.fill.badge.exclam" catalog="system" width="128" height="101"/>
+        <image name="rosette" catalog="system" width="100" height="128"/>
+        <image name="sun.min" catalog="system" width="128" height="121"/>
     </resources>
 </document>

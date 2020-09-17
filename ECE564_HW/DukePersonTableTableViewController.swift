@@ -55,7 +55,7 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     func addDefaultPersonInDB(){
         let imageRic = UIImage(named: "ric")
         let imageYue = UIImage(named: "yue")
-        let imageTA0 = UIImage(named: "TA2")
+        //let imageTA0 = UIImage(named: "TA2")
         let imageHaohang = UIImage(named: "haohong")
         let imageYuchen = UIImage(named: "yuchen")
         addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["reading"], language: ["swift"], team: "ece564", email: "yy258@duke.edu", image: imageYue!.pngData()!)
