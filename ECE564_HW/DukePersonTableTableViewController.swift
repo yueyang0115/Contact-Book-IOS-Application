@@ -28,6 +28,7 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         super.viewDidLoad()
         databaseConfiguration()
         setUpSearchBar()
+        setTableView()
     }
     
     func databaseConfiguration() {
@@ -116,7 +117,13 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     }
     
     // MARK: - TableView related
-
+    // setUp tableView
+    func setTableView(){
+        let tempImageView = UIImageView(image: UIImage(named: "bg9"))
+        tempImageView.frame = self.tableView.frame
+        self.tableView.backgroundView = tempImageView;
+    }
+    
     // return num of sections
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 3
