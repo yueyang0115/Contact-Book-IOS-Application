@@ -49,17 +49,17 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         configureField()
+        // if come from addSegue
         if(segueType == "addSegue"){
             saveButton.title = "Save"
             naviBar.title = "Add New Person"
         }
+        // if come from editSegue
         else if(segueType == "editSegue"){
             saveButton.title = "Edit"
             naviBar.title = "View Person Only"
-            //fill textField with provided person info
-            fillExistedPerson()
-            // disable textField input
-            setTextFieldInput(bool: false)
+            fillExistedPerson() // fill textField with provided person info
+            setTextFieldInput(bool: false) // disable textField input
         }
     }
     
@@ -127,21 +127,23 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
     }
     
     
-    // MARK: - function handler
+    // MARK: - edit/save person
+    // when saveButton is pressed
     @IBAction func isPressed(_ sender: Any) {
-        // press edit
+        // change from edit to save
         if(saveButton.title == "Edit"){
             saveButton.title = "Save"
             naviBar.title = "Edit Person"
-            setTextFieldInput(bool: true)
+            setTextFieldInput(bool: true) // enable textField input
         }
+        // save person and try exit
         else if(saveButton.title == "Save"){
-            // pure add person
             var canExit: Bool = false;
+            // only add new person
             if(edittedPerson == nil) {
                 canExit = savePerson()
             }
-            // replace old person
+            // edit existed person
             else{
                 let firstName: String  = firstNameInput.text ?? ""
                 let lastName: String = lastNameInput.text ?? ""
@@ -150,14 +152,16 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
                 }
                 canExit = savePerson()
             }
-            //exit
+            //if can exit
             if(canExit){
                 performSegue(withIdentifier: "returnSegue", sender: self)
             }
         }
     }
     
+    // if person info valid, return true and save person, otherwise return false and pop up alert
     func savePerson() -> Bool{
+        // read input
         let firstName: String  = firstNameInput.text ?? ""
         let lastName: String = lastNameInput.text ?? ""
         let fromWhere: String = fromWhereInput.text ?? ""
@@ -166,9 +170,10 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
         let language: String = languageInput.text ?? ""
         let team: String = teamInput.text ?? ""
         let email: String = emailInput.text ?? ""
-        
         let gender: String = genderInput.text ?? ""
         let role: String = roleInput.text ?? ""
+        
+        // check person info valid or not
         if(firstName == "" && lastName == ""){
             displayErrorAlert(error: "FirstName and LastName cannot be null.")
             return false
@@ -198,18 +203,17 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
         return true;
     }
     
+    // pop up alert if person info invalid
     func displayErrorAlert(error: String){
         let alert = UIAlertController(title: "Cannot Save Person", message: "\(error)", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
-    // MARK: imagePicker delegate calls
+    // MARK: imagePicker-related
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        // Local variable inserted by Swift 4.2 migrator.
         let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
         let im = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage
 
         self.dismiss(animated: true) {
@@ -264,7 +268,8 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
     
 }
 
-// MARK: - extension and image helper
+// MARK: - extension: textField, pick image, PickerView
+// dismiss keyboard
 extension InformationViewController : UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -272,6 +277,7 @@ extension InformationViewController : UITextFieldDelegate{
     }
 }
 
+// set up pickerView
 extension InformationViewController : UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -305,15 +311,13 @@ extension InformationViewController : UIPickerViewDelegate, UIPickerViewDataSour
             roleInput.resignFirstResponder()
         }
     }
-    
 }
 
-// Helper function inserted by Swift 4.2 migrator.
+// set up image picker
 fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
     return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
 }
 
-// Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
     return input.rawValue
 }

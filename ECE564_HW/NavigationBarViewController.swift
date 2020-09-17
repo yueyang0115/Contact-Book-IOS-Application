@@ -16,6 +16,10 @@ class NavigationBarViewController: UINavigationController {
     
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated);
+        flipConfiguration()
+    }
+    
+    func flipConfiguration(){
         let flipToBack = UISwipeGestureRecognizer(target: self, action: #selector(flipAction))
         self.view.addGestureRecognizer(flipToBack)
     }
@@ -30,7 +34,7 @@ class NavigationBarViewController: UINavigationController {
     
     // MARK: - Navigation
 
-    // preparation before navigation, pass choosen person to BackViewController
+    // preparation, pass information of the chosen person to BackViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "flipToBack"){
             let middleScene = self.topViewController as! InformationViewController
