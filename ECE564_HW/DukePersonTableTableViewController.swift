@@ -151,7 +151,8 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         let sectionImgView = UIImageView(frame: CGRect(x: 15, y: 5, width: 25, height: 25))
         
         let label = UILabel(frame: CGRect(x: 45, y: 5, width: tableView.bounds.width-25, height: 25))
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        //label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: "Chalkduster", size: 18.0)
         label.textColor = UIColor.black
         switch section {
             case 0:
