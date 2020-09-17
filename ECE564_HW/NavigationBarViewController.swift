@@ -27,15 +27,17 @@ class NavigationBarViewController: UINavigationController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // preparation before navigation, pass choosen person to BackViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if(segue.identifier == "flipToBack"){
+            let middleScene = self.topViewController as! InformationViewController
+            let dst = segue.destination as! BackViewController
+            dst.person = middleScene.edittedPerson
+        }
     }
-    */
     
     @IBAction func returnFromBackView(segue: UIStoryboardSegue){
     }

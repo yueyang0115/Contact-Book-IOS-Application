@@ -471,7 +471,7 @@
                                     <segue destination="vXX-e3-oF2" kind="unwind" identifier="returnFromBack" unwindAction="returnFromBackViewWithSegue:" id="e9Y-Dr-xJ6"/>
                                 </connections>
                             </button>
-                            <visualEffectView opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SM0-B1-wZS">
+                            <visualEffectView opaque="NO" alpha="0.75" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SM0-B1-wZS">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Wr5-W0-PON">
