@@ -34,15 +34,15 @@ public class DukePerson: NSManagedObject {
             lineTwo = "\((transferGender(gender: self.gender!)).capitalized) is from \(self.whereFrom!)."
         }
         var lineThree = ""
-        if(self.degree != "N/A"){
+        if(self.degree != ""){
             lineThree = "\((transferGender(gender: self.gender!)).capitalized) is in \(self.degree!) program."
         }
         var lineFour = ""
-        if(self.hobby?.count != 0){
-            lineFour = "\((getPrep(gender: self.gender!)).capitalized) hobby includes \(getHobby(hobby: self.hobby!))."
+        if(self.hobby?.count != 0 && (getHobby(hobby: self.hobby!) != "")){
+            lineFour = "\((transferGender(gender: self.gender!)).capitalized) likes \(getHobby(hobby: self.hobby!))."
         }
         var lineFive = ""
-        if(self.language?.count != 0){
+        if(self.language?.count != 0 && (getLanguage(language: self.language!) != "")){
             lineFive = "\((getPrep(gender: self.gender!)).capitalized) language includes \(getLanguage(language: self.language!))."
         }
         
