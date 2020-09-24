@@ -461,7 +461,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="duke" translatesAutoresizingMaskIntoConstraints="NO" id="maL-A3-8xg">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg9" translatesAutoresizingMaskIntoConstraints="NO" id="maL-A3-8xg">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -542,7 +542,6 @@
     <resources>
         <image name="bg9" width="375" height="667"/>
         <image name="book" catalog="system" width="128" height="101"/>
-        <image name="duke" width="375" height="667"/>
         <image name="ellipses.bubble" catalog="system" width="128" height="110"/>
         <image name="envelope" catalog="system" width="128" height="93"/>
         <image name="gamecontroller" catalog="system" width="128" height="82"/>

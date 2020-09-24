@@ -14,8 +14,61 @@ class BackViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textViewConfiguration()
+        //textViewConfiguration()
         flipConfiguration()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setImageAnimationView()
+    }
+    
+    // MARK: - image-animation
+    func setImageAnimationView(){
+        //setLampImage()
+        setCafeteriaImage()
+        //setbgImage()
+        setHobbyImage()
+    }
+    
+    func setHobbyImage(){
+        let iav = UIImageView()
+        iav.frame = CGRect(x: 0, y: 350, width: 400, height: 300)
+        
+        //let i1 = UIImage(named: "skate1")!
+        let i2 = UIImage(named: "skate2")!
+        let i3 = UIImage(named: "skate3")!
+        let i4 = UIImage(named: "skate4")!
+        let i5 = UIImage(named: "skate5")!
+        let i6 = UIImage(named: "skate6")!
+        iav.animationImages = [i2, i3, i4, i5, i6]
+        iav.animationDuration = 1
+        iav.startAnimating()
+        view?.addSubview(iav)
+    }
+    
+    func setLampImage(){
+        let iav = UIImageView()
+        iav.frame = CGRect(x: 0, y: 300, width: 100, height: 200)
+        iav.image = UIImage(named: "lamp")
+        moveImage(imageView: iav)
+        view?.addSubview(iav)
+    }
+    
+    func setCafeteriaImage(){
+        let iav = UIImageView()
+        iav.frame = CGRect(x: 0, y: 300, width: 300, height: 200)
+        iav.image = UIImage(named: "cafeteria")
+        moveImage(imageView: iav)
+        view?.addSubview(iav)
+    }
+    
+    func moveImage(imageView: UIImageView){
+        let option: UIView.AnimationOptions = [.repeat]
+        UIView.animate(withDuration: 3, delay: 0, options: option, animations: {
+            imageView.transform = CGAffineTransform(translationX:
+                self.view.bounds.width + imageView.frame.width, y: 0)
+        }, completion: nil)
     }
     
     // MARK: - textView-related
