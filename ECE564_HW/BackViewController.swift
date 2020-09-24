@@ -25,13 +25,11 @@ class BackViewController: UIViewController {
     
     // MARK: - image-animation
     func setImageAnimationView(){
-        //setLampImage()
-        setCafeteriaImage()
-        //setbgImage()
-        setHobbyImage()
+        setBackGroundImage()
+        setPeopleImage()
     }
     
-    func setHobbyImage(){
+    func setPeopleImage(){
         let iav = UIImageView()
         iav.frame = CGRect(x: 0, y: 350, width: 400, height: 300)
         
@@ -47,27 +45,32 @@ class BackViewController: UIViewController {
         view?.addSubview(iav)
     }
     
-    func setLampImage(){
-        let iav = UIImageView()
-        iav.frame = CGRect(x: 0, y: 300, width: 100, height: 200)
-        iav.image = UIImage(named: "lamp")
-        moveImage(imageView: iav)
-        view?.addSubview(iav)
-    }
-    
-    func setCafeteriaImage(){
-        let iav = UIImageView()
-        iav.frame = CGRect(x: 0, y: 300, width: 300, height: 200)
-        iav.image = UIImage(named: "cafeteria")
-        moveImage(imageView: iav)
-        view?.addSubview(iav)
+    func setBackGroundImage(){
+        let cafeteriaView = UIImageView()
+        cafeteriaView.frame = CGRect(x: -300, y: 300, width: 300, height: 200)
+        cafeteriaView.image = UIImage(named: "cafeteria")
+        moveImage(imageView: cafeteriaView)
+        view?.addSubview(cafeteriaView)
+        
+        let cafeHouseView = UIImageView()
+        cafeHouseView.frame = CGRect(x: -900, y: 340, width: 300, height: 200)
+        cafeHouseView.image = UIImage(named: "cafeteria2")
+        moveImage(imageView: cafeHouseView)
+        view?.addSubview(cafeHouseView)
+        
+        let houseView = UIImageView()
+        houseView.frame = CGRect(x: -1500, y: 350, width: 300, height: 200)
+        houseView.image = UIImage(named: "car")
+        moveImage(imageView: houseView)
+        view?.addSubview(houseView)
+        
     }
     
     func moveImage(imageView: UIImageView){
         let option: UIView.AnimationOptions = [.repeat]
-        UIView.animate(withDuration: 3, delay: 0, options: option, animations: {
+        UIView.animate(withDuration: 6, delay: 2, options: option, animations: {
             imageView.transform = CGAffineTransform(translationX:
-                self.view.bounds.width + imageView.frame.width, y: 0)
+                self.view.bounds.width + 5*imageView.frame.width, y: 0)
         }, completion: nil)
     }
     
