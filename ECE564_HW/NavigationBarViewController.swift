@@ -21,6 +21,7 @@ class NavigationBarViewController: UINavigationController {
     
     func flipConfiguration(){
         let flipToBack = UISwipeGestureRecognizer(target: self, action: #selector(flipAction))
+        flipToBack.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(flipToBack)
     }
     

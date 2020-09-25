@@ -90,3 +90,14 @@ By swiping the table cell to left, the user can choose to edit or delete a perso
 
 Design: 
 Add different pictures and Fonts. 
+
+
+## HW5
+Features includes:  
+  
+Add background music.  
+Add a girl in foregraound. The girl can move.  
+Add houses in background.  The houses can move as well as the girl.  
+Use UIView subclass's draw method to draw stars.  The stars can shrink and enlarge.
+Use Graphic Context to draw the planet and the road.  
+(Flip right to see the back of the InformationView, flip left to get back. )  

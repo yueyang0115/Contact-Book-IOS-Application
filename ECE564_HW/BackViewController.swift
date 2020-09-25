@@ -285,11 +285,14 @@ class BackViewController: UIViewController {
     // MARK: - flip-related
     func flipConfiguration(){
         let returnFromBack = UISwipeGestureRecognizer(target: self, action: #selector(flipAction))
+        returnFromBack.direction = UISwipeGestureRecognizer.Direction.left
         self.view.addGestureRecognizer(returnFromBack)
     }
     
     @objc func flipAction(){
-        audioPlayer!.stop()
+        if(audioPlayer != nil){
+            audioPlayer!.stop()
+        }
         performSegue(withIdentifier: "returnFromBack", sender: self)
     }
     
