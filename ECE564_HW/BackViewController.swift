@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class BackViewController: UIViewController {
     var person: DukePerson?
@@ -14,13 +15,17 @@ class BackViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //textViewConfiguration()
         flipConfiguration()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setImageAnimationView()
+        if(person != nil && person!.firstName?.lowercased() == "yue" && person!.lastName?.lowercased() == "yang" && person!.description.contains("skating")){
+            setImageAnimationView()
+        }
+        else{
+            textViewConfiguration()
+        }
     }
     
     // MARK: - image-animation
@@ -31,6 +36,7 @@ class BackViewController: UIViewController {
         setStreetImageView()
         setPeopleImageView()
         setAttributedText()
+        //playMusic()
     }
     
     // MARK: - star view
@@ -220,6 +226,15 @@ class BackViewController: UIViewController {
         mytext.backgroundColor = UIColor.clear
         mytext.attributedText = firstString
         view.addSubview(mytext)
+    }
+    
+    func playMusic(){
+        let audioPlayer: AVAudioPlayer
+        let AssortedMusics = NSURL(fileURLWithPath: Bundle.main.path(forResource: "music", ofType: "mp3")!)
+        audioPlayer = try! AVAudioPlayer(contentsOf: AssortedMusics as URL)
+        audioPlayer.prepareToPlay()
+        audioPlayer.numberOfLoops = -1
+        audioPlayer.play()
     }
     
     // MARK: - attributed-text
