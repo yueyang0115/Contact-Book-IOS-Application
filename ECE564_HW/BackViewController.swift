@@ -240,7 +240,7 @@ class BackViewController: UIViewController {
     
     // MARK: - misic
     func playMusic(){
-        let AssortedMusics = NSURL(fileURLWithPath: Bundle.main.path(forResource: "music", ofType: "mp3")!)
+        let AssortedMusics = NSURL(fileURLWithPath: Bundle.main.path(forResource: "bgmusic", ofType: "mp3")!)
         audioPlayer = try! AVAudioPlayer(contentsOf: AssortedMusics as URL)
         audioPlayer!.currentTime = 0
         audioPlayer!.prepareToPlay()
