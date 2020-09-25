@@ -99,5 +99,5 @@ Add background music.
 Add a girl in foregraound. The girl can move.  
 Add houses in background.  The houses can move as well as the girl.  
 Use UIView subclass's draw method to draw stars.  The stars can shrink and enlarge.  
-Use Graphic Context to draw the socket, the planet and the road.  
+Use Graphic Context to draw the rocket, the planet and the road.  
 (Flip right to see the back of the InformationView, flip left to get back. )  
