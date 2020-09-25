@@ -31,6 +31,7 @@ class BackViewController: UIViewController {
     
     // MARK: - image-animation
     func setImageAnimationView(){
+        setRocket()
         setPlanetView()
         setStarView()
         setBackgroundImageView()
@@ -38,6 +39,14 @@ class BackViewController: UIViewController {
         setPeopleImageView()
         setAttributedText()
         playMusic()
+    }
+    
+    // MARK: - rocket view
+    func setRocket(){
+        let rocketView = Rocket()
+        rocketView.frame = CGRect(x: 50, y: 100, width:300, height: 600)
+        rocketView.backgroundColor = UIColor.clear
+        view?.addSubview(rocketView)
     }
     
     // MARK: - star view
