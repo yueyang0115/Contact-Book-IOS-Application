@@ -12,6 +12,7 @@ import AVFoundation
 class BackViewController: UIViewController {
     var person: DukePerson?
     var textView = UITextView()
+    var audioPlayer: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,7 @@ class BackViewController: UIViewController {
         setStreetImageView()
         setPeopleImageView()
         setAttributedText()
-        //playMusic()
+        playMusic()
     }
     
     // MARK: - star view
@@ -228,13 +229,14 @@ class BackViewController: UIViewController {
         view.addSubview(mytext)
     }
     
+    // MARK: - misic
     func playMusic(){
-        let audioPlayer: AVAudioPlayer
         let AssortedMusics = NSURL(fileURLWithPath: Bundle.main.path(forResource: "music", ofType: "mp3")!)
         audioPlayer = try! AVAudioPlayer(contentsOf: AssortedMusics as URL)
-        audioPlayer.prepareToPlay()
-        audioPlayer.numberOfLoops = -1
-        audioPlayer.play()
+        audioPlayer!.currentTime = 0
+        audioPlayer!.prepareToPlay()
+        audioPlayer!.numberOfLoops = -1
+        audioPlayer!.play()
     }
     
     // MARK: - attributed-text
@@ -287,6 +289,7 @@ class BackViewController: UIViewController {
     }
     
     @objc func flipAction(){
+        audioPlayer!.stop()
         performSegue(withIdentifier: "returnFromBack", sender: self)
     }
     
