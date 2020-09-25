@@ -30,7 +30,7 @@ class BackViewController: UIViewController {
         setBackgroundImageView()
         setStreetImageView()
         setPeopleImageView()
-        
+        setAttributedText()
     }
     
     // MARK: - star view
@@ -197,6 +197,29 @@ class BackViewController: UIViewController {
             imageView.transform = CGAffineTransform(translationX:
                 self.view.bounds.width + 5*imageView.frame.width, y: 0)
         }, completion: nil)
+    }
+    
+    // MARK: - attributed-text
+    func setAttributedText(){
+        let mytext = UITextView()
+        let titleFont = UIFont(name: "Chalkduster", size: 27.0)
+        let myShadow = NSShadow()
+        myShadow.shadowBlurRadius = 3
+        myShadow.shadowOffset = CGSize(width: 3, height: 3)
+        myShadow.shadowColor = UIColor.gray
+        
+        let textLine1 =  "Value This Very Day"
+        let firstAttribute = [
+            NSAttributedString.Key.shadow: myShadow,
+            NSAttributedString.Key.font: titleFont,
+            NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
+        let firstString = NSMutableAttributedString(string: textLine1, attributes: (firstAttribute) as [NSAttributedString.Key : Any]
+        )
+        
+        mytext.frame = CGRect(x: 25, y: 40, width: 375, height: 400)
+        mytext.backgroundColor = UIColor.clear
+        mytext.attributedText = firstString
+        view.addSubview(mytext)
     }
     
     // MARK: - attributed-text
