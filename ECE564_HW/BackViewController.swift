@@ -25,6 +25,7 @@ class BackViewController: UIViewController {
     
     // MARK: - image-animation
     func setImageAnimationView(){
+        setPlanetView()
         setStarView()
         setBackgroundImageView()
         setStreetImageView()
@@ -47,10 +48,10 @@ class BackViewController: UIViewController {
         star2.frame = CGRect(x: 210, y: 130, width:100, height: 100)
         shrinkView(myView: star2)
         
-        let star3 = Star()
-        //star3.frame = CGRect(x: 90, y: 170, width:100, height: 100)
-        star3.frame = CGRect(x: 30, y: 200, width:100, height: 100)
-        shrinkView(myView: star3)
+//        let star3 = Star()
+//        //star3.frame = CGRect(x: 90, y: 170, width:100, height: 100)
+//        star3.frame = CGRect(x: 30, y: 200, width:100, height: 100)
+//        shrinkView(myView: star3)
         
         let star4 = Star()
         star4.frame = CGRect(x: 200, y: 180, width:100, height: 100)
@@ -99,6 +100,36 @@ class BackViewController: UIViewController {
             //animatorShrink.startAnimation()
             self.shrinkView(myView: myView)
         }
+    }
+    
+    // MARK: - planet view
+    func setPlanetView(){
+        let planetFrame = CGRect(x: 0, y: 100, width: 300, height: 200)
+        UIGraphicsBeginImageContextWithOptions(planetFrame.size, false, 0.0)
+        
+        let color:UIColor = UIColor.systemOrange
+        let ovalPath:UIBezierPath = UIBezierPath(ovalIn: CGRect(x: -35, y: 75, width: 60, height: 20))
+        ovalPath.apply(CGAffineTransform(rotationAngle: -30 * .pi / 180))
+        let scale = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        ovalPath.apply(scale)
+        ovalPath.lineWidth = 4
+        color.set()
+        ovalPath.stroke()
+        
+        let color2: UIColor = UIColor.systemOrange
+        let circlePath: UIBezierPath = UIBezierPath(ovalIn: CGRect(x: 18, y: 55, width: 40, height: 40))
+        circlePath.apply(scale)
+        circlePath.lineWidth = 1
+        color2.set()
+        circlePath.fill()
+        circlePath.stroke()
+        
+        let saveImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        let iv = UIImageView()
+        iv.frame = planetFrame
+        iv.image = saveImage
+        view?.addSubview(iv)
     }
     
     // MARK: - street view
