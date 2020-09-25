@@ -97,7 +97,7 @@ Features includes:
   
 Add background music.  
 Add a girl in foregraound. The girl can move.  
-Add houses in background.  The houses can move as well as the girl.  
-Use UIView subclass's draw method to draw stars.  The stars can shrink and enlarge.  
-Use Graphic Context to draw the rocket, the planet and the road.  
+Add houses in background.  The houses can move.  
+Use UIView subclass's draw method to draw the rocket and the stars.  The stars can shrink and enlarge.  
+Use Graphic Context to draw the planet and the road.  
 (Flip right to see the back of the InformationView, flip left to get back. )  
