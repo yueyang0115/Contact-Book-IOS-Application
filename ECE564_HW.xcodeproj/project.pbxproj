@@ -16,7 +16,7 @@
 		1D9FC769250978D7002E9FF6 /* DukePersonProtoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9FC768250978D7002E9FF6 /* DukePersonProtoCell.swift */; };
 		1D9FC770250A847B002E9FF6 /* DukePerson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9FC76E250A847B002E9FF6 /* DukePerson+CoreDataClass.swift */; };
 		1D9FC771250A847B002E9FF6 /* DukePerson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9FC76F250A847B002E9FF6 /* DukePerson+CoreDataProperties.swift */; };
-		1DD67439251E5E2E0082AF0A /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1DD67438251E5E2E0082AF0A /* music.mp3 */; };
+		1DD6743D251E5FC20082AF0A /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1DD6743C251E5FC20082AF0A /* music.mp3 */; };
 		1DE1476E251D4E8A00541EC5 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE1476D251D4E8A00541EC5 /* Star.swift */; };
 		873481602469DEE8000B9A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8734815F2469DEE8000B9A79 /* AppDelegate.swift */; };
 		873481622469DEE8000B9A79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873481612469DEE8000B9A79 /* SceneDelegate.swift */; };
@@ -35,7 +35,7 @@
 		1D9FC768250978D7002E9FF6 /* DukePersonProtoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukePersonProtoCell.swift; sourceTree = "<group>"; };
 		1D9FC76E250A847B002E9FF6 /* DukePerson+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DukePerson+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1D9FC76F250A847B002E9FF6 /* DukePerson+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DukePerson+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		1DD67438251E5E2E0082AF0A /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = music.mp3; path = ../../../../../../Desktop/music.mp3; sourceTree = "<group>"; };
+		1DD6743C251E5FC20082AF0A /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = music.mp3; path = ../../../../../../Desktop/skate/music.mp3; sourceTree = "<group>"; };
 		1DE1476D251D4E8A00541EC5 /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		8734815C2469DEE8000B9A79 /* ECE564_HW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECE564_HW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8734815F2469DEE8000B9A79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,8 +102,8 @@
 				1D66E7FF24FF38B400419311 /* InformationViewController.swift */,
 				1D05E94B251117C800706E1E /* BackViewController.swift */,
 				1D9C9FF9251DAC1500D18976 /* Rocket.swift */,
-				1DD67438251E5E2E0082AF0A /* music.mp3 */,
 				1DE1476D251D4E8A00541EC5 /* Star.swift */,
+				1DD6743C251E5FC20082AF0A /* music.mp3 */,
 				873481682469DEE9000B9A79 /* Assets.xcassets */,
 				8734816A2469DEE9000B9A79 /* LaunchScreen.storyboard */,
 				8734816D2469DEE9000B9A79 /* Info.plist */,
@@ -169,7 +169,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DD67439251E5E2E0082AF0A /* music.mp3 in Resources */,
+				1DD6743D251E5FC20082AF0A /* music.mp3 in Resources */,
 				8734816C2469DEE9000B9A79 /* LaunchScreen.storyboard in Resources */,
 				873481692469DEE9000B9A79 /* Assets.xcassets in Resources */,
 				873481672469DEE8000B9A79 /* Main.storyboard in Resources */,
