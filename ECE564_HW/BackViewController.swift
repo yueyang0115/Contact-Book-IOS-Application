@@ -25,11 +25,99 @@ class BackViewController: UIViewController {
     
     // MARK: - image-animation
     func setImageAnimationView(){
-        setBackGroundImage()
-        setPeopleImage()
+        setStarView()
+        setBackgroundImageView()
+        setPeopleImageView()
+        
     }
     
-    func setPeopleImage(){
+    func setStarView(){
+        // create a new UIView and add it to the view controller
+        let starView = Star()
+        starView.frame = CGRect(x: 50, y: 100, width:100, height: 100)
+        starView.backgroundColor = UIColor.clear
+        shrinkView(myView: starView)
+        
+        let star1 = Star()
+        star1.frame = CGRect(x: 120, y: 120, width:100, height: 100)
+        star1.backgroundColor = UIColor.clear
+        shrinkView(myView: star1)
+        
+        let star2 = Star()
+        star2.frame = CGRect(x: 210, y: 130, width:100, height: 100)
+        star2.backgroundColor = UIColor.clear
+        shrinkView(myView: star2)
+        
+        let star3 = Star()
+        star3.frame = CGRect(x: 90, y: 170, width:100, height: 100)
+        star3.backgroundColor = UIColor.clear
+        shrinkView(myView: star3)
+        
+        let star4 = Star()
+        star4.frame = CGRect(x: 200, y: 180, width:100, height: 100)
+        star4.backgroundColor = UIColor.clear
+        shrinkView(myView: star4)
+        
+        let star5 = Star()
+        star5.frame = CGRect(x: 270, y: 220, width:100, height: 100)
+        star5.backgroundColor = UIColor.clear
+        shrinkView(myView: star5)
+        
+        let star6 = Star()
+        star6.frame = CGRect(x: 350, y: 100, width:100, height: 100)
+        star6.backgroundColor = UIColor.clear
+        shrinkView(myView: star6)
+        
+        let star7 = Star()
+        star7.frame = CGRect(x: 140, y: 190, width:100, height: 100)
+        star7.backgroundColor = UIColor.clear
+        shrinkView(myView: star7)
+        
+        let star8 = Star()
+        star8.frame = CGRect(x: 240, y: 230, width:100, height: 100)
+        star8.backgroundColor = UIColor.clear
+        shrinkView(myView: star8)
+    }
+    
+    func shrinkView(myView: UIView){
+        let originalCenter = myView.center
+        let animatorShrink = UIViewPropertyAnimator(duration: 1, curve: .easeInOut) { [myView] in
+            myView.transform = CGAffineTransform(rotationAngle: 0).scaledBy(x: 0.9, y: 0.9)
+        }
+
+        let animatorEnlarge = UIViewPropertyAnimator(duration: 1, curve: .easeInOut) { [myView] in
+                   myView.center = originalCenter
+                   myView.transform = CGAffineTransform(rotationAngle: 0).scaledBy(x: 1, y: 1)
+               }
+
+        view?.addSubview(myView)
+
+        animatorShrink.startAnimation()
+        animatorShrink.addCompletion { _ in
+            animatorShrink.stopAnimation(true)
+            animatorEnlarge.startAnimation()
+        }
+//
+        animatorEnlarge.addCompletion { _ in
+            animatorEnlarge.stopAnimation(true)
+            animatorShrink.startAnimation()
+            //myView.removeFromSuperview()
+            //self.setStarView()
+            self.shrinkView(myView: myView)
+        }
+    }
+    
+    func enlargeView(myView: UIView){
+        let option: UIView.AnimationOptions = [.repeat]
+        UIView.animate(withDuration: 1, delay: 0, options: option, animations: {
+            self.shrinkView(myView: myView)
+//            myView.transform = CGAffineTransform(rotationAngle: 0).scaledBy(x: 0.9, y: 0.9)
+//            myView.transform = CGAffineTransform(rotationAngle: 0).scaledBy(x: 1, y: 1)
+        }, completion: nil)
+        //view?.addSubview(myView)
+    }
+    
+    func setPeopleImageView(){
         let iav = UIImageView()
         iav.frame = CGRect(x: 0, y: 350, width: 400, height: 300)
         
@@ -45,7 +133,7 @@ class BackViewController: UIViewController {
         view?.addSubview(iav)
     }
     
-    func setBackGroundImage(){
+    func setBackgroundImageView(){
         let cafeteriaView = UIImageView()
         cafeteriaView.frame = CGRect(x: -300, y: 300, width: 300, height: 200)
         cafeteriaView.image = UIImage(named: "cafeteria")
@@ -63,7 +151,6 @@ class BackViewController: UIViewController {
         houseView.image = UIImage(named: "car")
         moveImage(imageView: houseView)
         view?.addSubview(houseView)
-        
     }
     
     func moveImage(imageView: UIImageView){
