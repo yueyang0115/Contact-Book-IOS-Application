@@ -16,16 +16,16 @@ class Star: UIView {
     override func draw(_ rect: CGRect) {
 
         let path = createPath()
-        let scale = CGAffineTransform(scaleX: 4, y: 4)
+        let scale = CGAffineTransform(scaleX: 5, y: 5)
         path.apply(scale)
         
         // fill
-        let fillColor = UIColor.yellow
+        let fillColor = UIColor.systemYellow
         fillColor.setFill()
 
         // stroke
         path.lineWidth = 0.9
-        let strokeColor = UIColor.blue
+        let strokeColor = UIColor.systemYellow
         strokeColor.setStroke()
         
         // Move the path to a new location

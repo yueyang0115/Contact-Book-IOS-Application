@@ -461,7 +461,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg9" translatesAutoresizingMaskIntoConstraints="NO" id="maL-A3-8xg">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="night6" translatesAutoresizingMaskIntoConstraints="NO" id="maL-A3-8xg">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -547,6 +547,7 @@
         <image name="gamecontroller" catalog="system" width="128" height="82"/>
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="moon" catalog="system" width="128" height="121"/>
+        <image name="night6" width="375" height="667"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle.fill.badge.exclam" catalog="system" width="128" height="101"/>
