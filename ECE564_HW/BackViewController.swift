@@ -27,10 +27,12 @@ class BackViewController: UIViewController {
     func setImageAnimationView(){
         setStarView()
         setBackgroundImageView()
+        setStreetImageView()
         setPeopleImageView()
         
     }
     
+    // MARK: - star view
     func setStarView(){
         // create a new UIView and add it to the view controller
         let starView = Star()
@@ -99,6 +101,27 @@ class BackViewController: UIViewController {
         }
     }
     
+    // MARK: - street view
+    func setStreetImageView(){
+        let streetFrame = CGRect(x: 0, y: 500, width: 375, height: 167)
+        
+        UIGraphicsBeginImageContextWithOptions(streetFrame.size, false, 0.0)
+        let color:UIColor = UIColor.brown
+        
+        let topPath:UIBezierPath = UIBezierPath(rect: CGRect(x: -5, y: 5, width: 385, height: 120))
+        topPath.lineWidth = 4
+        color.set()
+        topPath.stroke()
+        let saveImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        let iv = UIImageView()
+        iv.frame = streetFrame
+        iv.image = saveImage
+        view?.addSubview(iv)
+    }
+    
+    // MARK: - people view
     func setPeopleImageView(){
         let iav = UIImageView()
         iav.frame = CGRect(x: 0, y: 350, width: 400, height: 300)
@@ -115,6 +138,7 @@ class BackViewController: UIViewController {
         view?.addSubview(iav)
     }
     
+    // MARK: - background view
     func setBackgroundImageView(){
         let cafeteriaView = UIImageView()
         cafeteriaView.frame = CGRect(x: -300, y: 300, width: 300, height: 200)
@@ -129,7 +153,7 @@ class BackViewController: UIViewController {
         view?.addSubview(cafeHouseView)
         
         let houseView = UIImageView()
-        houseView.frame = CGRect(x: -1500, y: 350, width: 300, height: 200)
+        houseView.frame = CGRect(x: -1500, y: 330, width: 300, height: 200)
         houseView.image = UIImage(named: "car")
         moveImage(imageView: houseView)
         view?.addSubview(houseView)
@@ -144,7 +168,7 @@ class BackViewController: UIViewController {
         }, completion: nil)
     }
     
-    // MARK: - textView-related
+    // MARK: - attributed-text
     func textViewConfiguration(){
         //textView.removeFromSuperview()  // first remove
         
