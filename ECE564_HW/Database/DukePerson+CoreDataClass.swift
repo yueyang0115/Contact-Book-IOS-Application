@@ -9,9 +9,61 @@
 
 import Foundation
 import CoreData
+import UIKit
+
+enum InfoKey: String, CodingKey {
+    case firstNameK = "firstName"
+    case lastNameK = "lastName"
+    case whereFromK = "whereFrom"
+    case genderK = "gender"
+    case roleK = "role"
+    case degreeK = "degree"
+    case hobbyK = "hobby"
+    case languageK = "language"
+    case teamK = "team"
+    case emailK = "email"
+    case imageK = "image"
+}
 
 @objc(DukePerson)
-public class DukePerson: NSManagedObject {
+public class DukePerson: NSManagedObject, Codable {
+    // decodable
+    required convenience public init(from decoder: Decoder) {
+        
+        guard let appDel:AppDelegate = UIApplication.shared.delegate as? AppDelegate else{ fatalError() }
+        let context = appDel.persistentContainer.viewContext
+        
+        self.init(context: context)
+        let container = try! decoder.container(keyedBy: InfoKey.self)
+        self.firstName = try! container.decodeIfPresent(String.self, forKey: .firstNameK)
+        self.lastName = try! container.decodeIfPresent(String.self, forKey: .lastNameK)
+        self.whereFrom = try! container.decodeIfPresent(String.self, forKey: .whereFromK)
+        self.gender = try! container.decodeIfPresent(String.self, forKey: .genderK)
+        self.role = try! container.decodeIfPresent(String.self, forKey: .roleK)
+        self.degree = try! container.decodeIfPresent(String.self, forKey: .degreeK)
+        self.hobby = try! container.decodeIfPresent([String].self, forKey: .hobbyK)
+        self.language = try! container.decodeIfPresent([String].self, forKey: .languageK)
+        self.team = try! container.decodeIfPresent(String.self, forKey: .teamK)
+        self.email = try! container.decodeIfPresent(String.self, forKey: .emailK)
+        self.image = try! container.decodeIfPresent(Data.self, forKey: .imageK)
+    }
+    
+    // encode
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: InfoKey.self)
+        try container.encode(firstName, forKey: .firstNameK)
+        try container.encode(lastName, forKey: .lastNameK)
+        try container.encode(whereFrom, forKey: .whereFromK)
+        try container.encode(gender, forKey: .genderK)
+        try container.encode(role, forKey: .roleK)
+        try container.encode(degree, forKey: .degreeK)
+        try container.encode(hobby, forKey: .hobbyK)
+        try container.encode(language, forKey: .languageK)
+        try container.encode(team, forKey: .teamK)
+        try container.encode(email, forKey: .emailK)
+        try container.encode(image, forKey: .imageK)
+    }
+    
     convenience init(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String, image: Data){
         self.init()
         self.firstName = firstName
