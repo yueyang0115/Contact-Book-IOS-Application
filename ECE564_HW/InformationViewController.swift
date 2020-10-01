@@ -199,8 +199,39 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
         let hobbies: [String] = hobby.components(separatedBy: ",")
         let languages: [String] = language.components(separatedBy: ",")
         let imageData: Data = userImage.image!.pngData()!
+        // add person to database
         addPersonToDB(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, degree: degree, hobby: hobbies, language: languages, team: team, email: email, image: imageData)
+                
+        // encode newly added person to JSON
+        do{
+            let persons: [DukePerson] = try context.fetch(DukePerson.fetchRequest())
+            for person in persons{
+                if(person.firstName!.lowercased() == firstName.lowercased() &&
+                    person.lastName!.lowercased() == lastName.lowercased()){
+                    let encodeSucceed:Bool = saveJsonInfo(person: person)
+                    print("encode succeed: \(encodeSucceed)")
+                }
+            }
+        }
+        catch let error as NSError {
+            print("When encode newly added person, failed to get all persons from database")
+            print(error)
+        }
+        
         return true;
+    }
+    
+    // transfer DukePerson class to JSON
+    func saveJsonInfo(person: DukePerson) -> Bool{
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(person) {
+            if let json = String(data: encoded, encoding: .utf8) {
+                print("encode result is: \(json)")
+                return true
+            }
+            else { return false }
+        }
+        else { return false }
     }
     
     // pop up alert if person info invalid
