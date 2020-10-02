@@ -32,18 +32,28 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        databaseConfiguration()
+        setImageDict()
+        modeButton.title = "Dark/Bright"
+        InitBefore()
         setUpSearchBar()
         setTableViewBright()
+    }
+    
+    func InitBefore(){
+        let time = UserDefaults.standard.string(forKey: "Times")
+        if(time != nil){
+            self.fetchAllPersonFromDB()
+            self.tableView.reloadData()
+        }else{
+            UserDefaults.standard.set("init", forKey: "Times")
+            databaseConfiguration()
+        }
     }
     
     func databaseConfiguration() {
         clearDB()
         addDefaultPersonInDB()
         fetchAllPersonFromDB()
-        setImageDict()
-        //filteredPersons = sortedDB
-        modeButton.title = "Dark/Bright"
     }
     
     func setImageDict(){
