@@ -16,7 +16,6 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     //var sortedDB :[[DukePerson]] = [[],[],[]] //0:Professor, 1:TA, 2:Student
     var filteredPersons : [String: [DukePerson]] = [:]
     var imageDict : [String: UIImage] = [:]
-    var roles : [String] = []
     
     //segue-related variable
     let defaultImage = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
@@ -68,9 +67,11 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         let imageHaohang = UIImage(named: "haohong")
         let imageYuchen = UIImage(named: "yuchen")
         addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["skating"], language: ["swift"], team: "ECE564", email: "yy258@duke.edu", image: imageYue!.pngData()!)
-        addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "Professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "ece564", email: "rt113@duke.edu", image: imageRic!.pngData()!)
-        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "Teaching Assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "ece564", email: "hz147@duke.edu", image: imageHaohang!.pngData()!)
-        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Teaching Assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "ece564", email: "yy227@duke.edu", image: imageYuchen!.pngData()!)
+        addPersonToDB(firstName: "Weihan", lastName: "Zhang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["singing"], language: ["c++"], team: "ECE564", email: "wz125@duke.edu", image: UIImage(named: "Teams")!.pngData()!)
+        addPersonToDB(firstName: "Zeyu", lastName: "Li", whereFrom: "China", gender: "Male", role: "Student", degree: "Grad", hobby: ["running"], language: ["java"], team: "", email: "zeyu.li@duke.edu", image:  UIImage(named: "Teams")!.pngData()!)
+        addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "Professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "", email: "rt113@duke.edu", image: imageRic!.pngData()!)
+        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "Teaching Assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "", email: "hz147@duke.edu", image: imageHaohang!.pngData()!)
+        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Teaching Assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "", email: "yy227@duke.edu", image: imageYuchen!.pngData()!)
     }
     
     // get all persons from database
@@ -86,7 +87,6 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     
     // classify persons by their roles, store result in 2D array as sorted database
     func classifyPerson(){
-        //sortedDB = [[],[],[]]
         filteredPersons = [:]
         
         for person in allPersons{
@@ -102,19 +102,7 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
                 }
                 filteredPersons[person.role!]!.append(person)
             }
-            
-//            switch person.role{
-//            case "Professor":
-//                filteredPersons[0].append(person)
-//            case "Teaching Assistant":
-//                filteredPersons[1].append(person)
-//            case "Student":
-//                filteredPersons[2].append(person)
-//            default: continue
-//            }
         }
-        //filteredPersons = sortedDB
-        roles = Array(filteredPersons.keys)
     }
     
     // add one person to database
@@ -152,7 +140,7 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     
     // return num of sections
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return filteredPersons.count
     }
 
     // return num of rows
@@ -160,17 +148,6 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         let index = filteredPersons.index(filteredPersons.startIndex, offsetBy: section)
         let key : String = filteredPersons.keys[index]
         return filteredPersons[key]!.count
-        
-//        switch section{
-//            case 0:
-//                return filteredPersons[0].count
-//            case 1:
-//                return filteredPersons[1].count
-//            case 2:
-//                return filteredPersons[2].count
-//            default:
-//                return 1
-//        }
     }
     
     // set view for one cell
@@ -214,7 +191,6 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     // return one cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DukePersonProtoCell", for: indexPath) as! DukePersonProtoCell
-        //let person: DukePerson = self.filteredPersons[indexPath.section][indexPath.row]
         
         let index = filteredPersons.index(filteredPersons.startIndex, offsetBy: indexPath.section)
         
@@ -258,7 +234,9 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {action in
                 self.deletePersonFromDB(person: person)
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
+                //self.tableView.deleteRows(at: [indexPath], with: .fade)
+                self.fetchAllPersonFromDB()
+                self.tableView.reloadData()
                 }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -316,11 +294,6 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
                 if(person.description.lowercased().contains(searchText.lowercased())){
                     filterRole(index: index, person: person)
                 }
-            }
-        }
-        for role in roles{
-            if(filteredPersons[role] == nil){
-                filteredPersons[role] = [DukePerson]()
             }
         }
         self.tableView.reloadData()
