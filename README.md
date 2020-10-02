@@ -101,3 +101,14 @@ Add houses in background.  The houses can move.
 Use UIView subclass's draw method to draw the rocket and the stars.  The stars can shrink and enlarge.  
 Use Graphic Context to draw the planet and the road.  
 (Flip right to see the back of the InformationView, flip left to get back. )  
+
+
+## HW6
+Since I used Core Data to store all the Duke Person, I didn't write JSON to a file. Instead, my DukePerson class implements NSManagedObject and Codable. Inside the Duke Person class, I realized *function required convenience public init(from decoder: Decoder)* and *function encode(to encoder: Encoder)*. When I add defult Duke Person to Core Data, I print out the encoded JSON of that person. When a person is being added or edited, the encoded JSON of that person is still printed out. You can check the printed json in the output field in XCode.  
+
+Extra Features includes:  
+Add darkmode.  
+Use code to resize the image, so that the encoded json can be short enough to be shown in the screen.  
+Alert:  
+If the user choose to delete a person, an alert will pop up and asks whether to delete or not.  
+If the person's information is invalid when save button is pressed, an alert will be popep up. Invalid informations include: no first name and last name is provided, no gender and role information is selected in the pickerview and  self-defined gender and role input.  
