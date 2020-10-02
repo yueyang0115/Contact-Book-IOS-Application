@@ -13,8 +13,10 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     //database-related variable
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var allPersons = [DukePerson]()
-    var sortedDB :[[DukePerson]] = [[],[],[]] //0:Professor, 1:TA, 2:Student
-    var filteredPersons :[[DukePerson]]!
+    //var sortedDB :[[DukePerson]] = [[],[],[]] //0:Professor, 1:TA, 2:Student
+    var filteredPersons : [String: [DukePerson]] = [:]
+    var imageDict : [String: UIImage] = [:]
+    var roles : [String] = []
     
     //segue-related variable
     let defaultImage = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
@@ -35,7 +37,14 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         clearDB()
         addDefaultPersonInDB()
         fetchAllPersonFromDB()
-        filteredPersons = sortedDB
+        setImageDict()
+        //filteredPersons = sortedDB
+    }
+    
+    func setImageDict(){
+        imageDict["Professor"] = UIImage(named: "Professors")
+        imageDict["Students"] = UIImage(named: "Students")
+        imageDict["Teaching Assistant"] = UIImage(named: "TAs")
     }
     
     // MARK: - database-related operations
@@ -58,7 +67,7 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         //let imageTA0 = UIImage(named: "TA2")
         let imageHaohang = UIImage(named: "haohong")
         let imageYuchen = UIImage(named: "yuchen")
-        addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["skating"], language: ["swift"], team: "ece564", email: "yy258@duke.edu", image: imageYue!.pngData()!)
+        addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["skating"], language: ["swift"], team: "ECE564", email: "yy258@duke.edu", image: imageYue!.pngData()!)
         addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "Professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "ece564", email: "rt113@duke.edu", image: imageRic!.pngData()!)
         addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "Teaching Assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "ece564", email: "hz147@duke.edu", image: imageHaohang!.pngData()!)
         addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Teaching Assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "ece564", email: "yy227@duke.edu", image: imageYuchen!.pngData()!)
@@ -77,20 +86,35 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     
     // classify persons by their roles, store result in 2D array as sorted database
     func classifyPerson(){
-        sortedDB = [[],[],[]]
+        //sortedDB = [[],[],[]]
+        filteredPersons = [:]
         
         for person in allPersons{
-            switch person.role{
-            case "Professor":
-                sortedDB[0].append(person)
-            case "Teaching Assistant":
-                sortedDB[1].append(person)
-            case "Student":
-                sortedDB[2].append(person)
-            default: continue
+            if(person.role == "Student" && person.team != ""){
+                if(filteredPersons[person.team!] == nil){
+                    filteredPersons[person.team!] = [DukePerson]()
+                }
+                filteredPersons[person.team!]!.append(person)
             }
+            else{
+                if(filteredPersons[person.role!] == nil){
+                    filteredPersons[person.role!] = [DukePerson]()
+                }
+                filteredPersons[person.role!]!.append(person)
+            }
+            
+//            switch person.role{
+//            case "Professor":
+//                filteredPersons[0].append(person)
+//            case "Teaching Assistant":
+//                filteredPersons[1].append(person)
+//            case "Student":
+//                filteredPersons[2].append(person)
+//            default: continue
+//            }
         }
-        filteredPersons = sortedDB
+        //filteredPersons = sortedDB
+        roles = Array(filteredPersons.keys)
     }
     
     // add one person to database
@@ -133,16 +157,20 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
 
     // return num of rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section{
-            case 0:
-                return filteredPersons[0].count
-            case 1:
-                return filteredPersons[1].count
-            case 2:
-                return filteredPersons[2].count
-            default:
-                return 1
-        }
+        let index = filteredPersons.index(filteredPersons.startIndex, offsetBy: section)
+        let key : String = filteredPersons.keys[index]
+        return filteredPersons[key]!.count
+        
+//        switch section{
+//            case 0:
+//                return filteredPersons[0].count
+//            case 1:
+//                return filteredPersons[1].count
+//            case 2:
+//                return filteredPersons[2].count
+//            default:
+//                return 1
+//        }
     }
     
     // set view for one cell
@@ -154,19 +182,30 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         //label.font = UIFont.boldSystemFont(ofSize: 18)
         label.font = UIFont(name: "Chalkduster", size: 18.0)
         label.textColor = UIColor.black
-        switch section {
-            case 0:
-              label.text = "Professors"
-              sectionImgView.image = UIImage(named: "professor")
-            case 1:
-              label.text = "TAs"
-              sectionImgView.image = UIImage(named: "TA")
-            case 2:
-              label.text = "Students"
-              sectionImgView.image = UIImage(named: "student")
-            default:
-              label.text = ""
+        
+        let index = filteredPersons.index(filteredPersons.startIndex, offsetBy: section)
+        let key : String = filteredPersons.keys[index]
+//        switch section {
+//            case 0:
+//              label.text = "Professors"
+//              sectionImgView.image = UIImage(named: "professor")
+//            case 1:
+//              label.text = "TAs"
+//              sectionImgView.image = UIImage(named: "TA")
+//            case 2:
+//              label.text = "Students"
+//              sectionImgView.image = UIImage(named: "student")
+//            default:
+//              label.text = ""
+//        }
+        label.text = key
+        if(imageDict[key] != nil){
+            sectionImgView.image = imageDict[key]
         }
+        else{
+            sectionImgView.image = UIImage(named: "Teams")
+        }
+        
         view.addSubview(label)
         view.addSubview(sectionImgView)
         return view
@@ -175,7 +214,14 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     // return one cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DukePersonProtoCell", for: indexPath) as! DukePersonProtoCell
-        let person: DukePerson = self.filteredPersons[indexPath.section][indexPath.row]
+        //let person: DukePerson = self.filteredPersons[indexPath.section][indexPath.row]
+        
+        let index = filteredPersons.index(filteredPersons.startIndex, offsetBy: indexPath.section)
+        
+        let key : String = filteredPersons.keys[index]
+        let persons: [DukePerson] = filteredPersons[key]!
+        let person = persons[indexPath.row]
+        
         cell.setCell(person: person)
         if(person.image == defaultImage!.pngData()){
             cell.pImageView.image = defaultImage
@@ -192,7 +238,12 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     
     // swipe and delete a cell
     func deleteCell(at indexPath: IndexPath) -> UIContextualAction{
-        let person: DukePerson = self.filteredPersons[indexPath.section][indexPath.row]
+        //let person: DukePerson = self.filteredPersons[indexPath.section][indexPath.row]
+        let index = filteredPersons.index(filteredPersons.startIndex, offsetBy: indexPath.section)
+        let key : String = filteredPersons.keys[index]
+        let persons: [DukePerson] = filteredPersons[key]!
+        let person = persons[indexPath.row]
+        
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete"){ (contextualAction, view, actionPerformed: @escaping (Bool) -> ()) in
             self.displayDeleteAlert(at: indexPath, person: person)
             actionPerformed(true)
@@ -215,7 +266,12 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     // swipe and edit a cell
     func editCell(at indexPath: IndexPath) -> UIContextualAction{
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, actionPerformed: (Bool) -> ()) in
-            self.edittedPerson = self.filteredPersons[indexPath.section][indexPath.row]
+            //self.edittedPerson = self.filteredPersons[indexPath.section][indexPath.row]
+            let index = self.filteredPersons.index(self.filteredPersons.startIndex, offsetBy: indexPath.section)
+            let key : String = self.filteredPersons.keys[index]
+            let persons: [DukePerson] = self.filteredPersons[key]!
+            self.edittedPerson = persons[indexPath.row]
+            
             self.performSegue(withIdentifier: "editSegue", sender: self)
             actionPerformed(true)
         }
@@ -247,40 +303,60 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     
     // search function
     func doFilterSearch(index :Int, searchText: String){
-        filteredPersons = [[], [], []]
         if(searchText == ""){
-            if(index == 0){ filteredPersons = sortedDB }
-            else{
-                // only display person in that correspoding catogory
-                for person in allPersons{
-                    filterRole(index: index, person: person, filteredPersons: filteredPersons)
-                }
+            filteredPersons = [:]
+            // only display person in that correspoding catogory
+            for person in allPersons{
+                filterRole(index: index, person: person)
             }
         }
         else{
+            filteredPersons = [:]
             for person in allPersons{
                 if(person.description.lowercased().contains(searchText.lowercased())){
-                    filterRole(index: index, person: person, filteredPersons: filteredPersons)
+                    filterRole(index: index, person: person)
                 }
+            }
+        }
+        for role in roles{
+            if(filteredPersons[role] == nil){
+                filteredPersons[role] = [DukePerson]()
             }
         }
         self.tableView.reloadData()
     }
     
     // filter all persons by their roles, put in filteredPerson array
-    func filterRole(index: Int, person: DukePerson, filteredPersons: [[DukePerson]]){
+    func filterRole(index: Int, person: DukePerson){
         switch person.role{
         case "Professor":
             if(index == 0 || index == 1){
-                self.filteredPersons[0].append(person)
+                if(filteredPersons[person.role!] == nil){
+                    filteredPersons[person.role!] = [DukePerson]()
+                }
+                self.filteredPersons[person.role!]!.append(person)
             }
         case "Teaching Assistant":
             if(index == 0 || index == 2){
-                self.filteredPersons[1].append(person)
+                if(filteredPersons[person.role!] == nil){
+                    filteredPersons[person.role!] = [DukePerson]()
+                }
+                self.filteredPersons[person.role!]!.append(person)
             }
         case "Student":
             if(index == 0 || index == 3){
-                self.filteredPersons[2].append(person)
+                if(person.team == ""){
+                    if(filteredPersons[person.role!] == nil){
+                        filteredPersons[person.role!] = [DukePerson]()
+                    }
+                    self.filteredPersons[person.role!]!.append(person)
+                }
+                else{
+                    if(filteredPersons[person.team!] == nil){
+                        filteredPersons[person.team!] = [DukePerson]()
+                    }
+                    filteredPersons[person.team!]!.append(person)
+                }
             }
         default: break
         }
@@ -292,7 +368,12 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     // go to edit scene when one cell is selected
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        self.edittedPerson = self.filteredPersons[indexPath.section][indexPath.row]
+        //self.edittedPerson = self.filteredPersons[indexPath.section][indexPath.row]
+        let index = self.filteredPersons.index(self.filteredPersons.startIndex, offsetBy: indexPath.section)
+        let key : String = self.filteredPersons.keys[index]
+        let persons: [DukePerson] = self.filteredPersons[key]!
+        self.edittedPerson = persons[indexPath.row]
+        
         performSegue(withIdentifier: "editSegue", sender: self)
     }
     
