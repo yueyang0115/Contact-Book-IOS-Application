@@ -2,7 +2,7 @@
 //  DukePerson+CoreDataClass.swift
 //  ECE564_HW
 //
-//  Created by 杨越 on 9/10/20.
+//  Created by 杨越 on 10/2/20.
 //  Copyright © 2020 ECE564. All rights reserved.
 //
 //
@@ -45,7 +45,7 @@ public class DukePerson: NSManagedObject, Codable {
         self.language = try! container.decodeIfPresent([String].self, forKey: .languageK)
         self.team = try! container.decodeIfPresent(String.self, forKey: .teamK)
         self.email = try! container.decodeIfPresent(String.self, forKey: .emailK)
-        self.image = try! container.decodeIfPresent(Data.self, forKey: .imageK)
+        self.image = try! container.decodeIfPresent(String.self, forKey: .imageK)
     }
     
     // encode
@@ -64,7 +64,7 @@ public class DukePerson: NSManagedObject, Codable {
         try container.encode(image, forKey: .imageK)
     }
     
-    convenience init(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String, image: Data){
+    convenience init(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String, image: String){
         self.init()
         self.firstName = firstName
         self.lastName = lastName

@@ -86,8 +86,13 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
     // fill textField with provided person info
     func fillExistedPerson(){
         if(edittedPerson != nil){
-            firstNameInput.text = edittedPerson!.firstName; lastNameInput.text = edittedPerson!.lastName; fromWhereInput.text = edittedPerson!.whereFrom; degreeInput.text = edittedPerson!.degree; hobbyInput.text = edittedPerson!.getHobby(hobby: edittedPerson!.hobby!); languageInput.text = edittedPerson!.getLanguage(language: edittedPerson!.language!); genderInput.text = edittedPerson!.gender; roleInput.text = edittedPerson!.role; teamInput.text = edittedPerson!.team; emailInput.text = edittedPerson!.email; userImage.image = UIImage(data: edittedPerson!.image!)
-            if(edittedPerson!.image! == defaultImage!.pngData()){
+            firstNameInput.text = edittedPerson!.firstName; lastNameInput.text = edittedPerson!.lastName; fromWhereInput.text = edittedPerson!.whereFrom; degreeInput.text = edittedPerson!.degree; hobbyInput.text = edittedPerson!.getHobby(hobby: edittedPerson!.hobby!); languageInput.text = edittedPerson!.getLanguage(language: edittedPerson!.language!); genderInput.text = edittedPerson!.gender; roleInput.text = edittedPerson!.role; teamInput.text = edittedPerson!.team; emailInput.text = edittedPerson!.email;
+            //userImage.image = UIImage(data: edittedPerson!.image!)
+            
+            let dataDecoded : Data = Data(base64Encoded: edittedPerson!.image!, options: .ignoreUnknownCharacters)!
+            userImage.image = UIImage(data: dataDecoded)
+            
+            if(dataDecoded == defaultImage!.pngData()){
                 userImage.image = defaultImage
             }
         }
@@ -102,7 +107,7 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
     
     // MARK: - database-related operations
     // add one person to database
-    func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String, image: Data){
+    func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String, image: String){
         let newPerson = DukePerson(context: self.context)
         newPerson.firstName = firstName; newPerson.lastName = lastName; newPerson.whereFrom = whereFrom; newPerson.gender = gender; newPerson.role = role; newPerson.degree = degree; newPerson.hobby = hobby; newPerson.language = language; newPerson.team = team; newPerson.email = email; newPerson.image = image
         do {
@@ -200,8 +205,10 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
         let languages: [String] = language.components(separatedBy: ",")
         //var imageData: Data = userImage.image!.pngData()!
         let imageData: Data = resizeImage(image: userImage.image!, targetSize: CGSize(width: 50, height: 50)).pngData()!
+        let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
+        
         // add person to database
-        addPersonToDB(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, degree: degree, hobby: hobbies, language: languages, team: team, email: email, image: imageData)
+        addPersonToDB(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, degree: degree, hobby: hobbies, language: languages, team: team, email: email, image: strBase64)
                 
         // encode newly added person to JSON
         do{

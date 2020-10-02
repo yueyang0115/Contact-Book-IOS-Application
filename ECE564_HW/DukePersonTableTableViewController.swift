@@ -63,15 +63,23 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     func addDefaultPersonInDB(){
         let imageRic = UIImage(named: "ric")
         let imageYue = UIImage(named: "yue")
-        //let imageTA0 = UIImage(named: "TA2")
         let imageHaohang = UIImage(named: "haohong")
         let imageYuchen = UIImage(named: "yuchen")
-        addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["skating"], language: ["swift"], team: "ECE564", email: "yy258@duke.edu", image: imageYue!.pngData()!)
-        addPersonToDB(firstName: "Weihan", lastName: "Zhang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["singing"], language: ["c++"], team: "ECE564", email: "wz125@duke.edu", image: UIImage(named: "Teams")!.pngData()!)
-        addPersonToDB(firstName: "Zeyu", lastName: "Li", whereFrom: "China", gender: "Male", role: "Student", degree: "Grad", hobby: ["running"], language: ["java"], team: "", email: "zeyu.li@duke.edu", image:  UIImage(named: "Teams")!.pngData()!)
-        addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "Professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "", email: "rt113@duke.edu", image: imageRic!.pngData()!)
-        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "Teaching Assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "", email: "hz147@duke.edu", image: imageHaohang!.pngData()!)
-        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Teaching Assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "", email: "yy227@duke.edu", image: imageYuchen!.pngData()!)
+        let imageTeam = UIImage(named: "Teams")
+        
+        let decodedRic = imageRic!.pngData()!.base64EncodedString(options: .lineLength64Characters)
+        let decodedYue = imageYue!.pngData()!.base64EncodedString(options: .lineLength64Characters)
+        let decodedHaohang = imageHaohang!.pngData()!.base64EncodedString(options: .lineLength64Characters)
+        let decodedYuchen = imageYuchen!.pngData()!.base64EncodedString(options: .lineLength64Characters)
+         let decodedTeam = imageTeam!.pngData()!.base64EncodedString(options: .lineLength64Characters)
+        
+        
+        addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["skating"], language: ["swift"], team: "ECE564", email: "yy258@duke.edu", image: decodedYue)
+        addPersonToDB(firstName: "Weihan", lastName: "Zhang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["singing"], language: ["c++"], team: "ECE564", email: "wz125@duke.edu", image: decodedTeam)
+        addPersonToDB(firstName: "Zeyu", lastName: "Li", whereFrom: "China", gender: "Male", role: "Student", degree: "Grad", hobby: ["running"], language: ["java"], team: "", email: "zeyu.li@duke.edu", image:  decodedTeam)
+        addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "Professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "", email: "rt113@duke.edu", image: decodedRic)
+        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "Teaching Assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "", email: "hz147@duke.edu", image: decodedHaohang)
+        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Teaching Assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "", email: "yy227@duke.edu", image: decodedYuchen)
     }
     
     // get all persons from database
@@ -106,7 +114,7 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     }
     
     // add one person to database
-    func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String, image: Data){
+    func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String, image: String){
         let newPerson = DukePerson(context: self.context)
         newPerson.firstName = firstName; newPerson.lastName = lastName; newPerson.whereFrom = whereFrom; newPerson.gender = gender; newPerson.role = role; newPerson.degree = degree; newPerson.hobby = hobby; newPerson.language = language; newPerson.team = team; newPerson.email = email; newPerson.image = image
         do {
@@ -199,7 +207,10 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         let person = persons[indexPath.row]
         
         cell.setCell(person: person)
-        if(person.image == defaultImage!.pngData()){
+        
+        let dataDecoded : Data = Data(base64Encoded: person.image!, options: .ignoreUnknownCharacters)!
+        let decodedimage = UIImage(data: dataDecoded)
+        if(decodedimage!.pngData() == defaultImage!.pngData()){
             cell.pImageView.image = defaultImage
         }
         return cell

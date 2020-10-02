@@ -17,7 +17,10 @@ class DukePersonProtoCell: UITableViewCell {
     @IBOutlet weak var pDescriptionLabel: UILabel!
     
     func setCell(person: DukePerson){
-        self.pImageView.image = UIImage(data: person.image!)
+        let dataDecoded : Data = Data(base64Encoded: person.image!, options: .ignoreUnknownCharacters)!
+        
+        self.pImageView.image = UIImage(data: dataDecoded)!
+        //self.pImageView.image = UIImage(data: person.image!)
         self.pNameLabel.text = "\(person.firstName!) \(person.lastName!)"
         self.pDescriptionLabel.text = person.description
     }
