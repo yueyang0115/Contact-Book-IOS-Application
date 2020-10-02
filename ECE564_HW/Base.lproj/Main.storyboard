@@ -82,6 +82,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="ECE 564" id="raL-td-Gep">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="KLI-Uu-Llo">
+                            <connections>
+                                <action selector="changeMode:" destination="UjX-7l-KQS" id="iM4-q4-q1d"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="kUs-8j-LRn">
                             <connections>
                                 <segue destination="TBm-Ii-SGX" kind="presentation" identifier="addSegue" modalPresentationStyle="fullScreen" id="7YO-Eb-RXR"/>
@@ -90,6 +95,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="kUs-8j-LRn" id="TNu-88-TLg"/>
+                        <outlet property="modeButton" destination="KLI-Uu-Llo" id="NHk-eR-uNv"/>
                         <outlet property="searchBar" destination="9Tv-00-oyh" id="M9t-Lk-5VB"/>
                         <outlet property="tableView" destination="gcJ-eY-46E" id="YZe-dt-d5d"/>
                         <segue destination="TBm-Ii-SGX" kind="presentation" identifier="editSegue" modalPresentationStyle="fullScreen" id="WO4-em-bPv"/>

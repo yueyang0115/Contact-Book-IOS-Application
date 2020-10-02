@@ -11,6 +11,8 @@ import CoreData
 
 class DukePersonTableTableViewController: UITableViewController, UISearchBarDelegate {
     //database-related variable
+    @IBOutlet weak var modeButton: UIBarButtonItem!
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var allPersons = [DukePerson]()
     //var sortedDB :[[DukePerson]] = [[],[],[]] //0:Professor, 1:TA, 2:Student
@@ -20,7 +22,10 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     //segue-related variable
     let defaultImage = UIImage(systemName: "person.crop.circle.fill.badge.exclam")
     var edittedPerson: DukePerson?
+    
+    // dark mode related
     @IBOutlet weak var addButton: UIBarButtonItem!
+    var isDark :Bool = false
     
     //search-related variable
     @IBOutlet weak var searchBar: UISearchBar!
@@ -29,7 +34,7 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         super.viewDidLoad()
         databaseConfiguration()
         setUpSearchBar()
-        setTableView()
+        setTableViewBright()
     }
     
     func databaseConfiguration() {
@@ -38,12 +43,38 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         fetchAllPersonFromDB()
         setImageDict()
         //filteredPersons = sortedDB
+        modeButton.title = "Dark/Bright"
     }
     
     func setImageDict(){
         imageDict["Professor"] = UIImage(named: "Professors")
         imageDict["Students"] = UIImage(named: "Students")
         imageDict["Teaching Assistant"] = UIImage(named: "TAs")
+    }
+    
+    @IBAction func changeMode(_ sender: Any) {
+        if(isDark){
+            setTableViewBright()
+            isDark = false
+        }
+        else{
+            setTableViewDark()
+            isDark = true
+        }
+        self.tableView.reloadData()
+    }
+    
+    // setUp tableView
+    func setTableViewBright(){
+        let tempImageView = UIImageView(image: UIImage(named: "bg9"))
+        tempImageView.frame = self.tableView.frame
+        self.tableView.backgroundView = tempImageView;
+    }
+    
+    func setTableViewDark(){
+        let tempImageView = UIImageView(image: UIImage(named: "night6"))
+        tempImageView.frame = self.tableView.frame
+        self.tableView.backgroundView = tempImageView;
     }
     
     // MARK: - database-related operations
@@ -61,17 +92,17 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     
     // add some default data in database
     func addDefaultPersonInDB(){
-        let imageRic = UIImage(named: "ric")
-        let imageYue = UIImage(named: "yue")
-        let imageHaohang = UIImage(named: "haohong")
-        let imageYuchen = UIImage(named: "yuchen")
+        let imageRic = resizeImage(image: UIImage(named: "ric")!, targetSize: CGSize(width: 50, height: 50))
+        let imageYue = resizeImage(image: UIImage(named: "yue")!, targetSize: CGSize(width: 50, height: 50))
+        let imageHaohang = resizeImage(image: UIImage(named: "haohong")!, targetSize: CGSize(width: 50, height: 50))
+        let imageYuchen = resizeImage(image: UIImage(named: "yuchen")!, targetSize: CGSize(width: 50, height: 50))
         let imageTeam = UIImage(named: "Teams")
         
-        let decodedRic = imageRic!.pngData()!.base64EncodedString(options: .lineLength64Characters)
-        let decodedYue = imageYue!.pngData()!.base64EncodedString(options: .lineLength64Characters)
-        let decodedHaohang = imageHaohang!.pngData()!.base64EncodedString(options: .lineLength64Characters)
-        let decodedYuchen = imageYuchen!.pngData()!.base64EncodedString(options: .lineLength64Characters)
-         let decodedTeam = imageTeam!.pngData()!.base64EncodedString(options: .lineLength64Characters)
+        let decodedRic = imageRic.pngData()!.base64EncodedString(options: .lineLength64Characters)
+        let decodedYue = imageYue.pngData()!.base64EncodedString(options: .lineLength64Characters)
+        let decodedHaohang = imageHaohang.pngData()!.base64EncodedString(options: .lineLength64Characters)
+        let decodedYuchen = imageYuchen.pngData()!.base64EncodedString(options: .lineLength64Characters)
+        let decodedTeam = imageTeam!.pngData()!.base64EncodedString(options: .lineLength64Characters)
         
         
         addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["skating"], language: ["swift"], team: "ECE564", email: "yy258@duke.edu", image: decodedYue)
@@ -80,6 +111,62 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "Professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "", email: "rt113@duke.edu", image: decodedRic)
         addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "Teaching Assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "", email: "hz147@duke.edu", image: decodedHaohang)
         addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Teaching Assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "", email: "yy227@duke.edu", image: decodedYuchen)
+        
+        fetchPerson(firstName: "Yue", lastName: "Yang")
+        fetchPerson(firstName: "Ric", lastName: "Telford")
+        fetchPerson(firstName: "Haohong", lastName: "Zhao")
+        fetchPerson(firstName: "Yuchen", lastName: "Yang")
+    }
+    
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+        }
+
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+    
+    // encode newly added person to JSON
+    // func fetch newly added person and save to json
+    func fetchPerson(firstName: String, lastName: String){
+        do{
+            let persons: [DukePerson] = try context.fetch(DukePerson.fetchRequest())
+            for person in persons{
+                if(person.firstName!.lowercased() == firstName.lowercased() &&
+                    person.lastName!.lowercased() == lastName.lowercased()){
+                    let encodeSucceed:Bool = saveJsonInfo(person: person)
+                    print("encode succeed: \(encodeSucceed)")
+                }
+            }
+        }
+        catch let error as NSError {
+            print("When encode newly added person, failed to get all persons from database")
+            print(error)
+        }
+    }
+    
+    func saveJsonInfo(person: DukePerson) -> Bool{
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(person) {
+            if let json = String(data: encoded, encoding: .utf8) {
+                print("encode result is: \(json)")
+                return true
+            }
+            else { return false }
+        }
+        else { return false }
     }
     
     // get all persons from database
@@ -139,12 +226,6 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     }
     
     // MARK: - TableView related
-    // setUp tableView
-    func setTableView(){
-        let tempImageView = UIImageView(image: UIImage(named: "bg9"))
-        tempImageView.frame = self.tableView.frame
-        self.tableView.backgroundView = tempImageView;
-    }
     
     // return num of sections
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -166,23 +247,15 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         let label = UILabel(frame: CGRect(x: 45, y: 5, width: tableView.bounds.width-25, height: 25))
         //label.font = UIFont.boldSystemFont(ofSize: 18)
         label.font = UIFont(name: "Chalkduster", size: 18.0)
-        label.textColor = UIColor.black
+        if(isDark){
+            label.textColor = UIColor.white
+        }
+        else{
+            label.textColor = UIColor.black
+        }
         
         let index = filteredPersons.index(filteredPersons.startIndex, offsetBy: section)
         let key : String = filteredPersons.keys[index]
-//        switch section {
-//            case 0:
-//              label.text = "Professors"
-//              sectionImgView.image = UIImage(named: "professor")
-//            case 1:
-//              label.text = "TAs"
-//              sectionImgView.image = UIImage(named: "TA")
-//            case 2:
-//              label.text = "Students"
-//              sectionImgView.image = UIImage(named: "student")
-//            default:
-//              label.text = ""
-//        }
         label.text = key
         if(imageDict[key] != nil){
             sectionImgView.image = imageDict[key]
@@ -206,7 +279,13 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         let persons: [DukePerson] = filteredPersons[key]!
         let person = persons[indexPath.row]
         
-        cell.setCell(person: person)
+        cell.setCell(person: person, isDark: isDark)
+        if(isDark){
+            cell.backgroundColor = UIColor.black
+        }
+        else{
+            cell.backgroundColor = UIColor.white
+        }
         
         let dataDecoded : Data = Data(base64Encoded: person.image!, options: .ignoreUnknownCharacters)!
         let decodedimage = UIImage(data: dataDecoded)
