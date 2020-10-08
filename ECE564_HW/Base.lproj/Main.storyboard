@@ -82,20 +82,42 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="ECE 564" id="raL-td-Gep">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="KLI-Uu-Llo">
-                            <connections>
-                                <action selector="changeMode:" destination="UjX-7l-KQS" id="iM4-q4-q1d"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="kUs-8j-LRn">
-                            <connections>
-                                <segue destination="TBm-Ii-SGX" kind="presentation" identifier="addSegue" modalPresentationStyle="fullScreen" id="7YO-Eb-RXR"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Login" id="Xz2-av-AVl">
+                                <connections>
+                                    <action selector="authenticate:" destination="UjX-7l-KQS" id="is6-X8-lIS"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Post" id="isB-YV-wSV">
+                                <connections>
+                                    <action selector="postData:" destination="UjX-7l-KQS" id="pDV-Mc-lGa"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Get" id="mcE-nV-PLd">
+                                <connections>
+                                    <action selector="getData:" destination="UjX-7l-KQS" id="so9-xt-uAG"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="kUs-8j-LRn">
+                                <connections>
+                                    <segue destination="TBm-Ii-SGX" kind="presentation" identifier="addSegue" modalPresentationStyle="fullScreen" id="7YO-Eb-RXR"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" id="KLI-Uu-Llo">
+                                <connections>
+                                    <action selector="changeMode:" destination="UjX-7l-KQS" id="iM4-q4-q1d"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="kUs-8j-LRn" id="TNu-88-TLg"/>
+                        <outlet property="getButton" destination="mcE-nV-PLd" id="WcC-Br-Atm"/>
+                        <outlet property="loginButton" destination="Xz2-av-AVl" id="IGy-gP-WDq"/>
                         <outlet property="modeButton" destination="KLI-Uu-Llo" id="NHk-eR-uNv"/>
+                        <outlet property="postButton" destination="isB-YV-wSV" id="Ix7-sQ-7dc"/>
                         <outlet property="searchBar" destination="9Tv-00-oyh" id="M9t-Lk-5VB"/>
                         <outlet property="tableView" destination="gcJ-eY-46E" id="YZe-dt-d5d"/>
                         <segue destination="TBm-Ii-SGX" kind="presentation" identifier="editSegue" modalPresentationStyle="fullScreen" id="WO4-em-bPv"/>

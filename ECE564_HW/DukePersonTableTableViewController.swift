@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import shibauthframework2019
 
 class DukePersonTableTableViewController: UITableViewController, UISearchBarDelegate {
     //database-related variable
@@ -29,6 +30,13 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     
     //search-related variable
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    // server-related variable
+    @IBOutlet weak var loginButton: UIBarButtonItem!
+    @IBOutlet weak var postButton: UIBarButtonItem!
+    @IBOutlet weak var getButton: UIBarButtonItem!
+    var netidResult : NetidLookupResultData?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +68,99 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         imageDict["Professor"] = UIImage(named: "Professors")
         imageDict["Students"] = UIImage(named: "Students")
         imageDict["Teaching Assistant"] = UIImage(named: "TAs")
+    }
+    
+    
+    @IBAction func authenticate(_ sender: Any) {
+        let alertController = LoginAlert(title: "Authenticate", message: nil, preferredStyle: .alert)
+        alertController.delegate = self
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func postData(_ sender: Any) {
+        let url = URL(string: "https://rt113-dt01.egr.duke.edu:5640/b64entries")!
+        var request = URLRequest(url : url)
+        request.httpMethod = "POST"
+        
+        let username = netidResult!.id!
+        let password = netidResult!.password!
+        let loginString = "\(username):\(password)"
+        guard let loginData = loginString.data(using: String.Encoding.utf8)
+            else { return }
+        let base64LoginString = loginData.base64EncodedString()
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        
+        // JSON body
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonDict = [
+            "id": netidResult?.id! as Any,
+            "netid": netidResult?.netid! as Any,
+            "firstname": "Yue" as Any,
+            "lastname": "Yang" as Any,
+            "wherefrom": "China" as Any,
+            "gender": "Female" as Any,
+            "role": "Student" as Any,
+            "degree": "MS" as Any,
+            "team": "ECE564" as Any,
+            "hobbies": ["Reading"] as Any,
+            "languages": ["Swift", "C++"] as Any,
+            "department": "ECE",
+            "email": "\(netidResult!.id!)@duke.edu",
+            "picture": UIImage(named: "yue")!
+        ] as [String : Any]
+        let jsonData = try! JSONSerialization.data(withJSONObject: jsonDict, options:[])
+        print(String(data: jsonData, encoding: String.Encoding.utf8) as Any)
+        request.httpBody = jsonData
+        
+        // make POST request
+        let task = URLSession.shared.dataTask(with: request){
+            (data, response, error) in
+            if let error = error{
+                print("error:", error)
+                return
+            }
+            do{
+                print("data: \(data!)")
+                print("response: \(response!)")
+                guard let data = data else { return }
+                guard (try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject])
+                    != nil else { return }
+            }catch{
+                print("error:", error)
+            }
+        }
+        task.resume()
+    }
+    
+    @IBAction func getData(_ sender: Any) {
+        let url = URL(string: "https://rt113-dt01.egr.duke.edu:5640/b64entries")!
+        DispatchQueue.main.async{
+            let task = URLSession.shared.dataTask(with: url){
+                (data, response, error) in
+                if let error = error{
+                    print("error: \(error)")
+                }else{
+                    if let response = response as?
+                        HTTPURLResponse{
+                        print("statusCode: \(response.statusCode)")
+                    }
+                    if let data = data, let _ = String(data: data, encoding: .utf8){
+                        let decoder = JSONDecoder()
+                        var personList = [DukePerson]()
+                        if let decoded = try?
+                            decoder.decode([DukePerson].self, from: data){
+                            personList = decoded
+                            print("decoded person list")
+                            print(personList[0])
+                            print(personList.count)
+                        }
+                    }
+                }
+            }
+            task.resume()
+        }
     }
     
     @IBAction func changeMode(_ sender: Any) {
@@ -474,3 +575,35 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         searchBar.selectedScopeButtonIndex = 0
     }
 }
+
+extension DukePersonTableTableViewController: LoginAlertDelegate {
+    
+    func onSuccess(_ loginAlertController: LoginAlert, didFinishSucceededWith status: LoginResults, netidLookupResult: NetidLookupResultData?, netidLookupResultRawData: Data?, cookies: [HTTPCookie]?, lastLoginTime: Date) {
+        // succeeded, extract netidLookupResult.id and netidLookupResult.password for your server credential
+        // other properties needed for homework are also in netidLookupResult
+        print("login success")
+    }
+    
+    func onFail(_ loginAlertController: LoginAlert, didFinishFailedWith reason: LoginResults) {
+        // when authentication fails, this method will be called.
+        // default implementation provided
+        print("login fail")
+    }
+    
+    func inProgress(_ loginAlertController: LoginAlert, didSubmittedWith status: LoginResults) {
+        // this method will get called for each step in progress.
+        // default implementation provided
+        print("login in process")
+    }
+    
+    func onLoginButtonTapped(_ loginAlertController: LoginAlert) {
+        // the login button on the alert is tapped
+        // default implementation provided
+    }
+
+    func onCancelButtonTapped(_ loginAlertController: LoginAlert) {
+        // the cancel button on the alert is tapped
+        // default implementation provided
+    }
+}
+
