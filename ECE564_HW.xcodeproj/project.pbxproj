@@ -18,6 +18,7 @@
 		1D9FC769250978D7002E9FF6 /* DukePersonProtoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9FC768250978D7002E9FF6 /* DukePersonProtoCell.swift */; };
 		1DBF75BA252F8A99007A1B1A /* shibauthframework2019.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DBF75B8252F89A1007A1B1A /* shibauthframework2019.framework */; };
 		1DBF75BB252F8A99007A1B1A /* shibauthframework2019.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1DBF75B8252F89A1007A1B1A /* shibauthframework2019.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1DBF75C2252FB7A1007A1B1A /* CodablePerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBF75C1252FB7A1007A1B1A /* CodablePerson.swift */; };
 		1DD67443251E635C0082AF0A /* bgmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1DD67442251E635C0082AF0A /* bgmusic.mp3 */; };
 		1DE1476E251D4E8A00541EC5 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE1476D251D4E8A00541EC5 /* Star.swift */; };
 		873481602469DEE8000B9A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8734815F2469DEE8000B9A79 /* AppDelegate.swift */; };
@@ -52,6 +53,7 @@
 		1D9FC76025089AF5002E9FF6 /* DukePersonTableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukePersonTableTableViewController.swift; sourceTree = "<group>"; };
 		1D9FC768250978D7002E9FF6 /* DukePersonProtoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukePersonProtoCell.swift; sourceTree = "<group>"; };
 		1DBF75B8252F89A1007A1B1A /* shibauthframework2019.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = shibauthframework2019.framework; sourceTree = "<group>"; };
+		1DBF75C1252FB7A1007A1B1A /* CodablePerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodablePerson.swift; sourceTree = "<group>"; };
 		1DD67442251E635C0082AF0A /* bgmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgmusic.mp3; sourceTree = "<group>"; };
 		1DE1476D251D4E8A00541EC5 /* Star.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		8734815C2469DEE8000B9A79 /* ECE564_HW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECE564_HW.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +86,7 @@
 				1D66E825250069B500419311 /* CoreDataModel.xcdatamodeld */,
 				1D4D0AC92526E2E500A7A222 /* DukePerson+CoreDataClass.swift */,
 				1D4D0ACA2526E2E500A7A222 /* DukePerson+CoreDataProperties.swift */,
+				1DBF75C1252FB7A1007A1B1A /* CodablePerson.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			files = (
 				1D05E94C251117C800706E1E /* BackViewController.swift in Sources */,
 				1D4D0ACB2526E2E500A7A222 /* DukePerson+CoreDataClass.swift in Sources */,
+				1DBF75C2252FB7A1007A1B1A /* CodablePerson.swift in Sources */,
 				1D9FC769250978D7002E9FF6 /* DukePersonProtoCell.swift in Sources */,
 				1DE1476E251D4E8A00541EC5 /* Star.swift in Sources */,
 				1D9C9FFA251DAC1500D18976 /* Rocket.swift in Sources */,

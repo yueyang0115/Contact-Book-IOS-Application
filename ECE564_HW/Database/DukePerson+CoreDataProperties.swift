@@ -32,5 +32,8 @@ extension DukePerson : ECE564{
     @NSManaged public var role: String?
     @NSManaged public var team: String?
     @NSManaged public var whereFrom: String?
+    @NSManaged public var id: String?
+    @NSManaged public var netid: String?
+    @NSManaged public var department: String?
 
 }

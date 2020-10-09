@@ -36,9 +36,12 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     @IBOutlet weak var postButton: UIBarButtonItem!
     @IBOutlet weak var getButton: UIBarButtonItem!
     var netidResult : NetidLookupResultData?
+    var imageTeam: UIImage = UIImage(named: "Teams")!
+    var decodedTeam: String = ""
     
     
     override func viewDidLoad() {
+        decodedTeam = imageTeam.pngData()!.base64EncodedString()
         super.viewDidLoad()
         setImageDict()
         modeButton.title = "Dark/Bright"
@@ -70,6 +73,7 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         imageDict["Teaching Assistant"] = UIImage(named: "TAs")
     }
     
+    // MARK: - server-related
     
     @IBAction func authenticate(_ sender: Any) {
         let alertController = LoginAlert(title: "Authenticate", message: nil, preferredStyle: .alert)
@@ -78,12 +82,19 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     }
     
     @IBAction func postData(_ sender: Any) {
+        if(netidResult == nil){
+            let alert = UIAlertController(title: "Cannot Post", message: "Please login first!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         let url = URL(string: "https://rt113-dt01.egr.duke.edu:5640/b64entries")!
         var request = URLRequest(url : url)
         request.httpMethod = "POST"
         
-        let username = netidResult!.id!
-        let password = netidResult!.password!
+        let username = netidResult!.id! as Any
+        let password = netidResult!.password! as Any
         let loginString = "\(username):\(password)"
         guard let loginData = loginString.data(using: String.Encoding.utf8)
             else { return }
@@ -94,44 +105,50 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let jsonDict = [
-            "id": netidResult?.id! as Any,
-            "netid": netidResult?.netid! as Any,
-            "firstname": "Yue" as Any,
-            "lastname": "Yang" as Any,
-            "wherefrom": "China" as Any,
-            "gender": "Female" as Any,
-            "role": "Student" as Any,
-            "degree": "MS" as Any,
-            "team": "ECE564" as Any,
-            "hobbies": ["Reading"] as Any,
-            "languages": ["Swift", "C++"] as Any,
-            "department": "ECE",
-            "email": "\(netidResult!.id!)@duke.edu",
-            "picture": UIImage(named: "yue")!
-        ] as [String : Any]
-        let jsonData = try! JSONSerialization.data(withJSONObject: jsonDict, options:[])
-        print(String(data: jsonData, encoding: String.Encoding.utf8) as Any)
-        request.httpBody = jsonData
-        
-        // make POST request
-        let task = URLSession.shared.dataTask(with: request){
-            (data, response, error) in
-            if let error = error{
-                print("error:", error)
-                return
-            }
-            do{
-                print("data: \(data!)")
-                print("response: \(response!)")
-                guard let data = data else { return }
-                guard (try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject])
-                    != nil else { return }
-            }catch{
-                print("error:", error)
+        var targetPerson:DukePerson? = nil
+        for person in self.allPersons{
+            if(person.netid == netidResult?.netid){
+                targetPerson = person
+                break
             }
         }
-        task.resume()
+          
+        if(targetPerson != nil){
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(targetPerson) {
+                if let jsonData = String(data: encoded, encoding: .utf8) {
+                    print("post encoded result is: \(jsonData)")
+                }
+                request.httpBody = encoded
+                
+                // make POST request
+                let task = URLSession.shared.dataTask(with: request){
+                    (data, response, error) in
+                    if let error = error{
+                        print("error:", error)
+                        return
+                    }
+                    do{
+                        print("data: \(data!)")
+                        print("response: \(response!)")
+                        guard let data = data else { return }
+                        guard (try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject])
+                            != nil else { return }
+                    }catch{
+                        print("error:", error)
+                    }
+                }
+                task.resume()
+            }
+            let alert = UIAlertController(title: "Post succeed", message: "Successfully post your profile to server!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else{
+            let alert = UIAlertController(title: "Cannot Post", message: "Please create your profile first!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func getData(_ sender: Any) {
@@ -148,13 +165,27 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
                     }
                     if let data = data, let _ = String(data: data, encoding: .utf8){
                         let decoder = JSONDecoder()
-                        var personList = [DukePerson]()
+                        var personList = [CodablePerson]()
                         if let decoded = try?
-                            decoder.decode([DukePerson].self, from: data){
+                            decoder.decode([CodablePerson].self, from: data){
                             personList = decoded
-                            print("decoded person list")
-                            print(personList[0])
-                            print(personList.count)
+                            var personDict : [String: DukePerson] = [:]
+                            for p in self.allPersons {
+                                personDict["\(p.firstName!) \(p.lastName!)"] = p
+                            }
+                            for newPerson in personList{
+                                let key: String = "\(newPerson.firstName!) \(newPerson.lastName!)"
+                                if(personDict[key] != nil){
+                                    self.deletePersonFromDB(person: personDict[key]!)
+                                    print("delete existed person")
+                                }
+                                self.addPersonToDB(firstName: newPerson.firstName!, lastName: newPerson.lastName!, whereFrom: newPerson.whereFrom ?? "", gender: newPerson.gender ?? "", role: newPerson.role ?? "", degree: newPerson.degree ?? "", hobby: newPerson.hobby ?? [""], language: newPerson.language ?? [""], team: newPerson.team ?? self.decodedTeam, email: newPerson.email ?? "", image: newPerson.image ?? "", id: newPerson.id ?? "", netid: newPerson.netid ?? "", department: newPerson.department ?? "")
+                                    
+                            }
+                            DispatchQueue.main.async{
+                                self.fetchAllPersonFromDB()
+                                self.tableView.reloadData()
+                            }
                         }
                     }
                 }
@@ -204,24 +235,25 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     // add some default data in database
     func addDefaultPersonInDB(){
         let imageRic = resizeImage(image: UIImage(named: "ric")!, targetSize: CGSize(width: 50, height: 50))
-        let imageYue = resizeImage(image: UIImage(named: "yue")!, targetSize: CGSize(width: 50, height: 50))
+        //let imageYue = resizeImage(image: UIImage(named: "yue")!, targetSize: CGSize(width: 50, height: 50))
         let imageHaohang = resizeImage(image: UIImage(named: "haohong")!, targetSize: CGSize(width: 50, height: 50))
         let imageYuchen = resizeImage(image: UIImage(named: "yuchen")!, targetSize: CGSize(width: 50, height: 50))
         let imageTeam = UIImage(named: "Teams")
         
-        let decodedRic = imageRic.pngData()!.base64EncodedString(options: .lineLength64Characters)
-        let decodedYue = imageYue.pngData()!.base64EncodedString(options: .lineLength64Characters)
-        let decodedHaohang = imageHaohang.pngData()!.base64EncodedString(options: .lineLength64Characters)
-        let decodedYuchen = imageYuchen.pngData()!.base64EncodedString(options: .lineLength64Characters)
-        let decodedTeam = imageTeam!.pngData()!.base64EncodedString(options: .lineLength64Characters)
+        let decodedRic = imageRic.pngData()!.base64EncodedString()
+        //let decodedYue = imageYue.pngData()!.base64EncodedString(options: .lineLength64Characters)
+        let decodedHaohang = imageHaohang.pngData()!.base64EncodedString()
+        let decodedYuchen = imageYuchen.pngData()!.base64EncodedString()
+        let decodedTeam = imageTeam!.pngData()!.base64EncodedString()
+       
+        let picData: Data = UIImage(named: "yue")!.jpegData(compressionQuality: 1.0)!
+        let picBase64: String = picData.base64EncodedString() // Don't use any options. Just use the default one
         
-        
-        addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["skating"], language: ["swift"], team: "ECE564", email: "yy258@duke.edu", image: decodedYue)
-        addPersonToDB(firstName: "Weihan", lastName: "Zhang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["singing"], language: ["c++"], team: "ECE564", email: "wz125@duke.edu", image: decodedTeam)
-        addPersonToDB(firstName: "Zeyu", lastName: "Li", whereFrom: "China", gender: "Male", role: "Student", degree: "Grad", hobby: ["running"], language: ["java"], team: "", email: "zeyu.li@duke.edu", image:  decodedTeam)
-        addPersonToDB(firstName: "Ric", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "Professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "", email: "rt113@duke.edu", image: decodedRic)
-        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "Teaching Assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "", email: "hz147@duke.edu", image: decodedHaohang)
-        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Teaching Assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "", email: "yy227@duke.edu", image: decodedYuchen)
+        addPersonToDB(firstName: "Yue", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Student", degree: "MS", hobby: ["skating"], language: ["swift", "Java"], team: "Painter", email: "yy258@duke.edu", image: picBase64, id: "yy258", netid: "yy258", department: "ECE")
+        addPersonToDB(firstName: "Weihan", lastName: "Zhang", whereFrom: "China", gender: "Female", role: "Student", degree: "Grad", hobby: ["singing"], language: ["c++"], team: "ECE564", email: "wz125@duke.edu", image: decodedTeam, id: "wz125", netid: "wz125", department: "ECE")
+        addPersonToDB(firstName: "Richard", lastName: "Telford", whereFrom: "Chatham County", gender: "Male", role: "Professor", degree: "N/A", hobby: ["teaching"], language: ["swift"], team: "", email: "rt113@duke.edu", image: decodedRic, id: "rt113", netid: "rt113", department: "ECE")
+        addPersonToDB(firstName: "Haohong", lastName: "Zhao", whereFrom: "China", gender: "Male", role: "Teaching Assistant", degree: "Grad", hobby: ["reading books", "jogging"], language: ["swift", "java"], team: "", email: "hz147@duke.edu", image: decodedHaohang, id: "hz147", netid: "hz147", department: "ECE")
+        addPersonToDB(firstName: "Yuchen", lastName: "Yang", whereFrom: "China", gender: "Female", role: "Teaching Assistant", degree: "Grad", hobby: ["dancing"], language: ["Java", "cpp"], team: "", email: "yy227@duke.edu", image: decodedYuchen, id: "yy227", netid: "yy227", department: "ECE")
         
         fetchPerson(firstName: "Yue", lastName: "Yang")
         fetchPerson(firstName: "Ric", lastName: "Telford")
@@ -312,9 +344,9 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     }
     
     // add one person to database
-    func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String, image: String){
+    func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String, image: String, id: String, netid: String, department: String){
         let newPerson = DukePerson(context: self.context)
-        newPerson.firstName = firstName; newPerson.lastName = lastName; newPerson.whereFrom = whereFrom; newPerson.gender = gender; newPerson.role = role; newPerson.degree = degree; newPerson.hobby = hobby; newPerson.language = language; newPerson.team = team; newPerson.email = email; newPerson.image = image
+        newPerson.firstName = firstName; newPerson.lastName = lastName; newPerson.whereFrom = whereFrom; newPerson.gender = gender; newPerson.role = role; newPerson.degree = degree; newPerson.hobby = hobby; newPerson.language = language; newPerson.team = team; newPerson.email = email; newPerson.image = image; newPerson.id = id; newPerson.netid = netid; newPerson.department = department
         do {
             try self.context.save()
         } catch let error as NSError {
@@ -398,11 +430,11 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
             cell.backgroundColor = UIColor.white
         }
         
-        let dataDecoded : Data = Data(base64Encoded: person.image!, options: .ignoreUnknownCharacters)!
-        let decodedimage = UIImage(data: dataDecoded)
-        if(decodedimage!.pngData() == defaultImage!.pngData()){
-            cell.pImageView.image = defaultImage
-        }
+//        let dataDecoded : Data = Data(base64Encoded: person.image ?? decodedTeam, options: .ignoreUnknownCharacters)!
+//        let decodedimage = UIImage(data: dataDecoded)
+//        if(decodedimage!.pngData() == defaultImage!.pngData()){
+//            cell.pImageView.image = defaultImage
+//        }
         return cell
     }
     
@@ -581,6 +613,8 @@ extension DukePersonTableTableViewController: LoginAlertDelegate {
     func onSuccess(_ loginAlertController: LoginAlert, didFinishSucceededWith status: LoginResults, netidLookupResult: NetidLookupResultData?, netidLookupResultRawData: Data?, cookies: [HTTPCookie]?, lastLoginTime: Date) {
         // succeeded, extract netidLookupResult.id and netidLookupResult.password for your server credential
         // other properties needed for homework are also in netidLookupResult
+        netidResult = netidLookupResult
+        print(netidResult?.id as Any)
         print("login success")
     }
     
