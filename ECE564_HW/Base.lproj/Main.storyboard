@@ -93,7 +93,7 @@
                                     <action selector="postData:" destination="UjX-7l-KQS" id="pDV-Mc-lGa"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Get" id="mcE-nV-PLd">
+                            <barButtonItem systemItem="refresh" id="mcE-nV-PLd">
                                 <connections>
                                     <action selector="getData:" destination="UjX-7l-KQS" id="so9-xt-uAG"/>
                                 </connections>
