@@ -23,6 +23,9 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
     @IBOutlet weak var languageInput: UITextField!
     @IBOutlet weak var teamInput: UITextField!
     @IBOutlet weak var emailInput: UITextField!
+    @IBOutlet weak var netIDInput: UITextField!
+    @IBOutlet weak var departmentInput: UITextField!
+    @IBOutlet weak var idInput: UITextField!
     
     // picture-related
     @IBOutlet weak var userImage: UIImageView!
@@ -66,7 +69,9 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
     func configureField(){
         firstNameInput.delegate = self; lastNameInput.delegate = self; fromWhereInput.delegate = self; degreeInput.delegate = self; hobbyInput.delegate = self; languageInput.delegate = self
         genderInput.delegate = self; roleInput.delegate = self;
-        teamInput.delegate = self; emailInput.delegate = self
+        teamInput.delegate = self; emailInput.delegate = self;
+        netIDInput.delegate = self; departmentInput.delegate = self;
+        idInput.delegate = self;
         
         genderPickerView.delegate = self
         genderPickerView.dataSource = self
@@ -86,7 +91,8 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
     // fill textField with provided person info
     func fillExistedPerson(){
         if(edittedPerson != nil){
-            firstNameInput.text = edittedPerson!.firstName; lastNameInput.text = edittedPerson!.lastName; fromWhereInput.text = edittedPerson!.whereFrom; degreeInput.text = edittedPerson!.degree; hobbyInput.text = edittedPerson!.getHobby(hobby: edittedPerson!.hobby!); languageInput.text = edittedPerson!.getLanguage(language: edittedPerson!.language!); genderInput.text = edittedPerson!.gender; roleInput.text = edittedPerson!.role; teamInput.text = edittedPerson!.team; emailInput.text = edittedPerson!.email;
+            firstNameInput.text = edittedPerson!.firstName; lastNameInput.text = edittedPerson!.lastName; fromWhereInput.text = edittedPerson!.whereFrom; degreeInput.text = edittedPerson!.degree; hobbyInput.text = edittedPerson!.getHobby(hobby: edittedPerson!.hobby!); languageInput.text = edittedPerson!.getLanguage(language: edittedPerson!.language!); genderInput.text = edittedPerson!.gender; roleInput.text = edittedPerson!.role; teamInput.text = edittedPerson!.team; emailInput.text = edittedPerson!.email; netIDInput.text = edittedPerson!.netid;
+                departmentInput.text = edittedPerson!.department; idInput.text = edittedPerson!.id
             //userImage.image = UIImage(data: edittedPerson!.image!)
             
             let dataDecoded : Data = Data(base64Encoded: edittedPerson!.image!, options: .ignoreUnknownCharacters)!
@@ -101,15 +107,17 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
     // enable or disable textField input
     func setTextFieldInput(bool: Bool){
         firstNameInput.isUserInteractionEnabled = bool; lastNameInput.isUserInteractionEnabled = bool; fromWhereInput.isUserInteractionEnabled = bool; genderInput.isUserInteractionEnabled = bool; roleInput.isUserInteractionEnabled = bool; degreeInput.isUserInteractionEnabled = bool; hobbyInput.isUserInteractionEnabled = bool; languageInput.isUserInteractionEnabled = bool; emailInput.isUserInteractionEnabled = bool; teamInput.isUserInteractionEnabled = bool;
+            netIDInput.isUserInteractionEnabled = bool; departmentInput.isUserInteractionEnabled = bool;
+            idInput.isUserInteractionEnabled = bool
         pickButton.isHidden = !bool
     }
     
     
     // MARK: - database-related operations
     // add one person to database
-    func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String, image: String){
+    func addPersonToDB(firstName: String, lastName: String, whereFrom: String, gender: String, role: String, degree: String, hobby: [String], language: [String], team: String, email: String, image: String, id: String, netid: String, department: String){
         let newPerson = DukePerson(context: self.context)
-        newPerson.firstName = firstName; newPerson.lastName = lastName; newPerson.whereFrom = whereFrom; newPerson.gender = gender; newPerson.role = role; newPerson.degree = degree; newPerson.hobby = hobby; newPerson.language = language; newPerson.team = team; newPerson.email = email; newPerson.image = image
+        newPerson.firstName = firstName; newPerson.lastName = lastName; newPerson.whereFrom = whereFrom; newPerson.gender = gender; newPerson.role = role; newPerson.degree = degree; newPerson.hobby = hobby; newPerson.language = language; newPerson.team = team; newPerson.email = email; newPerson.image = image; newPerson.id = id; newPerson.netid = netid; newPerson.department = department
         do {
             try self.context.save()
         } catch let error as NSError {
@@ -177,10 +185,17 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
         let email: String = emailInput.text ?? ""
         let gender: String = genderInput.text ?? ""
         let role: String = roleInput.text ?? ""
+        let netID: String = netIDInput.text ?? ""
+        var id: String = idInput.text ?? ""
+        let department: String = departmentInput.text ?? ""
         
         // check person info valid or not
         if(firstName == "" && lastName == ""){
             displayErrorAlert(error: "FirstName and LastName cannot be null.")
+            return false
+        }
+        if(netID == ""){
+            displayErrorAlert(error: "netID cannot be null.")
             return false
         }
         if(gender == ""){
@@ -199,16 +214,19 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
             displayErrorAlert(error: "Illegal role.")
             return false
         }
+        if(id == ""){
+            id = netID
+        }
         
         //split hobbies and languages to [String]
         let hobbies: [String] = hobby.components(separatedBy: ",")
         let languages: [String] = language.components(separatedBy: ",")
         //var imageData: Data = userImage.image!.pngData()!
-        let imageData: Data = resizeImage(image: userImage.image!, targetSize: CGSize(width: 50, height: 50)).pngData()!
+        let imageData: Data = resizeImage(image: userImage.image!, targetSize: CGSize(width: 100, height: 100)).pngData()!
         let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
         
         // add person to database
-        addPersonToDB(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, degree: degree, hobby: hobbies, language: languages, team: team, email: email, image: strBase64)
+        addPersonToDB(firstName: firstName, lastName: lastName, whereFrom: fromWhere, gender: gender, role: role, degree: degree, hobby: hobbies, language: languages, team: team, email: email, image: strBase64, id: id, netid: netID, department: department)
                 
         // encode newly added person to JSON
         do{
@@ -216,8 +234,8 @@ class InformationViewController: UIViewController,UINavigationControllerDelegate
             for person in persons{
                 if(person.firstName!.lowercased() == firstName.lowercased() &&
                     person.lastName!.lowercased() == lastName.lowercased()){
-                    let encodeSucceed:Bool = saveJsonInfo(person: person)
-                    print("encode succeed: \(encodeSucceed)")
+                    //let encodeSucceed:Bool = saveJsonInfo(person: person)
+                    //print("encode succeed: \(encodeSucceed)")
                 }
             }
         }

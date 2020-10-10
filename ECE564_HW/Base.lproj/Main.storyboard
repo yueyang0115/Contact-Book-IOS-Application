@@ -150,69 +150,81 @@
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="U7R-GK-9TY">
-                                <rect key="frame" x="40" y="74" width="30" height="370"/>
+                                <rect key="frame" x="40" y="54" width="30" height="450"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun.min" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fsv-SP-Wsc">
-                                        <rect key="frame" x="0.0" y="0.5" width="30" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.5" width="30" height="33.5"/>
                                         <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moon" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="3pA-6Y-6rk">
-                                        <rect key="frame" x="0.0" y="37.5" width="30" height="36"/>
+                                        <rect key="frame" x="0.0" y="35" width="30" height="33.5"/>
                                         <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="yyC-yY-g2Q">
-                                        <rect key="frame" x="0.0" y="74.5" width="30" height="36"/>
+                                        <rect key="frame" x="0.0" y="69.5" width="30" height="34"/>
                                         <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rosette" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IcS-l7-0eQ">
-                                        <rect key="frame" x="0.0" y="110" width="30" height="38"/>
+                                        <rect key="frame" x="0.0" y="103" width="30" height="35.5"/>
                                         <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="house" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="0sd-IH-CuA">
-                                        <rect key="frame" x="0.0" y="147.5" width="30" height="36.5"/>
+                                        <rect key="frame" x="0.0" y="138" width="30" height="34"/>
                                         <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uYd-Q3-xaL">
-                                        <rect key="frame" x="0.0" y="186.5" width="30" height="34"/>
+                                        <rect key="frame" x="0.0" y="174.5" width="30" height="31.5"/>
                                         <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gamecontroller" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sV3-bY-aun">
-                                        <rect key="frame" x="0.0" y="223" width="30" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="208.5" width="30" height="32.5"/>
                                         <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ellipses.bubble" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Jdf-0i-AFX">
-                                        <rect key="frame" x="0.0" y="259.5" width="30" height="36.5"/>
+                                        <rect key="frame" x="0.0" y="243" width="30" height="34"/>
                                         <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.3.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ZHN-h6-gEa">
-                                        <rect key="frame" x="0.0" y="297.5" width="30" height="34"/>
+                                        <rect key="frame" x="0.0" y="278.5" width="30" height="31.5"/>
                                         <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="envelope" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="P0p-S0-yHn">
-                                        <rect key="frame" x="0.0" y="334.5" width="30" height="33.5"/>
+                                        <rect key="frame" x="0.0" y="313" width="30" height="31"/>
+                                        <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="949-0O-XAH">
+                                        <rect key="frame" x="0.0" y="346" width="30" height="35"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="house.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bBb-Rb-o5d">
+                                        <rect key="frame" x="0.0" y="380.5" width="30" height="34"/>
+                                        <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fQu-1b-UvD">
+                                        <rect key="frame" x="0.0" y="417.5" width="30" height="31"/>
                                         <color key="tintColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="hrz-qg-I0x"/>
-                                    <constraint firstAttribute="height" constant="370" id="rTA-kq-cS9"/>
+                                    <constraint firstAttribute="height" constant="450" id="rTA-kq-cS9"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="jVX-gb-rAL">
-                                <rect key="frame" x="90" y="74" width="250" height="364"/>
+                                <rect key="frame" x="90" y="54" width="250" height="444"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kUA-Nr-hU9">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YoY-0k-Rfx">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="24"/>
                                                 <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hse-Wa-S9e">
-                                                <rect key="frame" x="120" y="0.0" width="130" height="26.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <rect key="frame" x="120" y="0.0" width="130" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -222,17 +234,17 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="JaH-2f-Tr9">
-                                        <rect key="frame" x="0.0" y="37.5" width="250" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="35" width="250" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lln-UI-CpO">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="24"/>
                                                 <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="97w-TC-cX1">
-                                                <rect key="frame" x="120" y="0.0" width="130" height="26.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <rect key="frame" x="120" y="0.0" width="130" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -242,17 +254,17 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Ozj-0d-i6e">
-                                        <rect key="frame" x="0.0" y="75" width="250" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="70" width="250" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go0-Fw-5wG">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="24"/>
                                                 <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pok-Wz-jMm">
-                                                <rect key="frame" x="120" y="0.0" width="130" height="26.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <rect key="frame" x="120" y="0.0" width="130" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -262,17 +274,17 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="4rS-We-6J7">
-                                        <rect key="frame" x="0.0" y="112.5" width="250" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="105" width="250" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Role:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wc9-Q2-giP">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="24"/>
                                                 <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gLK-H1-AWr">
-                                                <rect key="frame" x="120" y="0.0" width="130" height="26.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <rect key="frame" x="120" y="0.0" width="130" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -282,17 +294,17 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="MTf-zh-D4W">
-                                        <rect key="frame" x="0.0" y="150" width="250" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="140" width="250" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oya-gH-HfT">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="24"/>
                                                 <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cgB-po-aeP">
-                                                <rect key="frame" x="120" y="0.0" width="130" height="26.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <rect key="frame" x="120" y="0.0" width="130" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -302,17 +314,17 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="XSl-ii-yEu">
-                                        <rect key="frame" x="0.0" y="187.5" width="250" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="175" width="250" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Degree:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8v-DP-Ck7">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="24"/>
                                                 <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QwP-6c-dnU">
-                                                <rect key="frame" x="120" y="0.0" width="130" height="26.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <rect key="frame" x="120" y="0.0" width="130" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -322,17 +334,17 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kHu-TG-jDo">
-                                        <rect key="frame" x="0.0" y="225" width="250" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="210" width="250" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hobbies:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ml-4k-gny">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="24"/>
                                                 <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xz1-7I-OxZ">
-                                                <rect key="frame" x="120" y="0.0" width="130" height="26.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <rect key="frame" x="120" y="0.0" width="130" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -342,17 +354,17 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="lAl-zJ-Ycg">
-                                        <rect key="frame" x="0.0" y="262.5" width="250" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="245" width="250" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Languages:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kx3-0n-DIm">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="24"/>
                                                 <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IJM-Sr-dCN">
-                                                <rect key="frame" x="120" y="0.0" width="130" height="26.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <rect key="frame" x="120" y="0.0" width="130" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -362,17 +374,17 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="mrV-0F-gxN">
-                                        <rect key="frame" x="0.0" y="300" width="250" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="280" width="250" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZMT-RS-S1z">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="24"/>
                                                 <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EMW-Fs-Lh4">
-                                                <rect key="frame" x="120" y="0.0" width="130" height="26.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <rect key="frame" x="120" y="0.0" width="130" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -382,17 +394,17 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="SZN-K8-0iE">
-                                        <rect key="frame" x="0.0" y="337.5" width="250" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="315" width="250" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W5Y-Dx-XE6">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="24"/>
                                                 <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MJd-WQ-uP9">
-                                                <rect key="frame" x="120" y="0.0" width="130" height="26.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <rect key="frame" x="120" y="0.0" width="130" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -401,47 +413,113 @@
                                             <constraint firstItem="MJd-WQ-uP9" firstAttribute="leading" secondItem="SZN-K8-0iE" secondAttribute="leading" constant="120" id="g5I-36-bz9"/>
                                         </constraints>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uhD-7D-nre">
+                                        <rect key="frame" x="0.0" y="350" width="250" height="24"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="netID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lg-RN-se9">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="24"/>
+                                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OTJ-pk-JrJ">
+                                                <rect key="frame" x="120" y="0.0" width="130" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="OTJ-pk-JrJ" firstAttribute="leading" secondItem="uhD-7D-nre" secondAttribute="leading" constant="120" id="U9q-5v-BcL"/>
+                                            <constraint firstAttribute="trailing" secondItem="OTJ-pk-JrJ" secondAttribute="trailing" id="crh-qM-vai"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1cJ-qZ-7is">
+                                        <rect key="frame" x="0.0" y="385" width="250" height="24"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Department:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSh-bq-Wsn">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="24"/>
+                                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jry-dA-aWN">
+                                                <rect key="frame" x="120" y="0.0" width="130" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="jry-dA-aWN" firstAttribute="leading" secondItem="1cJ-qZ-7is" secondAttribute="leading" constant="120" id="J2F-Ah-P5K"/>
+                                            <constraint firstAttribute="trailing" secondItem="jry-dA-aWN" secondAttribute="trailing" id="ck6-4V-A0g"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gfz-Yq-Ctg">
+                                        <rect key="frame" x="0.0" y="420" width="250" height="24"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="id:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7e-5b-6PA">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="24"/>
+                                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t2r-hY-uNi">
+                                                <rect key="frame" x="120" y="0.0" width="130" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="t2r-hY-uNi" secondAttribute="trailing" id="1yv-Zp-lQz"/>
+                                            <constraint firstItem="t2r-hY-uNi" firstAttribute="leading" secondItem="Gfz-Yq-Ctg" secondAttribute="leading" constant="120" id="GH3-Rl-3oG"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="REb-ZS-M8y"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="VFW-Cc-L0k">
-                                <rect key="frame" x="127.5" y="458" width="120" height="120"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="VFW-Cc-L0k">
+                                <rect key="frame" x="63.5" y="518" width="248" height="120"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill.badge.exclam" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Nit-0I-efI">
-                                        <rect key="frame" x="0.0" y="0.5" width="120" height="119"/>
-                                        <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="VFW-Cc-L0k" secondAttribute="height" multiplier="1:1" id="dZd-d5-sPu"/>
-                                    <constraint firstAttribute="height" constant="120" id="sZR-om-7o6"/>
-                                </constraints>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Fa1-db-CeR">
-                                <rect key="frame" x="135" y="588" width="105" height="32"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huQ-3k-5sj">
-                                        <rect key="frame" x="0.0" y="0.0" width="105" height="32"/>
-                                        <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="15"/>
-                                        <state key="normal" title="Pick a Picture"/>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VGr-L2-NK8">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill.badge.exclam" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Nit-0I-efI">
+                                                <rect key="frame" x="0.0" y="0.5" width="120" height="119"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Nit-0I-efI" secondAttribute="height" multiplier="1:1" id="ciF-ER-ZV3"/>
+                                                    <constraint firstAttribute="height" constant="120" id="gfc-gW-g1r"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="right" axis="vertical" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Su3-xz-S8M">
+                                        <rect key="frame" x="150" y="44" width="98" height="32"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huQ-3k-5sj">
+                                                <rect key="frame" x="0.0" y="0.0" width="98" height="32"/>
+                                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="15"/>
+                                                <state key="normal" title="Pick a Picture"/>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="huQ-3k-5sj" firstAttribute="top" secondItem="Su3-xz-S8M" secondAttribute="top" id="Bt1-NL-8Fh"/>
+                                            <constraint firstAttribute="bottom" secondItem="huQ-3k-5sj" secondAttribute="bottom" id="Dws-rO-V3Y"/>
+                                            <constraint firstAttribute="trailing" secondItem="huQ-3k-5sj" secondAttribute="trailing" id="HvP-ks-Uh5"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="jVX-gb-rAL" firstAttribute="leading" secondItem="U7R-GK-9TY" secondAttribute="trailing" constant="20" id="1SP-Ic-5oL"/>
-                            <constraint firstItem="Fa1-db-CeR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="135" id="7bZ-wT-WtP"/>
                             <constraint firstItem="VFW-Cc-L0k" firstAttribute="top" secondItem="jVX-gb-rAL" secondAttribute="bottom" constant="20" id="BNd-co-Agz"/>
-                            <constraint firstItem="Fa1-db-CeR" firstAttribute="top" secondItem="VFW-Cc-L0k" secondAttribute="bottom" constant="10" id="CSS-tQ-nNL"/>
-                            <constraint firstItem="jVX-gb-rAL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="Ctk-2N-phm"/>
+                            <constraint firstItem="jVX-gb-rAL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Ctk-2N-phm"/>
                             <constraint firstItem="U7R-GK-9TY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Wta-52-nse"/>
                             <constraint firstItem="VFW-Cc-L0k" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lpU-dm-Cho"/>
-                            <constraint firstItem="Fa1-db-CeR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m6T-cN-wn8"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Fa1-db-CeR" secondAttribute="trailing" constant="135" id="qeR-gx-Rhf"/>
-                            <constraint firstItem="U7R-GK-9TY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="r7u-PY-tIH"/>
+                            <constraint firstItem="U7R-GK-9TY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="r7u-PY-tIH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -460,14 +538,17 @@
                     <connections>
                         <outlet property="cancelButton" destination="t28-3Q-6cf" id="Tiz-IK-vrx"/>
                         <outlet property="degreeInput" destination="QwP-6c-dnU" id="awu-bd-HF6"/>
+                        <outlet property="departmentInput" destination="jry-dA-aWN" id="cfN-RH-XMT"/>
                         <outlet property="emailInput" destination="MJd-WQ-uP9" id="NCz-H1-sIj"/>
                         <outlet property="firstNameInput" destination="hse-Wa-S9e" id="d27-z0-qwt"/>
                         <outlet property="fromWhereInput" destination="cgB-po-aeP" id="r1D-pS-etb"/>
                         <outlet property="genderInput" destination="Pok-Wz-jMm" id="eEB-Yy-9Kd"/>
                         <outlet property="hobbyInput" destination="Xz1-7I-OxZ" id="E7c-JD-ajg"/>
+                        <outlet property="idInput" destination="t2r-hY-uNi" id="7U6-11-Bxz"/>
                         <outlet property="languageInput" destination="IJM-Sr-dCN" id="lxC-Pq-pLS"/>
                         <outlet property="lastNameInput" destination="97w-TC-cX1" id="sfO-Rx-eYP"/>
                         <outlet property="naviBar" destination="6un-IE-0bv" id="V6l-hb-23E"/>
+                        <outlet property="netIDInput" destination="OTJ-pk-JrJ" id="FwH-56-5tm"/>
                         <outlet property="pickButton" destination="huQ-3k-5sj" id="AA3-KH-qOj"/>
                         <outlet property="roleInput" destination="gLK-H1-AWr" id="nW4-1v-Iak"/>
                         <outlet property="saveButton" destination="nFv-MG-rIr" id="dkI-wX-sXC"/>
@@ -570,16 +651,19 @@
     <resources>
         <image name="bg9" width="375" height="667"/>
         <image name="book" catalog="system" width="128" height="101"/>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="ellipses.bubble" catalog="system" width="128" height="110"/>
         <image name="envelope" catalog="system" width="128" height="93"/>
         <image name="gamecontroller" catalog="system" width="128" height="82"/>
         <image name="house" catalog="system" width="128" height="110"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="moon" catalog="system" width="128" height="121"/>
         <image name="night6" width="375" height="667"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle.fill.badge.exclam" catalog="system" width="128" height="101"/>
         <image name="rosette" catalog="system" width="100" height="128"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="sun.min" catalog="system" width="128" height="121"/>
     </resources>
 </document>
