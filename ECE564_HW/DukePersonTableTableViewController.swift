@@ -154,6 +154,8 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
     @IBAction func getData(_ sender: Any) {
         let url = URL(string: "https://rt113-dt01.egr.duke.edu:5640/b64entries")!
         DispatchQueue.main.async{
+            let alert = UIAlertController(title: "", message: "Data downloading, please wait...", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
             let task = URLSession.shared.dataTask(with: url){
                 (data, response, error) in
                 if let error = error{
@@ -177,11 +179,12 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
                                 let key: String = "\(newPerson.firstName!) \(newPerson.lastName!)"
                                 if(personDict[key] != nil){
                                     self.deletePersonFromDB(person: personDict[key]!)
-                                    print("delete existed person")
+                                    print("delete existed person \(newPerson.firstName!) \(newPerson.lastName!)")
                                 }
                                 self.addPersonToDB(firstName: newPerson.firstName!, lastName: newPerson.lastName!, whereFrom: newPerson.whereFrom ?? "", gender: newPerson.gender ?? "", role: newPerson.role ?? "", degree: newPerson.degree ?? "", hobby: newPerson.hobby ?? [""], language: newPerson.language ?? [""], team: newPerson.team ?? self.decodedTeam, email: newPerson.email ?? "", image: newPerson.image ?? "", id: newPerson.id ?? "", netid: newPerson.netid ?? "", department: newPerson.department ?? "")
                                     
                             }
+                            
                             DispatchQueue.main.async{
                                 self.fetchAllPersonFromDB()
                                 self.tableView.reloadData()
@@ -191,6 +194,7 @@ class DukePersonTableTableViewController: UITableViewController, UISearchBarDele
                 }
             }
             task.resume()
+            alert.dismiss(animated: true, completion: nil)
         }
     }
     
