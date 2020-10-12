@@ -112,3 +112,8 @@ Use code to resize the image, so that the encoded json can be short enough to be
 Add alert:  
 If the user choose to delete a person, an alert will pop up and asks whether to delete or not.  
 If the person's information is invalid when save button is pressed, an alert will be popep up. Invalid informations include: no first name and last name is provided, no gender and role information is selected in the pickerview and  self-defined gender and role input.  
+
+
+## HW7
+Add progress bar when  doing a download of the entire class.  
+Add alert if a user wants to post info without login.  
